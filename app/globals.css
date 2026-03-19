@@ -1,26 +1,172 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Colors — brand spec */
+  --color-background: #F5F0E8;
+  --color-foreground: #0D1A0F;
+  --color-primary: #05380d;
+  --color-primary-light: #0a5c18;
+  --color-accent: #fda77e;
+  --color-card: #F5F0E8;
+  --color-muted: #7A7A70;
+  --color-border: #D8D2C4;
+
+  /* Fonts */
+  --font-heading: var(--font-heading-var), Georgia, serif;
+  --font-body: var(--font-body-var), system-ui, sans-serif;
+  --font-label: var(--font-label-var), "Courier New", monospace;
+
+  /* Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-30: 7.5rem;
+  --spacing-128: 32rem;
+
+  /* Font sizes */
+  --font-size-display-xl: clamp(3.5rem, 8vw, 7rem);
+  --line-height-display-xl: 1.0;
+  --letter-spacing-display-xl: -0.02em;
+
+  --font-size-display-lg: clamp(2.2rem, 5vw, 4.5rem);
+  --line-height-display-lg: 1.05;
+  --letter-spacing-display-lg: -0.02em;
+
+  --font-size-display-md: clamp(1.6rem, 3.2vw, 2.8rem);
+  --line-height-display-md: 1.15;
+  --letter-spacing-display-md: -0.01em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom cursor — fine pointer (mouse) only */
+  @media (pointer: fine) {
+    body, a, button, [role="button"] {
+      cursor: none !important;
+    }
+    /* Restore native cursor for form inputs */
+    input, textarea, select {
+      cursor: text !important;
+    }
+  }
+
+  @media (pointer: coarse) {
+    input, textarea, select {
+      cursor: text;
+    }
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+  }
+
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-display-xl {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+  }
+
+  .text-display-lg {
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .text-display-md {
+    font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .font-heading {
+    font-family: var(--font-heading-var, "Cormorant Garamond"), Georgia, serif;
+  }
+
+  .font-body {
+    font-family: var(--font-body-var, Inter), system-ui, sans-serif;
+  }
+
+  .font-label {
+    font-family: var(--font-label-var, "Space Mono"), "Courier New", monospace;
+  }
+
+  /* Grain texture overlay — apply on wrapper div */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    opacity: 0.055;
+    mix-blend-mode: overlay;
+  }
+
+  /* Content inside .grain must sit above the ::after */
+  .grain > * {
+    position: relative;
+    z-index: 3;
+  }
+
+  /* Pill button utility */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-label);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 9999px;
+    padding: 0.625rem 1.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+  }
+
+  /* Section transition smooth */
+  section {
+    position: relative;
+  }
 }
