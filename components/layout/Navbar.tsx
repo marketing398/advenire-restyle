@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import ProfilerModal from '@/components/profiler/ProfilerModal'
 
 const navLinks = [
   { label: 'Cosa facciamo', href: '/cosa-facciamo' },
@@ -83,6 +84,7 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [profilerOpen, setProfilerOpen] = useState(false)
   const lastY = useRef(0)
   const pathname = usePathname()
   const isHomepage = pathname === '/'
@@ -112,14 +114,15 @@ export default function Navbar() {
   const isVisible = !isHomepage || scrolled
 
   return (
-    /*
+    <>
+    {/*
       Il Navbar replica strutturalmente il nav-row dell'Hero:
       ─ stesso container max-w + padding
       ─ stesso py-4 di padding verticale (border-t + border-b sulla hero row ≈ border-b qui)
       ─ stessa distribuzione destra: [links gap] [pill]
       ─ ma aggiunge il logo Advenire a sinistra
       ─ colori invertiti: bg-background, text-foreground (→ vs text-background sull'Hero)
-    */
+    */}
     <header
       className="fixed top-0 left-0 w-full z-50 bg-background/96 backdrop-blur-sm border-b border-border"
       style={{
@@ -161,6 +164,13 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <NavLink key={link.href} {...link} />
             ))}
+            <button
+              onClick={() => setProfilerOpen(true)}
+              className="hidden md:inline-flex items-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] bg-accent text-primary rounded-full px-5 py-2 hover:opacity-85 transition-opacity duration-200 whitespace-nowrap"
+              style={{ cursor: 'pointer' }}
+            >
+              Preventivo <span aria-hidden="true">→</span>
+            </button>
             <CtaPill />
           </div>
 
@@ -221,6 +231,19 @@ export default function Navbar() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 + navLinks.length * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
+              <button
+                onClick={() => { setMenuOpen(false); setProfilerOpen(true) }}
+                className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-accent text-primary rounded-full px-7 py-3 hover:opacity-85 transition-opacity duration-200"
+                style={{ cursor: 'pointer' }}
+              >
+                Preventivo <span aria-hidden="true">→</span>
+              </button>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 + (navLinks.length + 1) * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
               <Link
                 href="/contatti"
                 className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-primary text-background rounded-full px-7 py-3 hover:bg-primary-light transition-colors duration-300"
@@ -233,5 +256,8 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
+
+    <ProfilerModal isOpen={profilerOpen} onClose={() => setProfilerOpen(false)} />
+    </>
   )
 }

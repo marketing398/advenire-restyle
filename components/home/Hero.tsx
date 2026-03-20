@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import ArchitectureGraphic from '@/components/ui/ArchitectureGraphic'
+import ProfilerModal from '@/components/profiler/ProfilerModal'
 
 const LINE_HEIGHT = 1.08
 const SWAP_INTERVAL = 3400
@@ -71,6 +72,7 @@ const navLinks = [
 
 export default function Hero() {
   const shouldReduce = useReducedMotion()
+  const [profilerOpen, setProfilerOpen] = useState(false)
 
   return (
     <section className="bg-primary grain">
@@ -176,6 +178,20 @@ export default function Hero() {
               >
                 Una società privata che progetta eredità destinate a durare.
               </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.88, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <button
+                  onClick={() => setProfilerOpen(true)}
+                  className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.14em] bg-accent text-primary rounded-full px-6 py-2.5 hover:opacity-85 transition-opacity duration-200 whitespace-nowrap"
+                  style={{ cursor: 'pointer' }}
+                >
+                  Avvia il preventivo <span aria-hidden="true">→</span>
+                </button>
+              </motion.div>
             </div>
 
             {/* RIGHT: grafica architettonica — solo desktop */}
@@ -192,6 +208,8 @@ export default function Hero() {
         </div>
 
       </div>
+
+      <ProfilerModal isOpen={profilerOpen} onClose={() => setProfilerOpen(false)} />
     </section>
   )
 }
