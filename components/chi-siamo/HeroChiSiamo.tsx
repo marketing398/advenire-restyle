@@ -49,7 +49,7 @@ export default function HeroChiSiamo() {
               transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
             />
             <p className="font-body font-light text-background/55 text-[14px] leading-relaxed max-w-sm">
-              Grazie a un mix di competenze finanziarie di livello mondiale e di una collaborazione
+              Grazie a un mix di competenze nel settore immobiliare e di una collaborazione
               attenta, siamo un partner per la vita con una visione a lungo termine.
             </p>
           </motion.div>

@@ -143,7 +143,7 @@ export default function Navbar() {
           style={{ width: `${scrollProgress}%`, transition: 'width 0.08s linear' }}
         />
       )}
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-20">
         <div className="flex items-center justify-between py-4">
 
           {/* Logo Advenire — unico elemento extra rispetto all'hero nav row */}
@@ -154,7 +154,7 @@ export default function Navbar() {
               height={500}
               width={1920}
               className="object-contain"
-              style={{ height: '19px', width: 'auto' }}
+              style={{ height: '15px', width: 'auto' }}
               priority
             />
           </Link>

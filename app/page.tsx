@@ -37,7 +37,7 @@ export default function HomePage() {
       <QuoteSection />
       <div
         aria-hidden="true"
-        style={{ height: '80px', background: 'linear-gradient(to bottom, var(--color-primary), var(--color-accent))' }}
+        style={{ height: '80px', background: 'linear-gradient(to bottom, #0D1A0F, #F6EFE5)' }}
       />
       <SectionDivider />
       <ConsulenzaDifferenteSection />

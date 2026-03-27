@@ -1,99 +1,78 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
 
-const servizi = [
+const cards = [
   {
     numero: '01',
-    titolo: 'Pianificazione finanziaria',
-    testo: 'Strategie integrate che uniscono obiettivi di vita, gestione del patrimonio e pianificazione fiscale.',
+    titolo: 'Consulenza per investimento immobiliare',
+    testo: 'Consulenza specializzata per valutare e pianificare il tuo investimento immobiliare in modo consapevole e strategico. Analizziamo ogni opportunità con un approccio tecnico e orientato al valore, per guidarti verso scelte solide e sostenibili. Dalla prima valutazione alla definizione della strategia, ti accompagniamo in ogni fase del tuo investimento.',
+    immagine: '/images/services/consulenza-investimento.jpg',
   },
   {
     numero: '02',
-    titolo: 'Gestione degli investimenti',
-    testo: 'Portafogli personalizzati costruiti per preservare e accrescere il patrimonio nel lungo termine.',
+    titolo: 'Costruzioni consapevoli',
+    testo: 'Realizziamo case su misura in bioedilizia, progettate intorno alle tue esigenze e al tuo stile di vita. Ti accompagniamo in ogni fase, fino alla consegna chiavi in mano, per offrirti un\'abitazione sostenibile, pronta da vivere.',
+    immagine: '/images/services/costruzioni-consapevoli.jpg',
   },
   {
     numero: '03',
-    titolo: 'Pianificazione successoria',
-    testo: 'Strutture patrimoniali pensate per garantire una trasmissione efficiente alle generazioni future.',
-  },
-  {
-    numero: '04',
-    titolo: 'Consulenza fiscale',
-    testo: "Coordinamento con i vostri consulenti fiscali per ottimizzare l'efficienza tributaria.",
-  },
-  {
-    numero: '05',
-    titolo: 'Family Office',
-    testo: 'Un servizio completo e integrato per le famiglie con patrimoni complessi e multi-generazionali.',
-  },
-  {
-    numero: '06',
-    titolo: 'Reporting e trasparenza',
-    testo: 'Accesso completo alla vostra situazione patrimoniale in tempo reale, senza sorprese.',
+    titolo: 'Servizi tecnologici per l\'edilizia',
+    testo: 'Offriamo soluzioni tecnologiche avanzate per l\'edilizia, progettate per ottimizzare tempi, costi e qualità degli interventi. Dalla gestione digitale dei progetti all\'analisi dei dati, trasformiamo il modo di costruire in un processo più efficiente, preciso e innovativo.',
+    immagine: '/images/services/tech-edilizia.jpg',
   },
 ]
 
-function ServiziRow({ s, i, shouldReduce }: { s: typeof servizi[0]; i: number; shouldReduce: boolean | null }) {
-  const [hovered, setHovered] = useState(false)
-
+function ServiceCard({ card, i, shouldReduce }: { card: typeof cards[0]; i: number; shouldReduce: boolean | null }) {
   return (
-    <motion.li
-      initial={{ opacity: 0, y: shouldReduce ? 0 : 20, x: shouldReduce ? 0 : -24 }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
+    <motion.div
+      initial={{ opacity: 0, y: shouldReduce ? 0 : 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-4%' }}
-      transition={{ duration: 0.75, delay: shouldReduce ? 0 : i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className="border-b border-background/10 group"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      transition={{ duration: 0.75, delay: shouldReduce ? 0 : i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="bg-[#1a2e1c] border border-[#f6efe5]/10 flex flex-col"
     >
-      <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 py-6 md:py-7">
-        {/* Number */}
-        <motion.span
-          className="font-label text-[10px] tracking-[0.15em] text-background/30 md:w-12 flex-shrink-0"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: shouldReduce ? 0 : i * 0.08 + 0.15 }}
-        >
-          {s.numero}
-        </motion.span>
-        <h3
-          className="font-heading font-light text-background flex-1 transition-colors duration-400"
-          style={{
-            fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)',
-            letterSpacing: '-0.01em',
-            lineHeight: '1.2',
-            color: hovered ? 'var(--color-accent)' : undefined,
-            transition: 'color 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-          }}
-        >
-          {s.titolo}
-        </h3>
-        <motion.p
-          className="font-body font-light text-[13px] text-background/45 leading-relaxed max-w-sm"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: shouldReduce ? 0 : i * 0.08 + 0.25 }}
-        >
-          {s.testo}
-        </motion.p>
-        {/* Arrow — slides in on hover */}
-        <motion.span
-          className="hidden md:block font-label text-[11px] text-accent flex-shrink-0"
-          animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : -6 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          aria-hidden="true"
-        >
-          →
-        </motion.span>
+      {/* Image placeholder */}
+      <div className="aspect-[4/3] bg-[#1a2e1c] overflow-hidden">
+        <div className="w-full h-full bg-gradient-to-br from-[#1f341e] to-[#0f1e10]" />
       </div>
-    </motion.li>
+
+      {/* Content */}
+      <div className="p-6 flex flex-col gap-4 flex-1">
+        <span className="font-label text-[10px] tracking-[0.15em] text-[#f6efe5]/30">
+          {card.numero}
+        </span>
+        <h3
+          className="font-heading font-light text-[#f6efe5]"
+          style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.4rem)', lineHeight: '1.2', letterSpacing: '-0.01em' }}
+        >
+          {card.titolo}
+        </h3>
+        <p className="font-body font-light text-[13px] text-[#f6efe5]/50 leading-relaxed flex-1">
+          {card.testo}
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-wrap gap-3 pt-2">
+          <Link
+            href="/cosa-facciamo"
+            className="inline-flex items-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] border border-[#f6efe5]/20 text-[#f6efe5] rounded-full px-5 py-2 hover:border-[#f6efe5]/50 transition-colors duration-300"
+            style={{ cursor: 'pointer' }}
+          >
+            Scopri servizio <span aria-hidden="true">→</span>
+          </Link>
+          <Link
+            href="/contatti"
+            className="inline-flex items-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] text-[#f6efe5]/50 rounded-full px-5 py-2 hover:text-[#f6efe5] transition-colors duration-300"
+            style={{ cursor: 'pointer' }}
+          >
+            Chiedi una consulenza
+          </Link>
+        </div>
+      </div>
+    </motion.div>
   )
 }
 
@@ -102,7 +81,7 @@ export default function ServiziSection() {
 
   return (
     <section className="bg-primary grain py-20 lg:py-28">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-20">
 
         {/* Header row */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 pb-8 border-b border-background/10">
@@ -119,7 +98,7 @@ export default function ServiziSection() {
 
             <SplitText
               el="h2"
-              text="Strumenti patrimoniali al servizio della vita che stai costruendo."
+              text="Strumenti al servizio del tuo capitale immobiliare."
               className="font-heading font-light text-background max-w-lg"
               style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.8rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
               delay={0.07}
@@ -143,12 +122,12 @@ export default function ServiziSection() {
           </motion.div>
         </div>
 
-        {/* Services list */}
-        <ul>
-          {servizi.map((s, i) => (
-            <ServiziRow key={s.titolo} s={s} i={i} shouldReduce={shouldReduce} />
+        {/* 3-card grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {cards.map((card, i) => (
+            <ServiceCard key={card.numero} card={card} i={i} shouldReduce={shouldReduce} />
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   )

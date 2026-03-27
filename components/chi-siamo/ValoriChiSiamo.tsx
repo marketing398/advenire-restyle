@@ -7,19 +7,19 @@ const valori = [
     simbolo: '◆',
     titolo: 'Integrità, senza compromessi',
     testo:
-      "Agiamo sempre nell'esclusivo interesse del cliente. Non riceviamo commissioni da terzi e la nostra unica fonte di compenso sono gli onorari concordati con voi.",
+      "Agiamo con incrollabile onestà e decisione, guidati sempre dagli interessi a lungo termine dei nostri clienti e dalla fiducia che ripongono in noi.",
   },
   {
     simbolo: '◉',
     titolo: 'Partnership con uno scopo',
     testo:
-      'Costruiamo relazioni durature basate sulla fiducia reciproca, la comprensione profonda degli obiettivi familiari e un impegno costante per il vostro benessere.',
+      'Coltiviamo relazioni basate su empatia, intuizione e allineamento. Non siamo al fianco dei nostri clienti, ma al loro fianco come creatori della loro eredità.',
   },
   {
     simbolo: '◎',
     titolo: "L'eccellenza come standard",
     testo:
-      "Selezioniamo i professionisti migliori, utilizziamo le tecnologie più avanzate e ci aggiorniamo continuamente per offrire un servizio sempre all'altezza delle aspettative.",
+      "Puntiamo alla maestria in tutto ciò che facciamo, offrendo soluzioni raffinate, una guida preventiva e uno standard di servizio che riflette l'ambizione dei nostri clienti.",
   },
 ]
 

@@ -37,23 +37,36 @@ export default function QuoteSection() {
             {/* Quote — word-by-word reveal */}
             <SplitText
               el="p"
-              text="La tua vita si evolve. E anche noi. Offriamo soluzioni adattive e lungimiranti, pensate per anticipare il futuro, non per reagire."
+              text="Ogni investimento immobiliare è unico e merita una consulenza su misura, capace di adattarsi ai tuoi obiettivi e alla tua visione. La nostra esperienza nel mondo delle costruzioni si traduce in un supporto concreto e vicino alle tue esigenze: dalle operazioni orientate al reddito fino ai progetti più personali, come la casa che hai sempre immaginato."
               className="font-heading font-light text-background max-w-3xl"
               style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.4rem)', lineHeight: '1.45', letterSpacing: '-0.02em' }}
               delay={shouldReduce ? 0 : 0.1}
               stagger={0.035}
             />
 
-            {/* Author */}
-            <motion.p
-              className="font-label text-[10px] text-background/35 mt-8"
+            {/* CTA buttons */}
+            <motion.div
+              className="flex flex-wrap gap-4 mt-8"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              — Giulio Di Mariano Servo
-            </motion.p>
+              <a
+                href="/chi-siamo"
+                className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.12em] bg-[#f6efe5] text-[#0D1A0F] rounded-full px-6 py-2.5 hover:opacity-85 transition-opacity duration-200"
+                style={{ cursor: 'pointer' }}
+              >
+                Scopri chi siamo <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="/contatti"
+                className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.12em] border border-[#f6efe5]/30 text-[#f6efe5] rounded-full px-6 py-2.5 hover:border-[#f6efe5]/60 transition-colors duration-200"
+                style={{ cursor: 'pointer' }}
+              >
+                Chiedi una consulenza <span aria-hidden="true">→</span>
+              </a>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -7,33 +7,33 @@ import CountUp from '@/components/ui/CountUp'
 const cards = [
   {
     num: '01',
-    title: '100% dipendenti',
-    text: 'Agiamo sempre nell\'esclusivo interesse del cliente. Non riceviamo commissioni da terzi né retrocessioni di alcun tipo: la nostra unica remunerazione proviene dal cliente.',
+    title: 'Sincerità',
+    text: 'La nostra consulenza è totalmente imparziale e garantisce una visione oggettiva e nel vostro interesse.',
   },
   {
     num: '02',
     title: 'Investiamo insieme ai nostri clienti',
-    text: 'Costruiamo relazioni durature basate sulla fiducia reciproca, la comprensione profonda degli obiettivi familiari e un impegno costante verso la trasparenza.',
+    text: 'Costruiamo relazioni durature basate sulla fiducia reciproca investendo il nostro capitale professionale insieme ai nostri clienti.',
   },
   {
     num: '03',
-    title: 'Investimenti alternativi fatti in modo diverso',
-    text: 'Portafogli personalizzati costruiti per preservare e accrescere il patrimonio nel lungo termine, con accesso a strategie alternative riservate agli investitori istituzionali.',
+    title: 'Investimenti personali',
+    text: 'Con esperienza nella progettazione di abitazioni, apportiamo il nostro Know how nella realizzazione di residenze private.',
   },
   {
     num: '04',
-    title: 'Pioniere nelle strategie fiscalmente vantaggiose',
-    text: 'Coordinamento con i vostri consulenti fiscali per ottimizzare l\'efficienza tributaria complessiva del portafoglio, integrando la pianificazione fiscale nella strategia di investimento.',
+    title: 'Strategie fiscalmente ottimizzate',
+    text: 'Le nostre strategie e i nostri business plan per investimenti sono studiati per migliorare i risultati conteggiando anche le imposte relative agli interventi.',
   },
   {
     num: '05',
     title: 'Struttura di servizio integrata',
-    text: 'Un servizio completo e integrato per le famiglie con patrimoni complessi e multi-generazionali, che coordina ogni aspetto della gestione patrimoniale in un\'unica relazione.',
+    text: 'Non operiamo con uffici dedicati a servizi specifici. Il team collabora in modo integrato per offrire consulenza e gestione unificata.',
   },
   {
     num: '06',
-    title: 'Soluzioni di investimento proprietarie',
-    text: 'Coordiniamo fiscalità, pianificazione successoria e gestione degli investimenti in un\'unica visione coerente, con soluzioni costruite internamente e non distribuite sul mercato.',
+    title: 'Soluzioni specifiche',
+    text: 'Andiamo oltre le soluzioni classiche. Elaboriamo la strategia più adatta per ottenere il massimo risultato.',
   },
 ]
 
@@ -51,7 +51,7 @@ export default function ConsulenzaDifferenteSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            Consulenza differente
+            Siamo differenti
           </motion.span>
 
           <SplitText
@@ -105,6 +105,23 @@ export default function ConsulenzaDifferenteSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          className="mt-12 flex justify-center"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-10%' }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <a
+            href="/cosa-facciamo"
+            className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.12em] border border-[#0D1A0F]/30 text-[#0D1A0F] rounded-full px-6 py-2.5 hover:bg-[#0D1A0F]/10 transition-colors duration-300"
+            style={{ cursor: 'pointer' }}
+          >
+            Scopri i nostri servizi <span aria-hidden="true">→</span>
+          </a>
+        </motion.div>
 
       </div>
     </section>

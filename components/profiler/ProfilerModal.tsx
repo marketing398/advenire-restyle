@@ -100,6 +100,9 @@ export default function ProfilerModal({ isOpen, onClose }: Props) {
     }
   }, [data, estimate, reset, onClose, setIsSubmitting, setIsSubmitted])
 
+  const isEstimateLocked = !data.contact.email
+  const handleUnlockEstimate = (email: string) => updateContact('email', email)
+
   // Show estimate sidebar from step 2 onward (have type + usage)
   const showSidebar = currentStep >= 3 && currentStep <= 5
 
@@ -136,6 +139,7 @@ export default function ProfilerModal({ isOpen, onClose }: Props) {
           onUpdateContact={updateContact}
           onSubmit={handleSubmit}
           isSubmitting={isSubmitting}
+          onUnlockEstimate={handleUnlockEstimate}
         />
       )
       default: return null
@@ -207,7 +211,11 @@ export default function ProfilerModal({ isOpen, onClose }: Props) {
                   <p className="font-label text-background/30" style={{ fontSize: '9px', letterSpacing: '0.2em', marginBottom: '1rem' }}>
                     STIMA IN TEMPO REALE
                   </p>
-                  <EstimateWidget estimate={estimate} />
+                  <EstimateWidget
+                    estimate={estimate}
+                    isLocked={isEstimateLocked}
+                    onUnlock={handleUnlockEstimate}
+                  />
                 </motion.div>
               )}
             </div>

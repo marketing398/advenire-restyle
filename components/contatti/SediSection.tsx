@@ -54,30 +54,20 @@ export default function SediSection() {
               >
                 (424) 500-4601
               </a>
+              <a
+                href="mailto:info@advenire.com"
+                className="block mt-3 hover:text-background transition-colors duration-300"
+              >
+                info@advenire.com
+              </a>
             </address>
           </div>
 
-          <div>
-            <p className="font-label text-[9px] uppercase tracking-widest text-background/35 mb-4">
-              New York
-            </p>
-            <address className="font-body font-light text-background/60 text-[14px] leading-loose not-italic">
-              <p>150 East 52nd St Suite 27002</p>
-              <p>New York, NY 10022</p>
-              <a
-                href="tel:+16468095056"
-                className="block mt-2 hover:text-background transition-colors duration-300"
-              >
-                (646) 809-5056
-              </a>
-            </address>
-            <a
-              href="mailto:info@advenire.com"
-              className="font-body font-light text-[14px] text-background/60 hover:text-background transition-colors duration-300 mt-4 block"
-            >
-              info@advenire.com
-            </a>
-          </div>
+          {/* Placeholder immagine LA */}
+          <div
+            className="aspect-[4/3] md:aspect-auto"
+            style={{ background: '#e8e0d0', border: '1px solid rgba(13,26,15,0.1)', minHeight: '180px' }}
+          />
         </motion.div>
       </div>
     </section>

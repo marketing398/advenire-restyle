@@ -7,20 +7,20 @@ import SplitText from '@/components/ui/SplitText'
 
 const target = [
   {
-    label: 'Imprenditori immobiliari',
-    body: 'Strategie su misura per chi gestisce portafogli immobiliari complessi, con focus su fiscalità, successione e liquidità.',
-  },
-  {
-    label: 'Agenti immobiliari',
-    body: 'Pianificazione finanziaria orientata alla gestione dei flussi irregolari e alla costruzione di un patrimonio solido nel lungo termine.',
+    label: 'Imprenditori Immobiliari',
+    body: 'Strategie su misura per chi gestisce portafogli immobiliari complessi, con focus su fiscalità, ottimizzazione e liquidità.',
   },
   {
     label: "Professionisti dell'architettura",
     body: 'Soluzioni integrate per chi opera in proprio: protezione del patrimonio, pianificazione previdenziale e ottimizzazione fiscale.',
   },
   {
-    label: 'Famiglie con patrimoni complessi',
-    body: 'Un approccio multi-generazionale che coordina investimenti, pianificazione successoria e governance familiare.',
+    label: 'Privati ecosostenibili',
+    body: 'Supporto dedicato a chi vuole costruire o ristrutturare in bioedilizia, con attenzione alla sostenibilità, al risparmio energetico e alla valorizzazione nel tempo.',
+  },
+  {
+    label: 'Agenzie immobiliari',
+    body: 'Partnership strategiche per agenzie che vogliono offrire ai propri clienti un supporto specializzato in consulenza immobiliare e ottimizzazione degli investimenti.',
   },
 ]
 
@@ -61,8 +61,8 @@ export default function ConsulenzaSection() {
               viewport={{ once: true, margin: '-15%' }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              Lavoriamo con famiglie e professionisti che hanno costruito qualcosa di significativo
-              e desiderano preservarlo, farlo crescere e trasmetterlo con intelligenza e intenzione.
+              Lavoriamo con chi ha un progetto immobiliare chiaro e cerca un partner esperto per valorizzarlo,
+              costruirlo o svilupparlo con intelligenza e visione.
             </motion.p>
 
             <motion.div

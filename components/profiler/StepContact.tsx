@@ -34,9 +34,10 @@ interface Props {
   onUpdateContact: <K extends keyof ProfilerData['contact']>(key: K, value: ProfilerData['contact'][K]) => void
   onSubmit: () => void
   isSubmitting: boolean
+  onUnlockEstimate?: (email: string) => void
 }
 
-export default function StepContact({ data, estimate, onUpdateContact, onSubmit, isSubmitting }: Props) {
+export default function StepContact({ data, estimate, onUpdateContact, onSubmit, isSubmitting, onUnlockEstimate }: Props) {
   const [errors, setErrors] = useState<Record<string, string>>({})
 
   const validate = () => {
@@ -235,7 +236,7 @@ export default function StepContact({ data, estimate, onUpdateContact, onSubmit,
               transition: 'opacity 0.2s',
             }}
           >
-            {isSubmitting ? 'Invio in corso...' : <>Invia e ricevi la tua analisi <span aria-hidden="true">→</span></>}
+            {isSubmitting ? 'Invio in corso...' : <>Invia richiesta <span aria-hidden="true">→</span></>}
           </button>
 
           <p className="font-body text-background/30" style={{ fontSize: '11px', lineHeight: 1.5 }}>
@@ -273,7 +274,12 @@ export default function StepContact({ data, estimate, onUpdateContact, onSubmit,
           </div>
 
           {/* Estimate */}
-          <EstimateWidget estimate={estimate} compact />
+          <EstimateWidget
+            estimate={estimate}
+            compact
+            isLocked={!data.contact.email}
+            onUnlock={onUnlockEstimate}
+          />
         </div>
       </motion.div>
     </div>

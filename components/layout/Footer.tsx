@@ -175,7 +175,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <p className="font-label text-[10px] text-muted/50">© Copyright 2026 Advenire Private Wealth</p>
+          <p className="font-label text-[10px] text-muted/50">© Copyright 2026 Advenire</p>
           <nav className="flex gap-6">
             {legalLinks.map((l) => (
               <Link
