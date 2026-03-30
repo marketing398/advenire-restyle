@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
 import CountUp from '@/components/ui/CountUp'
+import BlueprintGrid from '@/components/ui/BlueprintGrid'
 
 const cards = [
   {
@@ -39,13 +40,14 @@ const cards = [
 
 export default function ConsulenzaDifferenteSection() {
   return (
-    <section className="bg-accent">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 py-14 lg:py-20">
+    <section className="bg-card relative overflow-hidden">
+      <BlueprintGrid />
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 py-14 lg:py-20 border-t border-border relative">
 
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 lg:gap-24 pb-12 lg:pb-16">
           <motion.span
-            className="font-label text-[10px] uppercase tracking-[0.25em] text-foreground/60"
+            className="font-label text-[13px] uppercase tracking-[0.18em] text-foreground/75"
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -70,15 +72,15 @@ export default function ConsulenzaDifferenteSection() {
             <motion.div
               key={card.num}
               className={[
-                'px-0 md:px-8 py-10 group',
+                'px-0 md:px-8 py-8 group',
                 i >= 3 ? 'border-t border-foreground/15' : '',
                 i % 3 !== 2 ? 'md:border-r border-foreground/15' : '',
               ]
                 .filter(Boolean)
                 .join(' ')}
-              initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
-              whileInView={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
-              viewport={{ once: true, margin: '-5%' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10%' }}
               transition={{
                 duration: 0.75,
                 delay: (i % 3) * 0.1,
@@ -90,7 +92,7 @@ export default function ConsulenzaDifferenteSection() {
                 <CountUp to={parseInt(card.num, 10)} delay={(i % 3) * 0.1 + 0.2} />
               </span>
               <h3
-                className="font-heading font-medium text-foreground mb-3 group-hover:text-primary transition-colors duration-400"
+                className="font-heading font-normal text-foreground mb-3 group-hover:text-primary transition-colors duration-400"
                 style={{
                   fontSize: 'clamp(0.95rem, 1.2vw, 1.15rem)',
                   lineHeight: '1.3',
@@ -116,7 +118,7 @@ export default function ConsulenzaDifferenteSection() {
         >
           <a
             href="/cosa-facciamo"
-            className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.12em] border border-[#0D1A0F]/30 text-[#0D1A0F] rounded-full px-6 py-2.5 hover:bg-[#0D1A0F]/10 transition-colors duration-300"
+            className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.12em] bg-accent text-primary rounded-full px-6 py-2.5 hover:opacity-85 transition-opacity duration-200"
             style={{ cursor: 'pointer' }}
           >
             Scopri i nostri servizi <span aria-hidden="true">→</span>

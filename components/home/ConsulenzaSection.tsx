@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import AccordionItem from '@/components/ui/AccordionItem'
 import SplitText from '@/components/ui/SplitText'
+import ArchitecturalLines from '@/components/ui/ArchitecturalLines'
 
 const target = [
   {
@@ -28,15 +29,16 @@ export default function ConsulenzaSection() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-primary grain py-20 lg:py-28">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
+    <section className="bg-background py-20 lg:py-28 relative overflow-hidden">
+      <ArchitecturalLines position="bottom-left" />
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16 lg:gap-24 items-start">
 
           {/* Left — sticky on desktop */}
           <div className="lg:sticky lg:top-32">
             <motion.span
-              className="font-label text-background/35 uppercase tracking-[0.25em] text-[10px] block mb-8"
+              className="font-label text-foreground/65 uppercase tracking-[0.18em] text-[13px] block mb-8"
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-15%' }}
@@ -47,22 +49,22 @@ export default function ConsulenzaSection() {
 
             <SplitText
               el="h2"
-              text="Consulenza finanziaria sofisticata e personalizzata pensata per te."
-              className="font-heading font-light text-background"
+              text="Lavoriamo con chi ha una visione."
+              className="font-heading font-light text-foreground"
               style={{ fontSize: 'clamp(1.8rem, 3.8vw, 3.5rem)', lineHeight: '1.06', letterSpacing: '-0.02em' }}
               delay={0.06}
               stagger={0.045}
             />
 
             <motion.p
-              className="font-body font-light text-[13px] text-background/55 leading-relaxed mt-8 max-w-sm"
+              className="font-body font-light text-[13px] text-foreground/55 leading-relaxed mt-8 max-w-sm"
               initial={{ opacity: 0, y: shouldReduce ? 0 : 16, x: shouldReduce ? 0 : -12 }}
               whileInView={{ opacity: 1, y: 0, x: 0 }}
               viewport={{ once: true, margin: '-15%' }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              Lavoriamo con chi ha un progetto immobiliare chiaro e cerca un partner esperto per valorizzarlo,
-              costruirlo o svilupparlo con intelligenza e visione.
+              Accompagniamo imprenditori, professionisti e privati che cercano un partner esperto per trasformare
+              idee in progetti concreti.
             </motion.p>
 
             <motion.div
@@ -74,7 +76,7 @@ export default function ConsulenzaSection() {
             >
               <Link
                 href="/cosa-facciamo"
-                className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] border border-background/25 text-background rounded-full px-6 py-2.5 hover:bg-background hover:text-primary transition-all duration-300"
+                className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-accent text-primary rounded-full px-6 py-2.5 hover:opacity-85 transition-opacity duration-200"
                 style={{ cursor: 'pointer' }}
               >
                 Scopri i nostri servizi <span aria-hidden="true">→</span>
@@ -82,7 +84,7 @@ export default function ConsulenzaSection() {
             </motion.div>
           </div>
 
-          {/* Right — accordion, slides in from right */}
+          {/* Right — accordion */}
           <motion.div
             initial={{ opacity: 0, y: shouldReduce ? 0 : 20, x: shouldReduce ? 0 : 32 }}
             whileInView={{ opacity: 1, y: 0, x: 0 }}
@@ -90,10 +92,10 @@ export default function ConsulenzaSection() {
             transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
             className="lg:pt-16"
           >
-            <div className="border-t border-background/15">
+            <div className="border-t border-border">
               {target.map((item) => (
-                <AccordionItem key={item.label} title={item.label} light>
-                  <span className="text-background/55 font-light text-[13px] leading-relaxed">
+                <AccordionItem key={item.label} title={item.label}>
+                  <span className="text-muted font-light text-[13px] leading-relaxed">
                     {item.body}
                   </span>
                 </AccordionItem>

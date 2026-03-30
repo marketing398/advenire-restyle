@@ -3,11 +3,11 @@
 @theme {
   /* Colors — brand spec */
   --color-background: #F6EFE5;
-  --color-foreground: #0D1A0F;
-  --color-primary: #05380d;
-  --color-primary-light: #0a5c18;
-  --color-accent: #fda77e;
-  --color-card: #F5F0E8;
+  --color-foreground: #1A1A18;
+  --color-primary: #05380D;
+  --color-primary-light: #0a6d1a;
+  --color-accent: #FDA77E;
+  --color-card: #F0EAE0;
   --color-muted: #7A7A70;
   --color-border: #D8D2C4;
 

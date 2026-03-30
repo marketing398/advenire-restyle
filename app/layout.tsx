@@ -9,10 +9,10 @@ import PageTransition from '@/components/ui/PageTransition'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Advenire Private Wealth',
+    default: 'Advenire — Consulenza Patrimoniale Immobiliare',
     template: '%s | Advenire',
   },
-  description: 'Ricchezza adattiva. Eredità duratura.',
+  description: 'Consulenza patrimoniale e immobiliare su misura. Investimenti, costruzioni consapevoli e servizi tecnologici per l\'edilizia.',
 }
 
 export default function RootLayout({
