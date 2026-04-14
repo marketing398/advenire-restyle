@@ -4,42 +4,42 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 const categorie = [
   {
-    simbolo: '◈',
+    num: '01',
     titolo: 'Pianificazione finanziaria',
     descrizione: "Strategie integrate che guardano all'intero arco della vita.",
   },
   {
-    simbolo: '◉',
+    num: '02',
     titolo: 'Gestione degli investimenti',
     descrizione: 'Portafogli personalizzati per ogni profilo di rischio e obiettivo.',
   },
   {
-    simbolo: '◎',
+    num: '03',
     titolo: 'Pianificazione successoria',
     descrizione: 'Strutture per garantire una trasmissione efficiente del patrimonio.',
   },
   {
-    simbolo: '◇',
+    num: '04',
     titolo: 'Consulenza fiscale',
     descrizione: "Coordinamento per ottimizzare l'efficienza tributaria complessiva.",
   },
   {
-    simbolo: '◆',
+    num: '05',
     titolo: 'Real estate advisory',
     descrizione: 'Analisi e strategie per il patrimonio immobiliare.',
   },
   {
-    simbolo: '○',
+    num: '06',
     titolo: 'Filantropia strategica',
     descrizione: 'Pianificazione degli impatti sociali e strutture donative.',
   },
   {
-    simbolo: '●',
+    num: '07',
     titolo: 'Assicurazioni e protezione',
     descrizione: 'Soluzioni per proteggere il patrimonio da eventi inattesi.',
   },
   {
-    simbolo: '◐',
+    num: '08',
     titolo: 'Coordinamento professionale',
     descrizione: 'Collaborazione con avvocati, commercialisti e notai.',
   },
@@ -49,13 +49,13 @@ export default function ServiziGrid() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-primary grain py-20 lg:py-28">
+    <section className="bg-primary py-20 lg:py-28">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-10 border-b border-background/10">
           <motion.span
-            className="font-label text-[10px] uppercase tracking-[0.25em] text-background/35"
+            className="font-label text-[10px] uppercase tracking-[0.25em] text-background/50"
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -64,7 +64,7 @@ export default function ServiziGrid() {
             Il tuo mondo è complesso
           </motion.span>
           <motion.h2
-            className="font-heading font-light text-background max-w-xl md:text-right"
+            className="font-heading font-light italic text-background max-w-xl md:text-right"
             style={{
               fontSize: 'clamp(1.5rem, 2.8vw, 2.5rem)',
               lineHeight: '1.1',
@@ -96,23 +96,18 @@ export default function ServiziGrid() {
               style={{
                 transition: 'background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
-              whileHover={{ backgroundColor: 'rgba(245,240,232,0.04)' }}
+              whileHover={{ backgroundColor: 'rgba(246,239,229,0.04)' }}
             >
-              <motion.span
-                className="text-[20px] text-background/25 block mb-6"
-                whileHover={{ scale: 1.15, color: 'var(--color-accent)' }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                style={{ display: 'inline-block', transformOrigin: 'left center' }}
-              >
-                {c.simbolo}
-              </motion.span>
+              <span className="font-label text-[10px] text-background/45 block mb-6 tracking-[0.15em]">
+                {c.num}
+              </span>
               <h3
                 className="font-heading font-light text-background mb-3"
                 style={{ fontSize: 'clamp(1rem, 1.4vw, 1.25rem)', letterSpacing: '-0.01em' }}
               >
                 {c.titolo}
               </h3>
-              <p className="font-body font-light text-[13px] text-background/45 leading-relaxed">
+              <p className="font-body font-light text-[13px] text-background/65 leading-relaxed">
                 {c.descrizione}
               </p>
             </motion.div>

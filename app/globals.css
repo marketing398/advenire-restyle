@@ -165,6 +165,12 @@
     cursor: pointer;
   }
 
+  /* GPU-accelerated animation container */
+  .animate-gpu {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
   /* Section transition smooth */
   section {
     position: relative;

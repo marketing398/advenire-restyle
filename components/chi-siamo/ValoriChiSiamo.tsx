@@ -4,19 +4,19 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 const valori = [
   {
-    simbolo: '◆',
+    num: '01',
     titolo: 'Integrità, senza compromessi',
     testo:
       "Agiamo con incrollabile onestà e decisione, guidati sempre dagli interessi a lungo termine dei nostri clienti e dalla fiducia che ripongono in noi.",
   },
   {
-    simbolo: '◉',
+    num: '02',
     titolo: 'Partnership con uno scopo',
     testo:
       'Coltiviamo relazioni basate su empatia, intuizione e allineamento. Non siamo al fianco dei nostri clienti, ma al loro fianco come creatori della loro eredità.',
   },
   {
-    simbolo: '◎',
+    num: '03',
     titolo: "L'eccellenza come standard",
     testo:
       "Puntiamo alla maestria in tutto ciò che facciamo, offrendo soluzioni raffinate, una guida preventiva e uno standard di servizio che riflette l'ambizione dei nostri clienti.",
@@ -42,7 +42,7 @@ export default function ValoriChiSiamo() {
             I nostri valori
           </motion.span>
           <motion.h2
-            className="font-heading font-light text-foreground max-w-xl"
+            className="font-heading font-light italic text-foreground max-w-xl"
             style={{
               fontSize: 'clamp(1.5rem, 2.8vw, 2.5rem)',
               lineHeight: '1.1',
@@ -72,14 +72,9 @@ export default function ValoriChiSiamo() {
               }}
               className="border-t border-border pt-8 pb-10 pr-8 group"
             >
-              <motion.span
-                className="text-[20px] text-muted/35 block mb-6"
-                whileHover={{ scale: 1.15, color: 'var(--color-accent)' }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                style={{ display: 'inline-block', transformOrigin: 'left center' }}
-              >
-                {v.simbolo}
-              </motion.span>
+              <span className="font-label text-[10px] text-foreground/45 block mb-6 tracking-[0.15em]">
+                {v.num}
+              </span>
               <h3
                 className="font-heading font-light text-foreground mb-4"
                 style={{
@@ -90,7 +85,7 @@ export default function ValoriChiSiamo() {
               >
                 {v.titolo}
               </h3>
-              <p className="font-body text-[13px] font-light text-muted leading-relaxed">
+              <p className="font-body text-[13px] font-light text-foreground/65 leading-relaxed">
                 {v.testo}
               </p>
             </motion.div>

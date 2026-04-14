@@ -133,12 +133,8 @@ export default function ProfilerInline() {
 
         {/* Content grid */}
         <div
-          style={{
-            display: showSidebar ? 'grid' : 'block',
-            gridTemplateColumns: showSidebar ? '1fr 300px' : undefined,
-            gap: showSidebar ? '4rem' : undefined,
-            alignItems: 'start',
-          }}
+          className={showSidebar ? 'lg:grid lg:grid-cols-[1fr_300px] lg:gap-16' : ''}
+          style={{ alignItems: 'start' }}
         >
           {/* Step content */}
           <div>

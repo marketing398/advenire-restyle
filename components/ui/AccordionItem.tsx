@@ -74,7 +74,7 @@ export default function AccordionItem({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
               className={`font-body font-light text-[13px] leading-relaxed pb-6 ${
-                light ? 'text-background/50' : 'text-muted'
+                light ? 'text-background/65' : 'text-foreground/65'
               }`}
             >
               {children}

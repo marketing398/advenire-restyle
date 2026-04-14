@@ -104,7 +104,7 @@ export default function TeamSection() {
               <p className="font-label text-[9px] uppercase tracking-widest text-muted mb-4">
                 {membro.ruolo}
               </p>
-              <p className="font-body font-light text-[13px] text-muted leading-relaxed">
+              <p className="font-body font-light text-[13px] text-foreground/65 leading-relaxed">
                 {membro.bio}
               </p>
             </motion.div>

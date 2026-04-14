@@ -2,121 +2,49 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, useReducedMotion, useScroll, useTransform, useSpring } from 'framer-motion'
+import Image from 'next/image'
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 
-const navLinks = [
+const heroNavLinks = [
   { label: 'Cosa facciamo', href: '/cosa-facciamo' },
   { label: 'Chi siamo', href: '/chi-siamo' },
+  { label: 'Le nostre prospettive', href: '/le-nostre-prospettive' },
+  { label: 'Contatti', href: '/contatti' },
 ]
-
-// 14px font, ~150px per ripetizione, circonferenza 628px → 4 ripetizioni
-const CIRCLE_TEXT = 'INIZIA ORA  ·  INIZIA ORA  ·  INIZIA ORA  ·  INIZIA ORA  ·  INIZIA ORA'
-
-function CircleCTA() {
-  const [hovered, setHovered] = useState(false)
-
-  return (
-    <Link
-      href="/contatti"
-      style={{ display: 'inline-block', cursor: 'pointer' }}
-      aria-label="Contattaci"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <svg
-        viewBox="0 0 220 220"
-        width="220"
-        height="220"
-        style={{ display: 'block', overflow: 'visible' }}
-      >
-        <defs>
-          {/* r=84: testo staccato di ~16px dal bordo esterno (r=100) */}
-          <path
-            id="fullCircle"
-            d="M 26,110 A 84,84 0 1,1 194,110 A 84,84 0 1,1 26,110"
-          />
-          <clipPath id="circleClip">
-            <circle cx="110" cy="110" r="97" />
-          </clipPath>
-        </defs>
-
-        {/* Bordo cerchio */}
-        <circle cx="110" cy="110" r="100" fill="none" stroke="#FDA77E" strokeWidth="1.2" />
-
-        {/* Icona Advenire — appare all'hover */}
-        <image
-          href="/images/icon-a-light.png"
-          x="45" y="45"
-          width="130" height="130"
-          preserveAspectRatio="xMidYMid meet"
-          clipPath="url(#circleClip)"
-          style={{
-            opacity: hovered ? 0.9 : 0,
-            transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-          }}
-        />
-
-        {/* Testo circolare — font più grande, 4 ripetizioni */}
-        <text
-          fill="#FDA77E"
-          style={{
-            fontFamily: 'var(--font-label-var, "Courier New", monospace)',
-            fontSize: '14px',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-          }}
-        >
-          <textPath href="#fullCircle" startOffset="0%">
-            {CIRCLE_TEXT}
-          </textPath>
-        </text>
-      </svg>
-    </Link>
-  )
-}
 
 function LogoWordmark() {
   const shouldReduce = useReducedMotion()
   const { scrollY } = useScroll()
 
-  // Scroll range: 0px → 400px
-  const rawScale   = useTransform(scrollY, [0, 400], [1, 1.18])
-  const rawOpacity = useTransform(scrollY, [0, 320], [1, 0])
-  const rawY       = useTransform(scrollY, [0, 400], [0, -50])
-  const rawBlur    = useTransform(scrollY, [0, 350], [0, 14])
-
-  // Springify scale e Y per un feel più fluido
-  const scale   = useSpring(rawScale,   { stiffness: 80, damping: 20 })
-  const opacity = useSpring(rawOpacity, { stiffness: 100, damping: 25 })
-  const y       = useSpring(rawY,       { stiffness: 80, damping: 20 })
-
-  // blur come motionValue stringa
-  const filter = useTransform(rawBlur, v => `blur(${v}px)`)
+  const opacity = useTransform(scrollY, [0, 320], [1, 0])
+  const scale = useTransform(scrollY, [0, 400], [1, 1.05])
+  const y = useTransform(scrollY, [0, 400], [0, -30])
 
   return (
     <motion.div
       style={{
-        flex: '0 0 auto',
         width: '100%',
-        height: 'clamp(120px, 38vh, 380px)',
         lineHeight: 0,
-        display: 'flex',
-        alignItems: 'center',
+        overflow: 'hidden',
+        padding: 'clamp(2rem, 5vh, 4rem) clamp(1.5rem, 4vw, 4rem) 0',
         scale: shouldReduce ? 1 : scale,
         opacity: shouldReduce ? 1 : opacity,
         y: shouldReduce ? 0 : y,
-        filter: shouldReduce ? undefined : filter,
         transformOrigin: 'center center',
-        willChange: 'transform, opacity, filter',
+        willChange: 'transform, opacity',
       }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
     >
       <img
-        src="/images/logo-hero.png"
+        src="/images/logo-hero.svg"
         alt="ADVENIRE"
-        style={{ display: 'block', width: '100%', height: '100%', objectFit: 'contain' }}
+        style={{
+          display: 'block',
+          width: '100%',
+          height: 'auto',
+        }}
       />
     </motion.div>
   )
@@ -124,101 +52,192 @@ function LogoWordmark() {
 
 export default function Hero() {
   const shouldReduce = useReducedMotion()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <section
-      className="bg-primary grain"
-      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+      className="bg-primary"
+      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
     >
       <LogoWordmark />
 
-      {/* ── CONTENT BLOCK ── */}
-      <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+      {/* NAV ROW */}
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 w-full">
+        <motion.div
+          className="flex items-center justify-between gap-6 lg:gap-10 py-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: shouldReduce ? 0 : 0.4 }}
+        >
+          {/* Compact A mark */}
+          <Link
+            href="/"
+            aria-label="Advenire — Home"
+            className="font-heading font-light italic text-background text-[22px] leading-none tracking-tight select-none"
+          >
+            A.
+          </Link>
 
-        {/* NAV ROW */}
-        <div style={{ borderTop: '1px solid rgba(246,239,229,0.15)' }}>
-          <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
-            <motion.div
-              className="flex items-center justify-end gap-6 lg:gap-10 py-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: shouldReduce ? 0 : 0.4 }}
-            >
-              <nav className="hidden md:flex items-center gap-6 lg:gap-10">
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.href}
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: shouldReduce ? 0 : 0.45 + i * 0.07 }}
-                  >
-                    <Link
-                      href={link.href}
-                      className="font-label text-[11px] uppercase tracking-widest text-background/60 hover:text-background transition-colors duration-300 whitespace-nowrap"
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
-
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-10">
+            {heroNavLinks.map((link, i) => (
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: shouldReduce ? 0 : 0.65 }}
+                key={link.href}
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: shouldReduce ? 0 : 0.45 + i * 0.07 }}
               >
                 <Link
-                  href="/contatti"
-                  className="inline-flex items-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] border border-background/30 text-background rounded-full px-5 py-2 hover:bg-background hover:text-primary transition-all duration-300 whitespace-nowrap"
+                  href={link.href}
+                  className={
+                    link.href === '/contatti'
+                      ? 'font-label text-[11px] uppercase tracking-widest text-background/70 hover:text-background border border-background/50 hover:border-background rounded-full px-4 py-1.5 transition-colors duration-300 whitespace-nowrap'
+                      : 'font-label text-[11px] uppercase tracking-widest text-background/70 hover:text-background transition-colors duration-300 whitespace-nowrap'
+                  }
                 >
-                  Contattaci <span aria-hidden="true">→</span>
+                  {link.label}
+                  {link.href === '/contatti' && <span className="ml-1.5" aria-hidden="true">&rarr;</span>}
                 </Link>
               </motion.div>
-            </motion.div>
-          </div>
-        </div>
+            ))}
+          </nav>
 
-        {/* ── HERO CONTENT ── */}
-        <div
-          className="max-w-[1440px] mx-auto px-8 lg:px-16 pt-8 pb-12 lg:pt-10 lg:pb-16 w-full"
-          style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center' }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-16 items-center w-full">
+          {/* Mobile hamburger */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? 'Chiudi menu' : 'Apri menu'}
+            aria-expanded={menuOpen}
+            className="md:hidden flex flex-col justify-center items-end gap-[5px] w-8 h-8 p-1"
+          >
+            <span
+              className="block h-[1.5px] bg-background transition-all duration-300"
+              style={{
+                width: '22px',
+                transform: menuOpen ? 'translateY(6.5px) rotate(45deg)' : 'none',
+              }}
+            />
+            <span
+              className="block h-[1.5px] bg-background transition-all duration-300"
+              style={{
+                width: '16px',
+                opacity: menuOpen ? 0 : 1,
+              }}
+            />
+            <span
+              className="block h-[1.5px] bg-background transition-all duration-300"
+              style={{
+                width: '22px',
+                transform: menuOpen ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
+              }}
+            />
+          </button>
+        </motion.div>
 
-            <div className="flex flex-col gap-6">
-              <motion.h1
-                className="font-heading font-light text-background"
-                style={{ fontSize: 'clamp(3rem, 6vw, 6.5rem)', lineHeight: 1.05, letterSpacing: '-0.025em' }}
-                initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: shouldReduce ? 0 : 0.5 }}
-              >
-                Esperienza al servizio<br />
-                del tuo capitale.
-              </motion.h1>
-
-              <motion.p
-                className="font-body font-light text-background/60 text-[14px] leading-relaxed max-w-xl"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.75 }}
-              >
-                Trasformiamo il tuo investimento immobiliare in un progetto solido, sicuro e costruito per crescere nel tempo.
-              </motion.p>
-            </div>
-
-            <motion.div
-              className="flex items-center justify-center lg:justify-end"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: shouldReduce ? 0 : 0.65 }}
+        {/* Mobile menu panel */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.nav
+              key="mobile-nav"
+              className="md:hidden flex flex-col gap-4 pb-4 pt-2"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
-              <CircleCTA />
-            </motion.div>
+              {heroNavLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="font-label text-[12px] uppercase tracking-widest text-background/80 hover:text-background transition-colors duration-300"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </motion.nav>
+          )}
+        </AnimatePresence>
+      </div>
 
+      {/* HERO CONTENT — bottom of viewport */}
+      <div
+        className="max-w-[1440px] mx-auto px-6 lg:px-16 w-full"
+        style={{
+          flex: '1 1 auto',
+          display: 'flex',
+          alignItems: 'flex-end',
+          paddingBottom: 'clamp(3rem, 6vh, 7rem)',
+        }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-6 lg:gap-10 items-end w-full">
+
+          {/* Left — heading + subtext */}
+          <div className="flex flex-col gap-5">
+            <motion.h1
+              className="font-heading font-light italic"
+              initial={{ opacity: 0, y: shouldReduce ? 0 : 24 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                backgroundPosition: shouldReduce ? '0% 50%' : ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{
+                opacity: { duration: 0.9, delay: shouldReduce ? 0 : 0.5 },
+                y: { duration: 0.9, delay: shouldReduce ? 0 : 0.5 },
+                backgroundPosition: { duration: 8, repeat: Infinity, ease: 'linear', delay: 1.5 },
+              }}
+              style={{
+                fontSize: 'clamp(2.2rem, 7vw, 6.5rem)',
+                lineHeight: 1.0,
+                letterSpacing: '-0.03em',
+                backgroundImage:
+                  'linear-gradient(90deg, #F6EFE5 0%, #F6EFE5 40%, #FDA77E 50%, #F6EFE5 60%, #F6EFE5 100%)',
+                backgroundSize: '200% 100%',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              <span className="block sm:whitespace-nowrap">Esperienza al servizio</span>
+              <span className="block sm:whitespace-nowrap">del tuo capitale.</span>
+            </motion.h1>
+
+            <motion.p
+              className="font-body font-light text-background/55 text-[12px] md:text-[13px] leading-relaxed max-w-lg mt-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.75 }}
+            >
+              Trasformiamo il tuo investimento immobiliare in un progetto solido, sicuro e costruito per crescere nel tempo.
+            </motion.p>
           </div>
-        </div>
 
+          {/* Right — illustration */}
+          <motion.div
+            className="hidden lg:block self-end"
+            initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: shouldReduce ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Image
+              src="/images/services/3.webp"
+              alt=""
+              width={600}
+              height={450}
+              sizes="(max-width: 1024px) 0px, 240px"
+              aria-hidden="true"
+              style={{
+                width: '100%',
+                maxWidth: '260px',
+                height: 'auto',
+                marginLeft: 'auto',
+                display: 'block',
+              }}
+            />
+          </motion.div>
+
+        </div>
       </div>
     </section>
   )

@@ -3,80 +3,82 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
-import SplitText from '@/components/ui/SplitText'
 
 const cards = [
   {
-    numero: '01',
     titolo: 'Consulenza per investimento immobiliare',
     testo: 'Consulenza specializzata per valutare e pianificare il tuo investimento immobiliare in modo consapevole e strategico. Analizziamo ogni opportunità con un approccio tecnico e orientato al valore, per guidarti verso scelte solide e sostenibili. Dalla prima valutazione alla definizione della strategia, ti accompagniamo in ogni fase del tuo investimento.',
-    immagine: '/images/services/consulenza-investimento.png',
+    immagine: '/images/services/2.webp',
   },
   {
-    numero: '02',
     titolo: 'Costruzioni consapevoli',
-    testo: 'Realizziamo case su misura in bioedilizia, progettate intorno alle tue esigenze e al tuo stile di vita. Ti accompagniamo in ogni fase, fino alla consegna chiavi in mano, per offrirti un\'abitazione sostenibile, pronta da vivere.',
-    immagine: '/images/services/costruzioni-consapevoli.png',
-  },
-  {
-    numero: '03',
-    titolo: 'Servizi tecnologici per l\'edilizia',
-    testo: 'Offriamo soluzioni tecnologiche avanzate per l\'edilizia, progettate per ottimizzare tempi, costi e qualità degli interventi. Dalla gestione digitale dei progetti all\'analisi dei dati, trasformiamo il modo di costruire in un processo più efficiente, preciso e innovativo.',
-    immagine: '/images/services/tech-edilizia.png',
+    testo: "Realizziamo case su misura in bioedilizia, progettate intorno alle tue esigenze e al tuo stile di vita. Ti accompagniamo in ogni fase, fino alla consegna chiavi in mano, per offrirti un'abitazione sostenibile, pronta da vivere.",
+    immagine: '/images/services/1.webp',
   },
 ]
 
-function ServiceCard({ card, i, shouldReduce }: { card: typeof cards[0]; i: number; shouldReduce: boolean | null }) {
+const anim = {
+  ease: [0.16, 1, 0.3, 1] as const,
+  duration: 0.7,
+}
+
+function ServiceCard({ card, i, isLast, shouldReduce }: { card: typeof cards[0]; i: number; isLast: boolean; shouldReduce: boolean | null }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: shouldReduce ? 0 : 24 }}
+      initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-4%' }}
-      transition={{ duration: 0.75, delay: shouldReduce ? 0 : i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-card border border-border shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col overflow-hidden min-w-0"
+      transition={{ duration: anim.duration, delay: shouldReduce ? 0 : i * 0.12, ease: anim.ease }}
+      className={!isLast ? 'border-b border-foreground/8 pb-16 lg:pb-24' : ''}
     >
-      {/* Image */}
-      <div className="aspect-[4/3] overflow-hidden relative">
-        <Image
-          src={card.immagine}
-          alt={card.titolo}
-          fill
-          className="object-cover"
-          style={{ mixBlendMode: 'luminosity' }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="p-7 lg:p-8 flex flex-col gap-4 flex-1">
-        <span className="font-label text-[10px] tracking-[0.15em] text-foreground/30">
-          {card.numero}
-        </span>
-        <h3
-          className="font-heading font-light text-foreground"
-          style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.4rem)', lineHeight: '1.2', letterSpacing: '-0.01em' }}
-        >
-          {card.titolo}
-        </h3>
-        <p className="font-body font-light text-[13px] text-foreground/55 leading-relaxed flex-1">
-          {card.testo}
-        </p>
-
-        {/* CTAs */}
-        <div className="flex flex-wrap gap-3 pt-2">
-          <Link
-            href="/cosa-facciamo"
-            className="inline-flex items-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] bg-primary text-background rounded-full px-5 py-2 hover:bg-primary-light transition-colors duration-300"
-            style={{ cursor: 'pointer' }}
+      <div className="flex flex-col md:flex-row gap-8 lg:gap-14 items-start">
+        {/* Image */}
+        <div className="w-full md:w-[42%] flex-shrink-0 max-w-[80%] mx-auto md:mx-0 md:max-w-none">
+          <div
+            className="relative w-full aspect-[4/3]"
+            style={{
+              maskImage: 'radial-gradient(ellipse 85% 85% at 35% 40%, black 50%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 85% 85% at 35% 40%, black 50%, transparent 100%)',
+            }}
           >
-            Scopri servizio <span aria-hidden="true">→</span>
-          </Link>
-          <Link
-            href="/contatti"
-            className="inline-flex items-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] bg-accent text-primary rounded-full px-5 py-2 hover:opacity-85 transition-opacity duration-200"
-            style={{ cursor: 'pointer' }}
+            <Image
+              src={card.immagine}
+              alt={card.titolo}
+              fill
+              sizes="(max-width: 768px) 100vw, 42vw"
+              className="object-contain"
+              style={{ mixBlendMode: 'luminosity', opacity: 0.9 }}
+            />
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 flex flex-col">
+          <h3
+            className="font-heading font-light text-foreground"
+            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
           >
-            Chiedi una consulenza
-          </Link>
+            {card.titolo}
+          </h3>
+
+          <p className="font-body font-light text-[14px] text-foreground/65 leading-relaxed mt-4">
+            {card.testo}
+          </p>
+
+          <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
+            <Link
+              href="/cosa-facciamo"
+              className="inline-flex items-center justify-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] border border-primary/60 text-primary rounded-full px-5 py-2 hover:bg-primary hover:text-background transition-colors duration-300"
+            >
+              Scopri servizio <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              href="/contatti"
+              className="inline-flex items-center justify-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] bg-accent text-primary rounded-full px-5 py-2 hover:bg-accent/80 transition-colors duration-300"
+            >
+              Richiedi consulenza <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -87,65 +89,51 @@ export default function ServiziSection() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-accent py-20 lg:py-28 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="bricks" width="60" height="30" patternUnits="userSpaceOnUse">
-              <rect x="0" y="0" width="58" height="13" fill="none" stroke="currentColor" strokeWidth="0.4" rx="1" />
-              <rect x="30" y="15" width="58" height="13" fill="none" stroke="currentColor" strokeWidth="0.4" rx="1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#bricks)" />
-        </svg>
-      </div>
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-20 relative">
+    <section className="bg-background py-16 lg:py-28">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
 
-        {/* Header row */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 pb-8 border-b border-foreground/10">
-          <div>
-            <motion.span
-              className="font-label text-[13px] uppercase tracking-[0.18em] text-foreground/70 block mb-5"
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-15%' }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Servizi
-            </motion.span>
+        {/* Header */}
+        <motion.div
+          className="flex items-center gap-4 mb-16"
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.6, ease: anim.ease }}
+        >
+          <span className="font-label text-[13px] uppercase tracking-[0.18em] text-foreground/70">
+            Servizi
+          </span>
+          <span className="w-10 h-[2.5px] bg-accent rounded-full" aria-hidden="true" />
+        </motion.div>
 
-            <SplitText
-              el="h2"
-              text="Strumenti al servizio del tuo capitale immobiliare."
-              className="font-heading font-light text-foreground max-w-lg"
-              style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.8rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
-              delay={0.07}
-              stagger={0.04}
-            />
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-15%' }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Link
-              href="/cosa-facciamo"
-              className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-primary text-background rounded-full px-6 py-2.5 hover:bg-primary-light transition-colors duration-300"
-              style={{ cursor: 'pointer' }}
-            >
-              Tutti i servizi <span aria-hidden="true">→</span>
-            </Link>
-          </motion.div>
-        </div>
-
-        {/* 3-card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Cards */}
+        <div className="flex flex-col gap-16 lg:gap-24">
           {cards.map((card, i) => (
-            <ServiceCard key={card.numero} card={card} i={i} shouldReduce={shouldReduce} />
+            <ServiceCard
+              key={card.titolo}
+              card={card}
+              i={i}
+              isLast={i === cards.length - 1}
+              shouldReduce={shouldReduce}
+            />
           ))}
         </div>
+
+        {/* Global CTA */}
+        <motion.div
+          className="mt-16 flex justify-center"
+          initial={{ opacity: 0, y: shouldReduce ? 0 : 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: shouldReduce ? 0 : 0.2, ease: anim.ease }}
+        >
+          <Link
+            href="/contatti"
+            className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.12em] bg-primary text-background rounded-full px-6 py-2.5 hover:bg-primary/85 transition-colors duration-200"
+          >
+            Richiedi una consulenza gratuita <span aria-hidden="true">→</span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

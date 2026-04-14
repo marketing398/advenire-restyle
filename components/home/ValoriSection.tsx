@@ -70,53 +70,34 @@ export default function ValoriSection() {
           {valori.map((v, i) => (
             <motion.div
               key={v.numero}
-              initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
-              whileInView={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+              initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10%' }}
               transition={{
-                duration: 0.8,
-                delay: shouldReduce ? 0 : i * 0.1,
+                duration: 0.6,
+                delay: shouldReduce ? 0 : i * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              whileHover={{ y: -5 }}
-              className="border-t border-border pt-8 pb-10 pr-8 group"
+              className="border-t border-border pt-8 pb-10 pr-8 group hover:-translate-y-1 transition-transform duration-300"
             >
-              {/* Symbol — spring spin entrance */}
-              <motion.span
-                className="text-[20px] text-muted/35 block mb-6"
-                initial={{ scale: 0, rotate: -45, opacity: 0 }}
-                whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
-                viewport={{ once: true, margin: '-10%' }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 220,
-                  damping: 14,
-                  delay: shouldReduce ? 0 : i * 0.1 + 0.25,
-                }}
-                whileHover={{ scale: 1.2, color: 'var(--color-accent)' }}
-                style={{ display: 'inline-block', transformOrigin: 'left center' }}
+              <span
+                className="text-[20px] text-muted/35 block mb-6 group-hover:text-accent transition-colors duration-300"
+                style={{ display: 'inline-block' }}
               >
                 {v.simbolo}
-              </motion.span>
+              </span>
               <h3
-                className="font-heading font-light text-foreground mb-4 group-hover:text-primary transition-colors duration-400"
+                className="font-heading font-light text-foreground mb-4 group-hover:text-primary transition-colors duration-300"
                 style={{
                   fontSize: 'clamp(1.3rem, 1.8vw, 1.7rem)',
                   letterSpacing: '-0.01em',
-                  transition: 'color 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
               >
                 {v.titolo}
               </h3>
-              <motion.p
-                className="font-body text-[13px] font-light text-muted leading-relaxed"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: shouldReduce ? 0 : i * 0.1 + 0.4 }}
-              >
+              <p className="font-body text-[13px] font-light text-muted leading-relaxed">
                 {v.testo}
-              </motion.p>
+              </p>
             </motion.div>
           ))}
         </div>

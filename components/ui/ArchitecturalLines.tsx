@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 export default function ArchitecturalLines({
   position = 'top-right',
@@ -9,6 +9,7 @@ export default function ArchitecturalLines({
   position?: 'top-right' | 'bottom-left' | 'top-left' | 'bottom-right'
   color?: string
 }) {
+  const shouldReduce = useReducedMotion()
   const positionClasses = {
     'top-right': 'top-0 right-0',
     'bottom-left': 'bottom-0 left-0',
@@ -30,7 +31,7 @@ export default function ArchitecturalLines({
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 1.2, delay: 0.3 }}
+      transition={{ duration: shouldReduce ? 0 : 1.2, delay: shouldReduce ? 0 : 0.3 }}
     >
       <svg
         viewBox="0 0 200 200"

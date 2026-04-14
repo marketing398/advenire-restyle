@@ -38,7 +38,7 @@ export default function ConsulenzaSection() {
           {/* Left — sticky on desktop */}
           <div className="lg:sticky lg:top-32">
             <motion.span
-              className="font-label text-foreground/65 uppercase tracking-[0.18em] text-[13px] block mb-8"
+              className="font-label text-foreground/65 uppercase tracking-[0.18em] text-[10px] block mb-8"
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-15%' }}
@@ -57,7 +57,7 @@ export default function ConsulenzaSection() {
             />
 
             <motion.p
-              className="font-body font-light text-[13px] text-foreground/55 leading-relaxed mt-8 max-w-sm"
+              className="font-body font-light text-[13px] text-foreground/70 leading-relaxed mt-8 max-w-sm"
               initial={{ opacity: 0, y: shouldReduce ? 0 : 16, x: shouldReduce ? 0 : -12 }}
               whileInView={{ opacity: 1, y: 0, x: 0 }}
               viewport={{ once: true, margin: '-15%' }}
@@ -95,7 +95,7 @@ export default function ConsulenzaSection() {
             <div className="border-t border-border">
               {target.map((item) => (
                 <AccordionItem key={item.label} title={item.label}>
-                  <span className="text-muted font-light text-[13px] leading-relaxed">
+                  <span className="font-body font-light text-[13px] text-foreground/65 leading-relaxed">
                     {item.body}
                   </span>
                 </AccordionItem>

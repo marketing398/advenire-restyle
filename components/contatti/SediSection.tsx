@@ -6,7 +6,7 @@ export default function SediSection() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-primary grain" style={{ paddingTop: '72px' }}>
+    <section className="bg-primary" style={{ paddingTop: '72px' }}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 pt-16 pb-0">
 
         {/* Label */}

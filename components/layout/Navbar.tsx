@@ -7,9 +7,10 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Cosa facciamo', href: '/cosa-facciamo' },
+  { label: 'Investimenti Immobiliari', href: '/cosa-facciamo' },
+  { label: 'Nuove Costruzioni', href: '/cosa-facciamo#costruzioni' },
   { label: 'Chi siamo', href: '/chi-siamo' },
-  { label: 'Contattaci', href: '/contatti' },
+  { label: 'Contatti', href: '/contatti' },
 ]
 
 // ─── Nav link con underline attivo/hover ───────────────────────────────────
@@ -33,19 +34,6 @@ function NavLink({ label, href }: { label: string; href: string }) {
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         style={{ originX: 0 }}
       />
-    </Link>
-  )
-}
-
-// ─── CTA pill ─────────────────────────────────────────────────────────────
-function CtaPill() {
-  return (
-    <Link
-      href="/contatti"
-      className="hidden md:inline-flex items-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] bg-accent text-primary rounded-full px-5 py-2 hover:opacity-85 transition-opacity duration-200 whitespace-nowrap"
-      style={{ cursor: 'pointer' }}
-    >
-      Contattaci <span aria-hidden="true">→</span>
     </Link>
   )
 }
@@ -106,15 +94,16 @@ export default function Navbar() {
           style={{ width: `${scrollProgress}%`, transition: 'width 0.08s linear' }}
         />
       )}
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
         <div className="flex items-center justify-between py-4">
 
           <Link href="/" style={{ cursor: 'pointer', lineHeight: 0 }}>
             <Image
-              src="/images/logo-dark.png"
+              src="/images/logo-dark.webp"
               alt="Advenire"
               height={500}
               width={1920}
+              sizes="120px"
               className="object-contain"
               style={{ height: '15px', width: 'auto' }}
               priority
@@ -125,7 +114,6 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <NavLink key={link.href} {...link} />
             ))}
-            <CtaPill />
           </div>
 
           {/* Mobile hamburger */}
@@ -180,19 +168,6 @@ export default function Navbar() {
                 </Link>
               </motion.div>
             ))}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 + navLinks.length * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <Link
-                href="/contatti"
-                className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-accent text-primary rounded-full px-7 py-3 hover:opacity-85 transition-opacity duration-200"
-                style={{ cursor: 'pointer' }}
-              >
-                Contattaci <span aria-hidden="true">→</span>
-              </Link>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -6,11 +6,11 @@ export default function ContattiHero() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-primary grain" style={{ paddingTop: '72px' }}>
+    <section className="bg-primary" style={{ paddingTop: '72px' }}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 pt-16 pb-16 lg:pb-24">
 
         <motion.span
-          className="font-label text-[10px] uppercase tracking-[0.25em] text-background/35 block mb-10"
+          className="font-label text-[10px] uppercase tracking-[0.25em] text-background/50 block mb-10"
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.65, delay: shouldReduce ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -33,7 +33,7 @@ export default function ContattiHero() {
         </motion.h1>
 
         <motion.p
-          className="font-body font-light text-background/60 text-[15px] leading-relaxed mt-8 max-w-xl"
+          className="font-body font-light text-background/75 text-[15px] leading-relaxed mt-8 max-w-xl"
           initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: shouldReduce ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}

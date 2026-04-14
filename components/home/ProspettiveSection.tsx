@@ -76,73 +76,35 @@ export default function ProspettiveSection() {
           {articoli.map((a, i) => (
             <motion.article
               key={a.slug}
-              initial={{ opacity: 0, y: shouldReduce ? 0 : 30, scale: shouldReduce ? 1 : 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10%' }}
               transition={{
-                duration: 0.85,
-                delay: shouldReduce ? 0 : i * 0.12,
+                duration: 0.6,
+                delay: shouldReduce ? 0 : i * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              whileHover={{ y: -4 }}
-              className={`group border-r border-border last:border-r-0 pr-8 last:pr-0 flex flex-col${i > 0 ? ' pl-8' : ''}`}
+              className={`group border-r border-border last:border-r-0 pr-8 last:pr-0 flex flex-col hover:-translate-y-1 transition-transform duration-300${i > 0 ? ' pl-8' : ''}`}
             >
               <Link href={`/le-nostre-prospettive/${a.slug}`} className="flex flex-col flex-1">
-                {/* Image — clip-path wipe left→right */}
-                <motion.div
-                  className="overflow-hidden bg-border/30 aspect-[4/3] mb-6"
-                  initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                  whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-                  viewport={{ once: true, margin: '-10%' }}
-                  transition={{
-                    duration: 0.9,
-                    delay: shouldReduce ? 0 : i * 0.12 + 0.1,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                >
-                  <div
-                    className="w-full h-full bg-gradient-to-br from-border/60 via-muted/20 to-border/40"
-                    style={{
-                      transform: 'scale(1)',
-                      transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
-                    }}
-                    onMouseEnter={(e) => {
-                      ;(e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'
-                    }}
-                    onMouseLeave={(e) => {
-                      ;(e.currentTarget as HTMLElement).style.transform = 'scale(1)'
-                    }}
-                  />
-                </motion.div>
+                <div className="overflow-hidden bg-border/30 aspect-[4/3] mb-6">
+                  <div className="w-full h-full bg-gradient-to-br from-border/60 via-muted/20 to-border/40 group-hover:scale-105 transition-transform duration-700" />
+                </div>
 
-                {/* Meta */}
-                <motion.div
-                  className="flex items-center justify-between mb-3"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: shouldReduce ? 0 : i * 0.12 + 0.35 }}
-                >
+                <div className="flex items-center justify-between mb-3">
                   <span className="font-label text-[10px] uppercase tracking-[0.2em] text-accent">
                     {a.categoria}
                   </span>
                   <span className="font-label text-[10px] text-muted">
                     {a.data}
                   </span>
-                </motion.div>
+                </div>
 
                 <h3
-                  className="font-heading font-light text-foreground leading-snug mb-4"
+                  className="font-heading font-light text-foreground leading-snug mb-4 group-hover:text-primary transition-colors duration-300"
                   style={{
                     fontSize: 'clamp(1.1rem, 1.6vw, 1.3rem)',
                     letterSpacing: '-0.01em',
-                    transition: 'color 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
-                  }}
-                  onMouseEnter={(e) => {
-                    ;(e.currentTarget as HTMLElement).style.color = 'var(--color-primary)'
-                  }}
-                  onMouseLeave={(e) => {
-                    ;(e.currentTarget as HTMLElement).style.color = ''
                   }}
                 >
                   {a.titolo}

@@ -70,7 +70,7 @@ export default function FamilyOfficeSection() {
             </motion.h2>
 
             <motion.p
-              className="font-body font-light text-[13px] text-muted leading-relaxed mt-8 max-w-sm"
+              className="font-body font-light text-[13px] text-foreground/65 leading-relaxed mt-8 max-w-sm"
               initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -92,7 +92,7 @@ export default function FamilyOfficeSection() {
             <div className="border-t border-border">
               {servizi.map((s) => (
                 <AccordionItem key={s.titolo} title={s.titolo} defaultOpen={s.open}>
-                  <span className="text-muted text-[13px]">{s.testo}</span>
+                  <span className="font-body font-light text-[13px] text-foreground/65">{s.testo}</span>
                 </AccordionItem>
               ))}
             </div>

@@ -47,7 +47,7 @@ export default function ProspettivePage() {
   return (
     <main>
       {/* Page header */}
-      <section className="bg-primary grain" style={{ paddingTop: '72px' }}>
+      <section className="bg-primary" style={{ paddingTop: '72px' }}>
         <div className="max-w-[1440px] mx-auto px-6 lg:px-16 pt-16 pb-0">
           <motion.span
             className="font-label text-[10px] uppercase tracking-[0.25em] text-background/35 block mb-10"
@@ -112,17 +112,7 @@ export default function ProspettivePage() {
                 {/* Image placeholder */}
                 <div className="aspect-[4/3] bg-muted/15 overflow-hidden mb-6">
                   <div
-                    className="w-full h-full bg-gradient-to-br from-border to-muted/30"
-                    style={{
-                      transform: 'scale(1)',
-                      transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
-                    }}
-                    onMouseEnter={(e) => {
-                      ;(e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'
-                    }}
-                    onMouseLeave={(e) => {
-                      ;(e.currentTarget as HTMLElement).style.transform = 'scale(1)'
-                    }}
+                    className="w-full h-full bg-gradient-to-br from-border to-muted/30 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                   />
                 </div>
 

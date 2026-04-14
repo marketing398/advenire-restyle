@@ -35,13 +35,13 @@ function getCursorMode(el: Element | null): CursorMode {
 
 const RING_COLOR: Record<CursorMode, string> = {
   interactive: 'rgba(253,167,126,1)',
-  dark:        'rgba(245,240,232,0.9)',
+  dark:        'rgba(246,239,229,0.9)',
   light:       'rgba(5,56,13,0.55)',
 }
 
 const DOT_COLOR: Record<CursorMode, string> = {
   interactive: 'rgba(253,167,126,0)',
-  dark:        'rgba(245,240,232,0.95)',
+  dark:        'rgba(246,239,229,0.95)',
   light:       'rgba(5,56,13,0.9)',
 }
 
