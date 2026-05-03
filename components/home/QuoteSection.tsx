@@ -8,12 +8,12 @@ export default function QuoteSection() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section id="chi-siamo" className="bg-accent relative overflow-hidden" data-section-tone="accent">
+    <section id="quote-section" className="bg-accent relative overflow-hidden" data-section-tone="accent">
       <ArchitecturalLines position="top-right" />
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 py-24 lg:py-36 relative flex flex-col items-center text-center">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 py-24 lg:py-32 relative flex flex-col items-center text-center">
 
         <motion.span
-          className="font-label text-[10px] uppercase tracking-[0.18em] text-primary/70 block mb-8"
+          className="font-label text-[10px] uppercase tracking-[0.18em] text-primary/75 block mb-8"
           initial={{ opacity: 0, y: -6 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -45,11 +45,11 @@ export default function QuoteSection() {
         />
 
         <motion.div
-          className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-4 mt-14"
+          className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-4 mt-12 lg:mt-14"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: true, margin: '-10%' }}
+          transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <a
             href="/chi-siamo"
