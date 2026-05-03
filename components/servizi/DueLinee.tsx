@@ -67,7 +67,7 @@ export default function DueLinee() {
           {linee.map((l, i) => (
             <motion.div
               key={l.label}
-              className={`pt-10 pb-2 lg:pb-10 border-t border-primary/15 ${
+              className={`pt-10 pb-10 border-t border-primary/15 ${
                 i === 0 ? 'lg:pr-12 lg:border-r lg:border-primary/15' : 'lg:pl-12'
               }`}
               initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
@@ -92,14 +92,14 @@ export default function DueLinee() {
               >
                 {l.titolo}
               </h3>
-              <p className="font-body font-light text-primary/70 text-[14px] md:text-[15px] leading-relaxed mb-5">
+              <p className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mb-5 max-w-[58ch]">
                 {l.descrizione}
               </p>
-              <p className="font-body text-primary text-[14px] md:text-[15px] leading-relaxed mb-8">
+              <p className="font-body text-primary text-[14px] md:text-[15px] leading-relaxed mb-8 max-w-[58ch]">
                 {l.nostroRuolo}
               </p>
-              <div className="border-t border-primary/15 pt-5">
-                <p className="font-label text-[10px] uppercase tracking-[0.2em] text-primary/55 mb-2">
+              <div className="border-t border-primary/15 pt-6">
+                <p className="font-label text-[10px] uppercase tracking-[0.2em] text-primary/60 mb-2">
                   Compenso
                 </p>
                 <p className="font-body text-primary/80 text-[13.5px] leading-relaxed">

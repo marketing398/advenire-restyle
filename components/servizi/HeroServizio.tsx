@@ -13,10 +13,10 @@ export default function HeroServizio({ label, titolo, sottotitolo }: Props) {
 
   return (
     <section className="bg-primary relative overflow-hidden" data-section-tone="dark" style={{ paddingTop: '72px' }}>
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-32 relative">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-32 relative">
 
         <motion.span
-          className="font-label text-[10px] uppercase tracking-[0.25em] text-background/55 block mb-12"
+          className="font-label text-[10px] uppercase tracking-[0.25em] text-background/65 block mb-12"
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.65, delay: shouldReduce ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -47,7 +47,7 @@ export default function HeroServizio({ label, titolo, sottotitolo }: Props) {
         />
 
         <motion.p
-          className="font-body font-light text-background/75 text-[14px] md:text-[15px] leading-relaxed max-w-2xl"
+          className="font-body font-light text-background/80 text-[14px] md:text-[15px] leading-relaxed max-w-2xl"
           initial={{ opacity: 0, y: shouldReduce ? 0 : 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: shouldReduce ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}

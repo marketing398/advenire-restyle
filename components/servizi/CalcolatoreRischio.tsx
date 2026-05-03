@@ -122,13 +122,13 @@ export default function CalcolatoreRischio() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
             {phases.map((p) => {
               const v = valore * PHASE_RATES[p.key]
               return (
                 <div
                   key={p.key}
-                  className="bg-card/60 border border-primary/10 px-5 py-6 text-center"
+                  className="bg-card/60 border border-primary/15 px-5 py-7 text-center"
                 >
                   <p className="font-label text-[10px] uppercase tracking-[0.15em] text-accent mb-3 leading-tight">
                     {p.titolo}
@@ -136,7 +136,7 @@ export default function CalcolatoreRischio() {
                   <p className="font-heading font-light italic text-primary text-2xl md:text-3xl tabular-nums">
                     {fmt(v)}
                   </p>
-                  <p className="font-body text-[12px] text-primary/60 mt-2">
+                  <p className="font-body text-[12px] text-primary/65 mt-3 leading-relaxed">
                     {p.sottotitolo}
                   </p>
                 </div>
@@ -144,13 +144,13 @@ export default function CalcolatoreRischio() {
             })}
           </div>
 
-          <div className="border border-primary/20 bg-card/60 px-6 py-7">
+          <div className="border border-primary/15 bg-card/60 px-7 py-7">
             <div className="flex items-start justify-between gap-4 mb-5">
               <div className="min-w-0">
                 <p className="font-label text-[10px] uppercase tracking-[0.2em] text-primary/60 mb-2">
                   Perdita media stimata senza advisory
                 </p>
-                <p className="font-body text-[12px] text-primary/55">
+                <p className="font-body text-[12px] text-primary/65 leading-relaxed">
                   Tra il 10% e il 15% del valore dell&apos;operazione
                 </p>
               </div>
@@ -171,7 +171,7 @@ export default function CalcolatoreRischio() {
             </div>
           </div>
 
-          <p className="font-body text-[11px] text-primary/45 text-center mt-6">
+          <p className="font-body text-[11px] text-primary/55 text-center mt-6">
             Stime basate su medie di settore. Ogni operazione è diversa.
           </p>
         </motion.div>
