@@ -23,7 +23,8 @@ export default function AccordionItem({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex w-full justify-between items-center py-5 cursor-pointer text-left gap-6 group"
+        aria-expanded={open}
+        className="flex w-full justify-between items-center py-5 cursor-pointer text-left gap-6 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent rounded-sm"
         style={{ cursor: 'pointer' }}
       >
         <span

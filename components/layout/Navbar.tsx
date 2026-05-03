@@ -22,7 +22,7 @@ function NavLink({ label, href }: { label: string; href: string }) {
   return (
     <Link
       href={href}
-      className="relative font-label text-[11px] uppercase tracking-[0.18em] text-foreground/80 hover:text-foreground transition-colors duration-300 pb-0.5 whitespace-nowrap"
+      className="relative font-label text-[11px] uppercase tracking-[0.18em] text-foreground/80 hover:text-foreground transition-colors duration-300 pb-0.5 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent rounded-sm"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

@@ -72,11 +72,11 @@ export default function Footer() {
             viewport={{ once: true, margin: '-5%' }}
             transition={{ duration: 0.75, delay: shouldReduce ? 0 : 0.16, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="font-body font-light text-[12px] text-background/65 leading-loose">Advenire S.r.l.</p>
-            <p className="font-body font-light text-[12px] text-background/65 leading-loose">Italia</p>
+            <p className="font-body font-light text-[12px] text-background/75 leading-loose">Advenire S.r.l.</p>
+            <p className="font-body font-light text-[12px] text-background/75 leading-loose">Italia</p>
             <a
               href="mailto:info@advenire.it"
-              className="font-body font-light text-[12px] text-background/65 hover:text-background transition-colors duration-300 mt-2"
+              className="font-body font-light text-[12px] text-background/75 hover:text-background transition-colors duration-300 mt-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded-sm"
             >
               info@advenire.it
             </a>
@@ -91,7 +91,7 @@ export default function Footer() {
           viewport={{ once: true, margin: '-5%' }}
           transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.2 }}
         >
-          <p className="font-body font-light text-[11px] text-background/50 leading-relaxed">
+          <p className="font-body font-light text-[11px] text-background/65 leading-relaxed">
             Le informazioni contenute in questo sito web sono a scopo informativo e non costituiscono
             consulenza finanziaria, legale o fiscale. Le performance passate non garantiscono risultati futuri.
             Tutti gli investimenti comportano rischi, inclusa la possibile perdita del capitale investito.
@@ -100,13 +100,13 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <p className="font-label text-[10px] text-background/45">© 2026 Advenire S.r.l. — Tutti i diritti riservati</p>
+          <p className="font-label text-[10px] text-background/60">© 2026 Advenire S.r.l. — Tutti i diritti riservati</p>
           <nav className="flex gap-6">
             {legalLinks.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="font-label text-[10px] text-background/45 hover:text-background transition-colors duration-300"
+                className="font-label text-[10px] text-background/60 hover:text-background transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded-sm"
               >
                 {l.label}
               </Link>
