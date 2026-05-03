@@ -106,7 +106,7 @@ export default function FAQSection() {
               <div key={faq.domanda}>
                 {showCategoryDivider && (
                   <motion.p
-                    className="font-label text-[10px] uppercase tracking-[0.2em] text-accent mt-16 mb-6 first:mt-0"
+                    className="font-label text-[10px] uppercase tracking-[0.2em] text-accent mt-12 mb-5 first:mt-0"
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -132,7 +132,7 @@ export default function FAQSection() {
                     onClick={() => setAperta(open ? null : i)}
                     aria-expanded={open}
                     aria-controls={`faq-panel-${i}`}
-                    className="w-full flex items-start justify-between gap-6 py-6 text-left group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    className="w-full flex items-start justify-between gap-6 py-6 text-left group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline focus-visible:outline-accent rounded-sm"
                   >
                     <span
                       className="font-heading font-light text-background"

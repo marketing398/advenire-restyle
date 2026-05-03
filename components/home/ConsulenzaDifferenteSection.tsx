@@ -77,7 +77,7 @@ export default function ConsulenzaDifferenteSection() {
             // sm:2-col layout: rows of 2 → border-top from i>=2, border-right on even cols
             // md:3-col layout: rows of 3 → border-top from i>=3, border-right on cols 0,1
             const classes = [
-              'p-6 md:px-8 md:py-8 group',
+              'p-6 md:px-8 md:py-9 group',
               // top borders
               i >= 2 ? 'sm:border-t border-primary/15' : '',
               i >= 3 ? 'md:border-t border-primary/15' : '',
@@ -102,20 +102,20 @@ export default function ConsulenzaDifferenteSection() {
               }}
               whileHover={{ y: -3 }}
             >
-              <span className="font-label text-[10px] uppercase tracking-[0.18em] text-accent block mb-4 transition-colors duration-300">
+              <span className="font-label text-[10px] uppercase tracking-[0.18em] text-accent block mb-5 transition-colors duration-300">
                 {card.num}
               </span>
               <h3
-                className="font-heading font-normal text-primary mb-3 group-hover:text-primary/80"
+                className="font-heading font-normal text-primary mb-4 group-hover:text-primary/80"
                 style={{
-                  fontSize: 'clamp(0.95rem, 1.2vw, 1.15rem)',
+                  fontSize: 'clamp(1rem, 1.25vw, 1.2rem)',
                   lineHeight: '1.3',
                   transition: 'color 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
               >
                 {card.title}
               </h3>
-              <p className="font-body font-light text-primary/65 text-[13px] leading-relaxed">
+              <p className="font-body font-light text-primary/75 text-[13px] leading-relaxed">
                 {card.text}
               </p>
             </motion.div>
