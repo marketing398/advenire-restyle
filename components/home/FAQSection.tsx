@@ -58,7 +58,7 @@ const faqs: FAQ[] = [
 
 export default function FAQSection() {
   const shouldReduce = useReducedMotion()
-  const [aperta, setAperta] = useState<number | null>(0)
+  const [aperta, setAperta] = useState<number | null>(null)
 
   return (
     <section className="bg-primary py-24 lg:py-32 relative overflow-hidden" data-section-tone="dark">
