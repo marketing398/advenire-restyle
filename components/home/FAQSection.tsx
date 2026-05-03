@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
+import SectionTransition from '@/components/ui/SectionTransition'
 
 type FAQ = {
   categoria: string
@@ -61,131 +62,161 @@ export default function FAQSection() {
   const [aperta, setAperta] = useState<number | null>(0)
 
   return (
-    <section className="bg-primary py-20 lg:py-28 relative overflow-hidden" data-section-tone="dark">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
+    <section className="bg-primary py-24 lg:py-32 relative overflow-hidden" data-section-tone="dark">
+      <SectionTransition from="background" position="top" height={120} />
 
-        <motion.span
-          className="font-label text-[12px] uppercase tracking-[0.2em] text-background/70 block mb-8"
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Domande frequenti
-        </motion.span>
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
 
-        <motion.div
-          className="bg-accent mb-10"
-          style={{ height: '2px' }}
-          initial={{ width: 0 }}
-          whileInView={{ width: '3rem' }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20 items-start">
 
-        <SplitText
-          el="h2"
-          text="Le risposte alle domande che ci fanno più spesso."
-          className="font-heading font-light italic text-background max-w-3xl"
-          style={{
-            fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
-            lineHeight: '1.1',
-            letterSpacing: '-0.02em',
-          }}
-          delay={shouldReduce ? 0 : 0.06}
-          stagger={0.04}
-        />
+          {/* LEFT — sticky heading */}
+          <div className="lg:sticky lg:top-32">
+            <motion.span
+              className="font-label text-[12px] uppercase tracking-[0.2em] text-background/70 block mb-8"
+              initial={{ opacity: 0, x: shouldReduce ? 0 : -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Domande frequenti
+            </motion.span>
 
-        <div className="mt-14 lg:mt-16">
-          {faqs.map((faq, i) => {
-            const open = aperta === i
-            const showCategoryDivider =
-              i === 0 || faqs[i - 1].categoria !== faq.categoria
+            <motion.div
+              className="bg-accent mb-10"
+              style={{ height: '2px' }}
+              initial={{ width: 0 }}
+              whileInView={{ width: '4rem' }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            />
 
-            return (
-              <div key={faq.domanda}>
-                {showCategoryDivider && (
-                  <motion.p
-                    className="font-label text-[10px] uppercase tracking-[0.2em] text-accent mt-12 mb-5 first:mt-0"
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    {faq.categoria}
-                  </motion.p>
-                )}
+            <motion.div
+              initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.94 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-10%' }}
+              transition={{ duration: 0.95, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <SplitText
+                el="h2"
+                text="Le risposte alle domande che ci fanno più spesso."
+                className="font-heading font-light italic text-background"
+                style={{
+                  fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
+                  lineHeight: '1.05',
+                  letterSpacing: '-0.02em',
+                }}
+                delay={shouldReduce ? 0 : 0.3}
+                stagger={0.04}
+              />
+            </motion.div>
+          </div>
 
-                <motion.div
-                  className="border-t border-background/15"
-                  initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-5%' }}
-                  transition={{
-                    duration: 0.7,
-                    delay: shouldReduce ? 0 : (i % 3) * 0.05,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setAperta(open ? null : i)}
-                    aria-expanded={open}
-                    aria-controls={`faq-panel-${i}`}
-                    className="w-full flex items-start justify-between gap-6 py-6 text-left group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline focus-visible:outline-accent rounded-sm"
-                  >
-                    <span
-                      className="font-heading font-light text-background"
-                      style={{
-                        fontSize: 'clamp(1.05rem, 1.5vw, 1.35rem)',
-                        lineHeight: '1.35',
-                        letterSpacing: '-0.01em',
-                      }}
+          {/* RIGHT — accordion */}
+          <div>
+            {faqs.map((faq, i) => {
+              const open = aperta === i
+              const showCategoryDivider =
+                i === 0 || faqs[i - 1].categoria !== faq.categoria
+
+              return (
+                <div key={faq.domanda}>
+                  {showCategoryDivider && (
+                    <motion.div
+                      className="flex items-center gap-4 mt-14 mb-6 first:mt-0"
+                      initial={{ opacity: 0, x: shouldReduce ? 0 : -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      {faq.domanda}
-                    </span>
-                    <motion.span
-                      aria-hidden="true"
-                      className="font-heading font-light text-accent text-2xl shrink-0 leading-none mt-0.5"
-                      animate={{ rotate: open ? 45 : 0 }}
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      +
-                    </motion.span>
-                  </button>
+                      <span className="font-label text-[10px] uppercase tracking-[0.22em] text-accent whitespace-nowrap">
+                        {faq.categoria}
+                      </span>
+                      <motion.span
+                        className="block h-px bg-accent/40 flex-1"
+                        initial={{ scaleX: 0, originX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                      />
+                    </motion.div>
+                  )}
 
-                  <AnimatePresence initial={false}>
-                    {open && (
-                      <motion.div
-                        id={`faq-panel-${i}`}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                        className="overflow-hidden"
+                  <motion.div
+                    className="border-t border-background/15"
+                    initial={{ opacity: 0, y: shouldReduce ? 0 : 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-5%' }}
+                    transition={{
+                      duration: 0.75,
+                      delay: shouldReduce ? 0 : (i % 3) * 0.06,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setAperta(open ? null : i)}
+                      aria-expanded={open}
+                      aria-controls={`faq-panel-${i}`}
+                      className="w-full flex items-start justify-between gap-8 py-7 text-left group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline focus-visible:outline-accent rounded-sm"
+                    >
+                      <span
+                        className="font-heading font-light italic text-background group-hover:text-accent transition-colors duration-300"
+                        style={{
+                          fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
+                          lineHeight: '1.3',
+                          letterSpacing: '-0.01em',
+                        }}
                       >
-                        <div className="pb-8 pr-10 max-w-3xl">
-                          <p className="font-body italic text-background/90 text-[15px] md:text-[16px] leading-relaxed mb-4">
-                            {faq.risposta}
-                          </p>
-                          <p className="font-body font-light text-background/85 text-[14px] md:text-[15px] leading-relaxed">
-                            {faq.rispostaExt}
-                          </p>
-                          {faq.conclusione && (
-                            <p className="font-body font-light text-background/85 text-[14px] md:text-[15px] leading-relaxed mt-4">
-                              {faq.conclusione}
-                            </p>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                        {faq.domanda}
+                      </span>
+                      <motion.span
+                        aria-hidden="true"
+                        className="relative shrink-0 mt-2 w-7 h-7 rounded-full border border-accent/40 group-hover:border-accent transition-colors duration-300"
+                        animate={{ rotate: open ? 45 : 0 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        <span className="absolute inset-0 flex items-center justify-center">
+                          <span className="block w-2.5 h-px bg-accent" />
+                        </span>
+                        <span className="absolute inset-0 flex items-center justify-center">
+                          <span className="block w-px h-2.5 bg-accent" />
+                        </span>
+                      </motion.span>
+                    </button>
 
-                {i === faqs.length - 1 && <div className="border-t border-background/15" />}
-              </div>
-            )
-          })}
+                    <AnimatePresence initial={false}>
+                      {open && (
+                        <motion.div
+                          id={`faq-panel-${i}`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pb-9 pr-4 max-w-2xl">
+                            <p className="font-heading font-light italic text-accent text-[18px] md:text-[20px] leading-snug mb-5">
+                              {faq.risposta}
+                            </p>
+                            <p className="font-body font-light text-background/85 text-[14px] md:text-[15px] leading-relaxed">
+                              {faq.rispostaExt}
+                            </p>
+                            {faq.conclusione && (
+                              <p className="font-body font-light italic text-background/75 text-[13.5px] md:text-[14.5px] leading-relaxed mt-4 pl-4 border-l-2 border-accent/40">
+                                {faq.conclusione}
+                              </p>
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+
+                  {i === faqs.length - 1 && <div className="border-t border-background/15" />}
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
