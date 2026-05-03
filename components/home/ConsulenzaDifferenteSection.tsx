@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
+import SectionTransition from '@/components/ui/SectionTransition'
 
 const cards = [
   {
@@ -41,14 +42,15 @@ export default function ConsulenzaDifferenteSection() {
 
   return (
     <section className="bg-background relative overflow-hidden" data-section-tone="light">
+      <SectionTransition from="accent" position="top" height={120} />
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 py-20 lg:py-28 border-t border-primary/10 relative">
 
         <motion.span
           className="font-label text-[12px] uppercase tracking-[0.2em] text-primary/70 block mb-8"
-          initial={{ opacity: 0, x: -10 }}
+          initial={{ opacity: 0, x: shouldReduce ? 0 : -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           Siamo differenti
         </motion.span>
@@ -57,19 +59,27 @@ export default function ConsulenzaDifferenteSection() {
           className="bg-primary mb-10"
           style={{ height: '2px' }}
           initial={{ width: 0 }}
-          whileInView={{ width: '3rem' }}
+          whileInView={{ width: '4rem' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        <SplitText
-          el="h2"
-          text="Facciamo le cose in modo diverso, per scelta."
-          className="font-heading font-light italic text-primary max-w-3xl mb-12 lg:mb-16"
-          style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
-          delay={0.07}
-          stagger={0.05}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.94 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: '-10%' }}
+          transition={{ duration: 0.95, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12 lg:mb-16"
+        >
+          <SplitText
+            el="h2"
+            text="Facciamo le cose in modo diverso, per scelta."
+            className="font-heading font-light italic text-primary max-w-3xl"
+            style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
+            delay={0.3}
+            stagger={0.05}
+          />
+        </motion.div>
 
         {/* 6-card grid — responsive 1/2/3 cols */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">

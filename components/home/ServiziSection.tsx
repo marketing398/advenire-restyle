@@ -2,7 +2,9 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, useReducedMotion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import SectionTransition from '@/components/ui/SectionTransition'
 
 const cards = [
   {
@@ -25,22 +27,31 @@ const anim = {
 }
 
 function ServiceCard({ card, i, isLast, shouldReduce }: { card: typeof cards[0]; i: number; isLast: boolean; shouldReduce: boolean | null }) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ['start end', 'end start'],
+  })
+  const imgY = useTransform(scrollYProgress, [0, 1], shouldReduce ? [0, 0] : [-30, 30])
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      ref={cardRef}
+      initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: '-4%' }}
-      transition={{ duration: anim.duration, delay: shouldReduce ? 0 : i * 0.12, ease: anim.ease }}
+      transition={{ duration: 0.9, delay: shouldReduce ? 0 : i * 0.15, ease: anim.ease }}
       className={!isLast ? 'border-b border-foreground/10 pb-16 lg:pb-24' : ''}
     >
       <div className="flex flex-col md:flex-row gap-8 lg:gap-14 items-start">
         {/* Image */}
         <div className="w-full md:w-[42%] flex-shrink-0 max-w-[80%] mx-auto md:mx-0 md:max-w-none">
-          <div
+          <motion.div
             className="relative w-full aspect-[4/3]"
             style={{
               maskImage: 'radial-gradient(ellipse 85% 85% at 35% 40%, black 50%, transparent 100%)',
               WebkitMaskImage: 'radial-gradient(ellipse 85% 85% at 35% 40%, black 50%, transparent 100%)',
+              y: imgY,
             }}
           >
             <Image
@@ -51,7 +62,7 @@ function ServiceCard({ card, i, isLast, shouldReduce }: { card: typeof cards[0];
               className="object-contain"
               style={{ mixBlendMode: 'luminosity', opacity: 0.9 }}
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* Content */}
@@ -91,15 +102,16 @@ export default function ServiziSection() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-background py-20 lg:py-28" data-section-tone="light">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
+    <section className="bg-background py-20 lg:py-28 relative overflow-hidden" data-section-tone="light">
+      <SectionTransition from="primary" position="top" height={120} />
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
 
         <motion.span
           className="font-label text-[12px] uppercase tracking-[0.2em] text-primary/70 block mb-8"
-          initial={{ opacity: 0, x: -10 }}
+          initial={{ opacity: 0, x: shouldReduce ? 0 : -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-15%' }}
-          transition={{ duration: 0.6, ease: anim.ease }}
+          transition={{ duration: 0.7, ease: anim.ease }}
         >
           Servizi
         </motion.span>
@@ -110,16 +122,16 @@ export default function ServiziSection() {
           initial={{ width: 0 }}
           whileInView={{ width: '4rem' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: anim.ease }}
+          transition={{ duration: 0.85, delay: 0.15, ease: anim.ease }}
         />
 
         <motion.h2
           className="font-heading font-light italic text-primary max-w-3xl mb-16 lg:mb-20"
           style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.94 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.85, delay: 0.1, ease: anim.ease }}
+          transition={{ duration: 0.95, delay: 0.25, ease: anim.ease }}
         >
           Due servizi, una sola direzione: il valore che dura.
         </motion.h2>
