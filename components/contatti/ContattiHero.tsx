@@ -6,7 +6,7 @@ export default function ContattiHero() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-primary" style={{ paddingTop: '72px' }}>
+    <section className="bg-primary" data-section-tone="dark" style={{ paddingTop: '72px' }}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 pt-16 pb-16 lg:pb-24">
 
         <motion.span
@@ -38,8 +38,8 @@ export default function ContattiHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: shouldReduce ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
         >
-          Rispondi a poche domande per ricevere una stima personalizzata del tuo investimento,
-          oppure scrivici direttamente per una consulenza.
+          Scrivici per fissare un primo confronto sul tuo progetto.
+          Ti rispondiamo entro 24 ore lavorative.
         </motion.p>
 
       </div>

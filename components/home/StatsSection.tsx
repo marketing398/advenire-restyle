@@ -7,7 +7,7 @@ const stats = [
   { value: 25, suffix: '+', label: 'Anni di esperienza combinata' },
   { value: 3, suffix: '', label: 'Partner fondatori certificati' },
   { value: 100, suffix: '%', label: 'Fee-only, nessun conflitto di interesse' },
-  { value: 2, suffix: '', label: 'Sedi: Los Angeles e New York' },
+  { value: 1, suffix: '', label: 'Sede operativa in Italia' },
 ]
 
 function StatNumber({ value, suffix }: { value: number; suffix: string }) {
@@ -49,7 +49,7 @@ export default function StatsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10%' }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="border-r border-border last:border-r-0 px-8 lg:px-12 py-14"
             >
               <p

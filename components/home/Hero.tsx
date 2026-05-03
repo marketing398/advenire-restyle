@@ -1,14 +1,26 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 
+const rotatingPairs = [
+  {
+    word: 'investimento immobiliare',
+    paragraph:
+      'Diamo valore al tuo capitale immobiliare con consulenze su misura, basate su esperienza, mercato e visione strategica.',
+  },
+  {
+    word: 'progetto personale',
+    paragraph:
+      'Trasformiamo il tuo investimento immobiliare in un progetto solido, sicuro e costruito per crescere nel tempo.',
+  },
+]
+
 const heroNavLinks = [
-  { label: 'Cosa facciamo', href: '/cosa-facciamo' },
+  { label: 'Investimenti Immobiliari', href: '/servizi/investimenti-immobiliari' },
+  { label: 'Nuove Costruzioni', href: '/servizi/nuove-costruzioni' },
   { label: 'Chi siamo', href: '/chi-siamo' },
-  { label: 'Le nostre prospettive', href: '/le-nostre-prospettive' },
   { label: 'Contatti', href: '/contatti' },
 ]
 
@@ -53,31 +65,34 @@ function LogoWordmark() {
 export default function Hero() {
   const shouldReduce = useReducedMotion()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [pairIndex, setPairIndex] = useState(0)
+
+  useEffect(() => {
+    if (shouldReduce) return
+    const id = setInterval(() => {
+      setPairIndex((i) => (i + 1) % rotatingPairs.length)
+    }, 3800)
+    return () => clearInterval(id)
+  }, [shouldReduce])
+
+  const current = rotatingPairs[pairIndex]
 
   return (
     <section
       className="bg-primary"
+      data-section-tone="dark"
       style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
     >
       <LogoWordmark />
 
-      {/* NAV ROW */}
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 w-full">
+      {/* NAV ROW — allineato ai bordi del LogoWordmark */}
+      <div className="w-full" style={{ padding: '0 clamp(1.5rem, 4vw, 4rem)' }}>
         <motion.div
-          className="flex items-center justify-between gap-6 lg:gap-10 py-4"
+          className="flex items-center justify-end gap-6 lg:gap-10 py-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: shouldReduce ? 0 : 0.4 }}
         >
-          {/* Compact A mark */}
-          <Link
-            href="/"
-            aria-label="Advenire — Home"
-            className="font-heading font-light italic text-background text-[22px] leading-none tracking-tight select-none"
-          >
-            A.
-          </Link>
-
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-10">
             {heroNavLinks.map((link, i) => (
@@ -170,73 +185,55 @@ export default function Hero() {
           paddingBottom: 'clamp(3rem, 6vh, 7rem)',
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-6 lg:gap-10 items-end w-full">
-
-          {/* Left — heading + subtext */}
-          <div className="flex flex-col gap-5">
-            <motion.h1
-              className="font-heading font-light italic"
-              initial={{ opacity: 0, y: shouldReduce ? 0 : 24 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                backgroundPosition: shouldReduce ? '0% 50%' : ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{
-                opacity: { duration: 0.9, delay: shouldReduce ? 0 : 0.5 },
-                y: { duration: 0.9, delay: shouldReduce ? 0 : 0.5 },
-                backgroundPosition: { duration: 8, repeat: Infinity, ease: 'linear', delay: 1.5 },
-              }}
-              style={{
-                fontSize: 'clamp(2.2rem, 7vw, 6.5rem)',
-                lineHeight: 1.0,
-                letterSpacing: '-0.03em',
-                backgroundImage:
-                  'linear-gradient(90deg, #F6EFE5 0%, #F6EFE5 40%, #FDA77E 50%, #F6EFE5 60%, #F6EFE5 100%)',
-                backgroundSize: '200% 100%',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              <span className="block sm:whitespace-nowrap">Esperienza al servizio</span>
-              <span className="block sm:whitespace-nowrap">del tuo capitale.</span>
-            </motion.h1>
-
-            <motion.p
-              className="font-body font-light text-background/55 text-[12px] md:text-[13px] leading-relaxed max-w-lg mt-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.75 }}
-            >
-              Trasformiamo il tuo investimento immobiliare in un progetto solido, sicuro e costruito per crescere nel tempo.
-            </motion.p>
-          </div>
-
-          {/* Right — illustration */}
-          <motion.div
-            className="hidden lg:block self-end"
-            initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
+        <div className="flex flex-col gap-5 w-full">
+          <motion.h1
+            className="font-heading font-light italic text-background"
+            initial={{ opacity: 0, y: shouldReduce ? 0 : 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: shouldReduce ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              opacity: { duration: 0.9, delay: shouldReduce ? 0 : 0.5 },
+              y: { duration: 0.9, delay: shouldReduce ? 0 : 0.5 },
+            }}
+            style={{
+              fontSize: 'clamp(2.2rem, 7vw, 6.5rem)',
+              lineHeight: 1.0,
+              letterSpacing: '-0.03em',
+            }}
           >
-            <Image
-              src="/images/services/3.webp"
-              alt=""
-              width={600}
-              height={450}
-              sizes="(max-width: 1024px) 0px, 240px"
-              aria-hidden="true"
-              style={{
-                width: '100%',
-                maxWidth: '260px',
-                height: 'auto',
-                marginLeft: 'auto',
-                display: 'block',
-              }}
-            />
-          </motion.div>
+            <span className="block sm:whitespace-nowrap">Diamo forma al tuo</span>
+            <span
+              className="block sm:whitespace-nowrap relative"
+              style={{ color: '#FDA77E' }}
+            >
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={current.word}
+                  initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: shouldReduce ? 0 : -20 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block"
+                >
+                  {current.word}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+          </motion.h1>
 
+          <div className="mt-2 min-h-[1.75rem]">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={current.paragraph}
+                className="font-body font-light text-background/55 text-[11px] md:text-[12px] leading-relaxed max-w-2xl"
+                initial={{ opacity: 0, y: shouldReduce ? 0 : 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: shouldReduce ? 0 : -12 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {current.paragraph}
+              </motion.p>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

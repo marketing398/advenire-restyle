@@ -76,11 +76,11 @@ export default function GraziePage() {
             ← Torna alla home
           </Link>
           <Link
-            href="/cosa-facciamo"
+            href="/servizi/investimenti-immobiliari"
             className="font-label text-background/50 hover:text-background transition-colors duration-200"
             style={{ fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase' }}
           >
-            Cosa facciamo →
+            I nostri servizi →
           </Link>
         </div>
       </div>

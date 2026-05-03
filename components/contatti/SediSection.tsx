@@ -31,7 +31,7 @@ export default function SediSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.05, delay: shouldReduce ? 0 : 0.25, ease: [0.16, 1, 0.3, 1] }}
         >
-          Il tuo partner, da costa a costa.
+          Il tuo partner, lungo tutta la Penisola.
         </motion.h1>
 
         {/* Addresses row */}
@@ -43,31 +43,28 @@ export default function SediSection() {
         >
           <div>
             <p className="font-label text-[9px] uppercase tracking-widest text-background/35 mb-4">
-              Sede centrale di Los Angeles
+              Sede operativa
             </p>
             <address className="font-body font-light text-background/60 text-[14px] leading-loose not-italic">
-              <p>10877 Wilshire Blvd Suite 1406</p>
-              <p>Los Angeles, CA 90024</p>
+              <p>Advenire S.r.l.</p>
+              <p>Italia</p>
               <a
-                href="tel:+14245004601"
-                className="block mt-2 hover:text-background transition-colors duration-300"
-              >
-                (424) 500-4601
-              </a>
-              <a
-                href="mailto:info@advenire.com"
+                href="mailto:info@advenire.it"
                 className="block mt-3 hover:text-background transition-colors duration-300"
               >
-                info@advenire.com
+                info@advenire.it
               </a>
             </address>
           </div>
 
-          {/* Placeholder immagine LA */}
-          <div
-            className="aspect-[4/3] md:aspect-auto"
-            style={{ background: '#e8e0d0', border: '1px solid rgba(13,26,15,0.1)', minHeight: '180px' }}
-          />
+          <div>
+            <p className="font-label text-[9px] uppercase tracking-widest text-background/35 mb-4">
+              Su appuntamento
+            </p>
+            <p className="font-body font-light text-background/60 text-[14px] leading-loose">
+              Riceviamo i nostri clienti su appuntamento. Scrivici per fissare un primo confronto: ti rispondiamo entro 24 ore lavorative.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -7,8 +7,8 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Investimenti Immobiliari', href: '/cosa-facciamo' },
-  { label: 'Nuove Costruzioni', href: '/cosa-facciamo#costruzioni' },
+  { label: 'Investimenti Immobiliari', href: '/servizi/investimenti-immobiliari' },
+  { label: 'Nuove Costruzioni', href: '/servizi/nuove-costruzioni' },
   { label: 'Chi siamo', href: '/chi-siamo' },
   { label: 'Contatti', href: '/contatti' },
 ]
@@ -22,7 +22,7 @@ function NavLink({ label, href }: { label: string; href: string }) {
   return (
     <Link
       href={href}
-      className="relative font-label text-[11px] uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300 pb-0.5 whitespace-nowrap"
+      className="relative font-label text-[11px] uppercase tracking-[0.18em] text-foreground/80 hover:text-foreground transition-colors duration-300 pb-0.5 whitespace-nowrap"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -90,27 +90,31 @@ export default function Navbar() {
     >
       {scrolled && (
         <div
-          className="absolute bottom-0 left-0 h-px bg-accent"
+          className="absolute bottom-0 left-0 h-px bg-gradient-to-r from-accent via-accent/60 to-transparent"
           style={{ width: `${scrollProgress}%`, transition: 'width 0.08s linear' }}
         />
       )}
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
         <div className="flex items-center justify-between py-4">
 
-          <Link href="/" style={{ cursor: 'pointer', lineHeight: 0 }}>
+          <Link
+            href="/"
+            aria-label="Advenire"
+            className="block leading-none"
+            style={{ cursor: 'pointer' }}
+          >
             <Image
-              src="/images/logo-dark.webp"
+              src="/images/icon-advenire.png"
               alt="Advenire"
-              height={500}
-              width={1920}
-              sizes="120px"
-              className="object-contain"
-              style={{ height: '15px', width: 'auto' }}
+              width={144}
+              height={144}
+              sizes="40px"
               priority
+              className="h-10 w-10 object-contain"
             />
           </Link>
 
-          <div className="hidden md:flex items-center gap-6 lg:gap-10">
+          <div className="hidden md:flex items-center gap-8 lg:gap-10">
             {navLinks.map((link) => (
               <NavLink key={link.href} {...link} />
             ))}

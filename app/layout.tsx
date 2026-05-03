@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import CustomCursor from '@/components/ui/CustomCursor'
 import SmoothScroll from '@/components/ui/SmoothScroll'
 import PageTransition from '@/components/ui/PageTransition'
+import ScrollProgressBar from '@/components/ui/ScrollProgressBar'
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +28,7 @@ export default function RootLayout({
     >
       <body>
         <SmoothScroll>
+          <ScrollProgressBar />
           <CustomCursor />
           <Navbar />
           <PageTransition>

@@ -37,7 +37,7 @@ export default function ContattiForm() {
   }
 
   return (
-    <section className="bg-background py-20 lg:py-28 border-t border-border">
+    <section className="bg-background py-20 lg:py-28 border-t border-border" data-section-tone="light">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
 
         {/* Section header */}
@@ -54,8 +54,8 @@ export default function ContattiForm() {
           <motion.h2
             className="font-heading font-light text-foreground mb-6"
             style={{
-              fontSize: 'clamp(1.8rem, 3.5vw, 3.5rem)',
-              lineHeight: '1.06',
+              fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
+              lineHeight: '1.1',
               letterSpacing: '-0.02em',
             }}
             initial={{ opacity: 0, y: shouldReduce ? 0 : 18 }}
@@ -133,7 +133,7 @@ export default function ContattiForm() {
                   <input
                     type="tel"
                     className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/40 focus:outline-none focus:border-primary transition-colors duration-300"
-                    placeholder="+1 (xxx) xxx-xxxx"
+                    placeholder="+39 ___ ___ ____"
                   />
                 </FormField>
               </div>

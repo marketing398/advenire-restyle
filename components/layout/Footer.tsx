@@ -5,8 +5,8 @@ import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Investimenti Immobiliari', href: '/cosa-facciamo' },
-  { label: 'Nuove Costruzioni', href: '/cosa-facciamo#costruzioni' },
+  { label: 'Investimenti Immobiliari', href: '/servizi/investimenti-immobiliari' },
+  { label: 'Nuove Costruzioni', href: '/servizi/nuove-costruzioni' },
   { label: 'Chi siamo', href: '/chi-siamo' },
   { label: 'Contatti', href: '/contatti' },
 ]
@@ -26,20 +26,21 @@ export default function Footer() {
         {/* Main grid: icona | nav | contatto */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-12 md:gap-8 pb-16 border-b border-background/10">
 
-          {/* Col 1 — Icona A */}
+          {/* Col 1 — Icona Advenire */}
           <motion.div
+            className="flex items-start"
             initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-5%' }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           >
             <Image
-              src="/images/icon-a.webp"
+              src="/images/icon-advenire.png"
               alt="Advenire"
-              width={220}
-              height={220}
-              sizes="(max-width: 768px) 100px, 200px"
-              style={{ width: 'clamp(100px, 14vw, 200px)', height: 'auto', objectFit: 'contain', filter: 'invert(1)', opacity: 0.9 }}
+              width={400}
+              height={400}
+              sizes="(max-width: 768px) 100px, 160px"
+              style={{ width: 'clamp(100px, 12vw, 160px)', height: 'auto', objectFit: 'contain' }}
             />
           </motion.div>
 
@@ -99,7 +100,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <p className="font-label text-[10px] text-background/45">© Copyright 2026 Advenire — Sito web di Frappé</p>
+          <p className="font-label text-[10px] text-background/45">© 2026 Advenire S.r.l. — Tutti i diritti riservati</p>
           <nav className="flex gap-6">
             {legalLinks.map((l) => (
               <Link

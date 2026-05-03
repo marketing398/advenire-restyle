@@ -5,28 +5,24 @@ import SplitText from '@/components/ui/SplitText'
 
 const valori = [
   {
-    simbolo: '◈',
     numero: '01',
     titolo: 'Integri',
     testo:
       "Agiamo sempre nell'interesse del cliente. La trasparenza non è un optional, è il fondamento di ogni relazione.",
   },
   {
-    simbolo: '◉',
     numero: '02',
     titolo: 'Adattativi',
     testo:
       'Il mondo cambia. Le famiglie cambiano. Le strategie patrimoniali devono farlo con loro.',
   },
   {
-    simbolo: '◎',
     numero: '03',
     titolo: 'Lungimiranti',
     testo:
       'Investiamo in relazioni multigenerazionali, costruendo piani che guardano a decenni, non a trimestri.',
   },
   {
-    simbolo: '◇',
     numero: '04',
     titolo: 'Integrati',
     testo:
@@ -80,11 +76,8 @@ export default function ValoriSection() {
               }}
               className="border-t border-border pt-8 pb-10 pr-8 group hover:-translate-y-1 transition-transform duration-300"
             >
-              <span
-                className="text-[20px] text-muted/35 block mb-6 group-hover:text-accent transition-colors duration-300"
-                style={{ display: 'inline-block' }}
-              >
-                {v.simbolo}
+              <span className="font-label text-[10px] uppercase tracking-[0.2em] text-accent block mb-6">
+                {v.numero}
               </span>
               <h3
                 className="font-heading font-light text-foreground mb-4 group-hover:text-primary transition-colors duration-300"

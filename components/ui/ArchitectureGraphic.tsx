@@ -148,7 +148,7 @@ export default function ArchitectureGraphic() {
             fill="rgba(245,240,232,0.18)"
             letterSpacing="2.5"
           >
-            ELEVATION — NORTH FACADE
+            PROSPETTO — FACCIATA NORD
           </text>
 
           <text x={BX} y={H - 14}
@@ -156,7 +156,7 @@ export default function ArchitectureGraphic() {
             fill="rgba(245,240,232,0.18)"
             letterSpacing="1.5"
           >
-            SCALE 1:200
+            SCALA 1:200
           </text>
 
           <text x={(PT_L + PT_R) / 2} y={PT_T - 6}
@@ -165,7 +165,7 @@ export default function ArchitectureGraphic() {
             fill="rgba(245,240,232,0.2)"
             letterSpacing="1.5"
           >
-            ROOF LEVEL
+            COPERTURA
           </text>
         </g>
       </svg>

@@ -6,7 +6,7 @@ export default function HeroChiSiamo() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-primary" style={{ paddingTop: '72px' }}>
+    <section className="bg-primary" data-section-tone="dark" style={{ paddingTop: '72px' }}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 pt-16 pb-0">
 
         {/* Label */}
@@ -32,7 +32,7 @@ export default function HeroChiSiamo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.05, delay: shouldReduce ? 0 : 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
-            Non ci limitiamo a gestire la ricchezza, ma progettiamo anche eredità.
+            Tre professionisti, una visione. Costruiamo valore, progettiamo futuro.
           </motion.h1>
 
           <motion.div
@@ -42,15 +42,15 @@ export default function HeroChiSiamo() {
           >
             {/* Animated accent line */}
             <motion.div
-              className="bg-background/20 mb-6"
-              style={{ height: '1px' }}
+              className="bg-accent mb-6"
+              style={{ height: '1.5px' }}
               initial={{ width: 0 }}
-              animate={{ width: '2.5rem' }}
-              transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
+              animate={{ width: '6rem' }}
+              transition={{ duration: 0.8, delay: shouldReduce ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
             />
             <p className="font-body font-light text-background/75 text-[14px] leading-relaxed max-w-sm">
-              Grazie a un mix di competenze nel settore immobiliare e di una collaborazione
-              attenta, siamo un partner per la vita con una visione a lungo termine.
+              Esperienze diverse, una direzione comune: lavoriamo con rigore, trasparenza e
+              attenzione all&apos;impatto di ciò che realizziamo.
             </p>
           </motion.div>
         </div>

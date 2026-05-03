@@ -49,7 +49,7 @@ export default function ConsulenzaSection() {
 
             <SplitText
               el="h2"
-              text="Lavoriamo con chi ha una visione."
+              text="Facciamo le cose in modo diverso, per scelta."
               className="font-heading font-light text-foreground"
               style={{ fontSize: 'clamp(1.8rem, 3.8vw, 3.5rem)', lineHeight: '1.06', letterSpacing: '-0.02em' }}
               delay={0.06}
@@ -75,11 +75,11 @@ export default function ConsulenzaSection() {
               transition={{ duration: 0.6, delay: 0.45 }}
             >
               <Link
-                href="/cosa-facciamo"
+                href="/contatti"
                 className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-accent text-primary rounded-full px-6 py-2.5 hover:opacity-85 transition-opacity duration-200"
                 style={{ cursor: 'pointer' }}
               >
-                Scopri i nostri servizi <span aria-hidden="true">→</span>
+                Richiedi una consulenza <span aria-hidden="true">→</span>
               </Link>
             </motion.div>
           </div>
