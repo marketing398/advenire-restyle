@@ -5,13 +5,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 const team = [
   {
-    nome: 'Alessandro Panaia',
-    ruolo: 'Co-founder & Project Manager',
-    citazione:
-      'Ogni cliente deve sentirsi guidato e assistito in ogni passo. Non va mai lasciato solo.',
-    immagine: '/images/team/alessandro.png',
-  },
-  {
     nome: 'Giacomo Giacalone',
     ruolo: 'Co-founder & Interior Designer',
     citazione: 'La casa è un progetto di vita, non un prodotto.',
@@ -23,6 +16,13 @@ const team = [
     citazione:
       'Innovare non significa complicare. Significa chiarire. L’innovazione porta alla libertà di fare scelte consapevoli.',
     immagine: '/images/team/armand.png',
+  },
+  {
+    nome: 'Alessandro Panaia',
+    ruolo: 'Co-founder & Project Manager',
+    citazione:
+      'Ogni cliente deve sentirsi guidato e assistito in ogni passo. Non va mai lasciato solo.',
+    immagine: '/images/team/alessandro.png',
   },
 ]
 
