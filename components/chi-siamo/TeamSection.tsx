@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
-import SectionTransition from '@/components/ui/SectionTransition'
 
 const team = [
   {
@@ -31,16 +30,15 @@ export default function TeamSection() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-background py-20 lg:py-28 border-t border-primary/10 relative overflow-hidden" data-section-tone="light">
-      <SectionTransition from="primary" position="top" height={120} />
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
+    <section className="bg-background py-20 lg:py-28 border-t border-primary/10" data-section-tone="light">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
 
         <motion.span
           className="font-label text-[12px] uppercase tracking-[0.2em] text-primary/70 block mb-8"
-          initial={{ opacity: 0, x: shouldReduce ? 0 : -30 }}
+          initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           Il team
         </motion.span>
@@ -49,9 +47,9 @@ export default function TeamSection() {
           className="bg-primary mb-10"
           style={{ height: '2px' }}
           initial={{ width: 0 }}
-          whileInView={{ width: '4rem' }}
+          whileInView={{ width: '3rem' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         />
 
         <motion.h2
@@ -61,10 +59,10 @@ export default function TeamSection() {
             lineHeight: '1.1',
             letterSpacing: '-0.02em',
           }}
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.94 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{ opacity: 0, y: shouldReduce ? 0 : 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.95, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           Tre percorsi, un&apos;identità condivisa: dare forma a progetti che abbiano senso
           oggi e valore nel tempo.
@@ -87,16 +85,22 @@ export default function TeamSection() {
               }`}
             >
               <div className="aspect-[3/4] bg-card overflow-hidden relative">
-                <Image
-                  src={membro.immagine}
-                  alt={`Ritratto di ${membro.nome}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover object-top"
-                  style={{ mixBlendMode: 'luminosity' }}
-                />
                 <motion.div
-                  className="absolute bottom-0 left-0 h-px bg-accent/50"
+                  className="absolute inset-0"
+                  whileHover={{ scale: shouldReduce ? 1 : 1.05 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Image
+                    src={membro.immagine}
+                    alt={`Ritratto di ${membro.nome}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-top transition-[mix-blend-mode] duration-500 group-hover:mix-blend-normal"
+                    style={{ mixBlendMode: 'luminosity' }}
+                  />
+                </motion.div>
+                <motion.div
+                  className="absolute bottom-0 left-0 h-px bg-accent/50 group-hover:bg-accent group-hover:h-[2px] transition-all duration-500"
                   initial={{ width: 0 }}
                   whileInView={{ width: '100%' }}
                   viewport={{ once: true }}
@@ -105,12 +109,12 @@ export default function TeamSection() {
               </div>
 
               <h3
-                className="font-heading font-light italic text-foreground mt-6"
+                className="font-heading font-light italic text-foreground mt-6 transition-colors duration-500 group-hover:text-primary"
                 style={{ fontSize: 'clamp(1.3rem, 1.7vw, 1.6rem)', letterSpacing: '-0.01em' }}
               >
                 {membro.nome}
               </h3>
-              <p className="font-label text-[11px] uppercase tracking-[0.15em] text-accent mt-2">
+              <p className="font-label text-[11px] uppercase tracking-[0.15em] text-accent mt-2 transition-all duration-500 group-hover:tracking-[0.2em]">
                 {membro.ruolo}
               </p>
               <p className="font-body font-light italic text-[14px] text-foreground/80 leading-relaxed mt-6 max-w-[300px]">

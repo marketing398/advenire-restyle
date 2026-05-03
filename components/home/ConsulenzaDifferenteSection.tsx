@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
-import SectionTransition from '@/components/ui/SectionTransition'
 
 const cards = [
   {
@@ -42,15 +41,14 @@ export default function ConsulenzaDifferenteSection() {
 
   return (
     <section className="bg-background relative overflow-hidden" data-section-tone="light">
-      <SectionTransition from="accent" position="top" height={120} />
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 py-20 lg:py-28 border-t border-primary/10 relative">
 
         <motion.span
           className="font-label text-[12px] uppercase tracking-[0.2em] text-primary/70 block mb-8"
-          initial={{ opacity: 0, x: shouldReduce ? 0 : -30 }}
+          initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           Siamo differenti
         </motion.span>
@@ -59,27 +57,19 @@ export default function ConsulenzaDifferenteSection() {
           className="bg-primary mb-10"
           style={{ height: '2px' }}
           initial={{ width: 0 }}
-          whileInView={{ width: '4rem' }}
+          whileInView={{ width: '3rem' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.94 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: '-10%' }}
-          transition={{ duration: 0.95, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-12 lg:mb-16"
-        >
-          <SplitText
-            el="h2"
-            text="Facciamo le cose in modo diverso, per scelta."
-            className="font-heading font-light italic text-primary max-w-3xl"
-            style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
-            delay={0.3}
-            stagger={0.05}
-          />
-        </motion.div>
+        <SplitText
+          el="h2"
+          text="Facciamo le cose in modo diverso, per scelta."
+          className="font-heading font-light italic text-primary max-w-3xl mb-12 lg:mb-16"
+          style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
+          delay={0.07}
+          stagger={0.05}
+        />
 
         {/* 6-card grid — responsive 1/2/3 cols */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
@@ -101,7 +91,7 @@ export default function ConsulenzaDifferenteSection() {
             return (
             <motion.div
               key={card.num}
-              className={classes}
+              className={`${classes} transition-colors duration-500 hover:bg-primary/[0.025]`}
               initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10%' }}
@@ -112,15 +102,14 @@ export default function ConsulenzaDifferenteSection() {
               }}
               whileHover={{ y: -3 }}
             >
-              <span className="font-label text-[10px] uppercase tracking-[0.18em] text-accent block mb-5 transition-colors duration-300">
+              <span className="font-label text-[10px] uppercase tracking-[0.18em] text-accent block mb-5 transition-all duration-300 group-hover:tracking-[0.22em]">
                 {card.num}
               </span>
               <h3
-                className="font-heading font-normal text-primary mb-4 group-hover:text-primary/80"
+                className="font-heading font-normal text-primary mb-4 transition-colors duration-500 group-hover:text-primary-light"
                 style={{
                   fontSize: 'clamp(1rem, 1.25vw, 1.2rem)',
                   lineHeight: '1.3',
-                  transition: 'color 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
               >
                 {card.title}
@@ -143,10 +132,10 @@ export default function ConsulenzaDifferenteSection() {
         >
           <a
             href="/contatti"
-            className="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.12em] bg-primary text-background rounded-full px-6 py-2.5 hover:bg-primary/85 transition-colors duration-200"
+            className="group inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.12em] bg-primary text-background rounded-full px-6 py-2.5 hover:bg-primary-light hover:scale-[1.02] transition-all duration-300"
             style={{ cursor: 'pointer' }}
           >
-            Richiedi una consulenza <span aria-hidden="true">→</span>
+            Richiedi una consulenza <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
           </a>
         </motion.div>
 

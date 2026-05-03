@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
-import SectionTransition from '@/components/ui/SectionTransition'
 
 type FAQ = {
   categoria: string
@@ -63,8 +62,6 @@ export default function FAQSection() {
 
   return (
     <section className="bg-primary py-24 lg:py-32 relative overflow-hidden" data-section-tone="dark">
-      <SectionTransition from="background" position="top" height={120} />
-
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
 
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20 items-start">
@@ -73,10 +70,10 @@ export default function FAQSection() {
           <div className="lg:sticky lg:top-32">
             <motion.span
               className="font-label text-[12px] uppercase tracking-[0.2em] text-background/70 block mb-8"
-              initial={{ opacity: 0, x: shouldReduce ? 0 : -30 }}
+              initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               Domande frequenti
             </motion.span>
@@ -87,28 +84,21 @@ export default function FAQSection() {
               initial={{ width: 0 }}
               whileInView={{ width: '4rem' }}
               viewport={{ once: true }}
-              transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             />
 
-            <motion.div
-              initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.94 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: '-10%' }}
-              transition={{ duration: 0.95, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <SplitText
-                el="h2"
-                text="Le risposte alle domande che ci fanno più spesso."
-                className="font-heading font-light italic text-background"
-                style={{
-                  fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
-                  lineHeight: '1.05',
-                  letterSpacing: '-0.02em',
-                }}
-                delay={shouldReduce ? 0 : 0.3}
-                stagger={0.04}
-              />
-            </motion.div>
+            <SplitText
+              el="h2"
+              text="Le risposte alle domande che ci fanno più spesso."
+              className="font-heading font-light italic text-background"
+              style={{
+                fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
+                lineHeight: '1.05',
+                letterSpacing: '-0.02em',
+              }}
+              delay={shouldReduce ? 0 : 0.06}
+              stagger={0.04}
+            />
           </div>
 
           {/* RIGHT — accordion */}
