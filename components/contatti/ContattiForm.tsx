@@ -19,7 +19,7 @@ function FormField({
       viewport={{ once: true }}
       transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
     >
-      <label className="font-label text-[9px] uppercase tracking-widest text-muted block mb-2">
+      <label className="font-label text-[10px] uppercase tracking-[0.18em] text-primary/65 block mb-2">
         {label}
       </label>
       {children}
@@ -43,7 +43,7 @@ export default function ContattiForm() {
         {/* Section header */}
         <div className="max-w-2xl mb-16">
           <motion.span
-            className="font-label text-[10px] uppercase tracking-[0.25em] text-muted block mb-6"
+            className="font-label text-[10px] uppercase tracking-[0.25em] text-primary/75 block mb-6"
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -52,7 +52,7 @@ export default function ContattiForm() {
             Parliamo
           </motion.span>
           <motion.h2
-            className="font-heading font-light text-foreground mb-6"
+            className="font-heading font-light italic text-primary mb-6"
             style={{
               fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
               lineHeight: '1.1',
@@ -66,7 +66,7 @@ export default function ContattiForm() {
             Il primo passo verso una gestione patrimoniale consapevole.
           </motion.h2>
           <motion.p
-            className="font-body font-light text-[14px] text-foreground/65 leading-relaxed"
+            className="font-body font-light text-[14px] text-foreground/75 leading-relaxed max-w-[60ch]"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -106,7 +106,7 @@ export default function ContattiForm() {
                     <input
                       type="text"
                       required
-                      className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/40 focus:outline-none focus:border-primary transition-colors duration-300"
+                      className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300"
                       placeholder="Il tuo nome"
                     />
                   </FormField>
@@ -114,7 +114,7 @@ export default function ContattiForm() {
                     <input
                       type="text"
                       required
-                      className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/40 focus:outline-none focus:border-primary transition-colors duration-300"
+                      className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300"
                       placeholder="Il tuo cognome"
                     />
                   </FormField>
@@ -124,7 +124,7 @@ export default function ContattiForm() {
                   <input
                     type="email"
                     required
-                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/40 focus:outline-none focus:border-primary transition-colors duration-300"
+                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300"
                     placeholder="nome@esempio.com"
                   />
                 </FormField>
@@ -132,7 +132,7 @@ export default function ContattiForm() {
                 <FormField label="Telefono" delay={0.15}>
                   <input
                     type="tel"
-                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/40 focus:outline-none focus:border-primary transition-colors duration-300"
+                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300"
                     placeholder="+39 ___ ___ ____"
                   />
                 </FormField>
@@ -144,7 +144,7 @@ export default function ContattiForm() {
                   <textarea
                     rows={6}
                     required
-                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/40 focus:outline-none focus:border-primary transition-colors duration-300 resize-none"
+                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300 resize-none"
                     placeholder="Descrivici la tua situazione e i tuoi obiettivi..."
                   />
                 </FormField>
@@ -172,7 +172,7 @@ function SubmitButton() {
   return (
     <button
       type="submit"
-      className="relative inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-primary text-background rounded-full px-8 py-3.5 overflow-hidden"
+      className="relative inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-primary text-background rounded-full px-8 py-3.5 overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent"
       style={{ cursor: 'pointer' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
