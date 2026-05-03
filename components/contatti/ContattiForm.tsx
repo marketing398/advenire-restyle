@@ -106,7 +106,8 @@ export default function ContattiForm() {
                     <input
                       type="text"
                       required
-                      className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300"
+                      aria-required="true"
+                      className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent focus:border-primary transition-colors duration-300"
                       placeholder="Il tuo nome"
                     />
                   </FormField>
@@ -114,7 +115,8 @@ export default function ContattiForm() {
                     <input
                       type="text"
                       required
-                      className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300"
+                      aria-required="true"
+                      className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent focus:border-primary transition-colors duration-300"
                       placeholder="Il tuo cognome"
                     />
                   </FormField>
@@ -124,7 +126,8 @@ export default function ContattiForm() {
                   <input
                     type="email"
                     required
-                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300"
+                    aria-required="true"
+                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent focus:border-primary transition-colors duration-300"
                     placeholder="nome@esempio.com"
                   />
                 </FormField>
@@ -132,7 +135,7 @@ export default function ContattiForm() {
                 <FormField label="Telefono" delay={0.15}>
                   <input
                     type="tel"
-                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300"
+                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent focus:border-primary transition-colors duration-300"
                     placeholder="+39 ___ ___ ____"
                   />
                 </FormField>
@@ -144,7 +147,8 @@ export default function ContattiForm() {
                   <textarea
                     rows={6}
                     required
-                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus:border-primary transition-colors duration-300 resize-none"
+                    aria-required="true"
+                    className="w-full border-b border-border bg-transparent py-3 font-body text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent focus:border-primary transition-colors duration-300 resize-none"
                     placeholder="Descrivici la tua situazione e i tuoi obiettivi..."
                   />
                 </FormField>
