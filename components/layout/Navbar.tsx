@@ -123,9 +123,10 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             type="button"
-            className="md:hidden flex flex-col gap-[5px] p-2"
+            className="md:hidden flex flex-col gap-[5px] p-2 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? 'Chiudi menu' : 'Apri menu'}
+            aria-expanded={menuOpen}
             style={{ cursor: 'pointer' }}
           >
             <motion.span
@@ -166,7 +167,7 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className="font-heading font-light text-4xl text-foreground hover:text-primary transition-colors duration-300"
+                  className="font-heading font-light text-4xl text-foreground hover:text-primary transition-colors duration-300 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                 >
                   {link.label}
                 </Link>
