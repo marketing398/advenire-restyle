@@ -31,7 +31,7 @@ function ServiceCard({ card, i, isLast, shouldReduce }: { card: typeof cards[0];
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-4%' }}
       transition={{ duration: anim.duration, delay: shouldReduce ? 0 : i * 0.12, ease: anim.ease }}
-      className={!isLast ? 'border-b border-foreground/8 pb-16 lg:pb-24' : ''}
+      className={!isLast ? 'border-b border-foreground/10 pb-16 lg:pb-24' : ''}
     >
       <div className="flex flex-col md:flex-row gap-8 lg:gap-14 items-start">
         {/* Image */}
@@ -63,11 +63,11 @@ function ServiceCard({ card, i, isLast, shouldReduce }: { card: typeof cards[0];
             {card.titolo}
           </h3>
 
-          <p className="font-body font-light text-[14px] text-foreground/65 leading-relaxed mt-4">
+          <p className="font-body font-light text-[14px] text-foreground/75 leading-relaxed mt-5 max-w-[60ch]">
             {card.testo}
           </p>
 
-          <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
+          <div className="mt-7 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
             <Link
               href={card.href}
               className="inline-flex items-center justify-center gap-1.5 font-label text-[11px] uppercase tracking-[0.12em] border border-primary/60 text-primary rounded-full px-5 py-2 hover:bg-primary hover:text-background transition-colors duration-300"
