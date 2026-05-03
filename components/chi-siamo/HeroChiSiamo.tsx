@@ -12,9 +12,9 @@ export default function HeroChiSiamo() {
         {/* Label */}
         <motion.span
           className="font-label text-[12px] uppercase tracking-[0.2em] text-background/70 block mb-8"
-          initial={{ opacity: 0, x: -12 }}
+          initial={{ opacity: 0, x: shouldReduce ? 0 : -30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.65, delay: shouldReduce ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
         >
           Chi siamo
         </motion.span>
@@ -28,9 +28,9 @@ export default function HeroChiSiamo() {
               lineHeight: '1.0',
               letterSpacing: '-0.025em',
             }}
-            initial={{ opacity: 0, y: shouldReduce ? 0 : 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.05, delay: shouldReduce ? 0 : 0.25, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: shouldReduce ? 0 : 36, scale: shouldReduce ? 1 : 0.94 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.1, delay: shouldReduce ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             Tre professionisti, una visione. Costruiamo valore, progettiamo futuro.
           </motion.h1>

@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
+import SectionTransition from '@/components/ui/SectionTransition'
 
 const team = [
   {
@@ -30,15 +31,16 @@ export default function TeamSection() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-background py-20 lg:py-28 border-t border-primary/10" data-section-tone="light">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
+    <section className="bg-background py-20 lg:py-28 border-t border-primary/10 relative overflow-hidden" data-section-tone="light">
+      <SectionTransition from="primary" position="top" height={120} />
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
 
         <motion.span
           className="font-label text-[12px] uppercase tracking-[0.2em] text-primary/70 block mb-8"
-          initial={{ opacity: 0, x: -10 }}
+          initial={{ opacity: 0, x: shouldReduce ? 0 : -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           Il team
         </motion.span>
@@ -47,9 +49,9 @@ export default function TeamSection() {
           className="bg-primary mb-10"
           style={{ height: '2px' }}
           initial={{ width: 0 }}
-          whileInView={{ width: '3rem' }}
+          whileInView={{ width: '4rem' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         />
 
         <motion.h2
@@ -59,10 +61,10 @@ export default function TeamSection() {
             lineHeight: '1.1',
             letterSpacing: '-0.02em',
           }}
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.94 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.95, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         >
           Tre percorsi, un&apos;identità condivisa: dare forma a progetti che abbiano senso
           oggi e valore nel tempo.

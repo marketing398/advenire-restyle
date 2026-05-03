@@ -3,20 +3,22 @@
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
+import SectionTransition from '@/components/ui/SectionTransition'
 
 export default function ValoriChiSiamo() {
   const shouldReduce = useReducedMotion()
 
   return (
     <section className="bg-accent py-24 lg:py-32 relative overflow-hidden" data-section-tone="accent">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <SectionTransition from="background" position="top" height={120} />
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
 
         <motion.span
           className="font-label text-[12px] uppercase tracking-[0.2em] text-primary/70 block mb-8"
-          initial={{ opacity: 0, x: -10 }}
+          initial={{ opacity: 0, x: shouldReduce ? 0 : -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           Chi siamo
         </motion.span>
@@ -25,23 +27,30 @@ export default function ValoriChiSiamo() {
           className="bg-primary mb-10"
           style={{ height: '2px' }}
           initial={{ width: 0 }}
-          whileInView={{ width: '3rem' }}
+          whileInView={{ width: '4rem' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        <SplitText
-          el="p"
-          text="Siamo professionisti che mettono competenza e concretezza al centro di ogni scelta, uniti da un unico obiettivo: trasformare ogni progetto in un risultato solido e duraturo. Dalla progettazione alla gestione operativa della commessa, fino alla valutazione strategica degli investimenti immobiliari. È proprio questa profondità di esperienza che ci ha permesso di costruire una società capace di seguire ogni progetto nella sua interezza, senza delegare le fasi critiche. Oggi siamo il punto di riferimento per chi vuole investire nel mattone con metodo e consapevolezza, e per chi sceglie di costruire una casa che rispecchi davvero il proprio stile di vita."
-          className="font-heading font-light text-primary max-w-4xl"
-          style={{
-            fontSize: 'clamp(1.2rem, 2.2vw, 2rem)',
-            lineHeight: '1.45',
-            letterSpacing: '-0.015em',
-          }}
-          delay={shouldReduce ? 0 : 0.1}
-          stagger={0.03}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.94 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: '-10%' }}
+          transition={{ duration: 0.95, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <SplitText
+            el="p"
+            text="Siamo professionisti che mettono competenza e concretezza al centro di ogni scelta, uniti da un unico obiettivo: trasformare ogni progetto in un risultato solido e duraturo. Dalla progettazione alla gestione operativa della commessa, fino alla valutazione strategica degli investimenti immobiliari. È proprio questa profondità di esperienza che ci ha permesso di costruire una società capace di seguire ogni progetto nella sua interezza, senza delegare le fasi critiche. Oggi siamo il punto di riferimento per chi vuole investire nel mattone con metodo e consapevolezza, e per chi sceglie di costruire una casa che rispecchi davvero il proprio stile di vita."
+            className="font-heading font-light text-primary max-w-4xl"
+            style={{
+              fontSize: 'clamp(1.2rem, 2.2vw, 2rem)',
+              lineHeight: '1.45',
+              letterSpacing: '-0.015em',
+            }}
+            delay={shouldReduce ? 0 : 0.3}
+            stagger={0.03}
+          />
+        </motion.div>
 
         <motion.p
           className="font-body font-light text-primary/90 text-[14.5px] md:text-[16px] leading-relaxed mt-12 max-w-3xl"

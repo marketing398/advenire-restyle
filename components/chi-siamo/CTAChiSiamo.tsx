@@ -3,34 +3,43 @@
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
+import SectionTransition from '@/components/ui/SectionTransition'
 
 export default function CTAChiSiamo() {
   const shouldReduce = useReducedMotion()
 
   return (
     <section className="bg-primary py-24 lg:py-32 relative overflow-hidden" data-section-tone="dark">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 text-center">
+      <SectionTransition from="accent" position="top" height={120} />
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 text-center relative">
         <motion.div
           className="bg-accent mx-auto mb-10"
           style={{ height: '2px' }}
           initial={{ width: 0 }}
-          whileInView={{ width: '3rem' }}
+          whileInView={{ width: '4rem' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        <SplitText
-          el="h2"
-          text="Hai un'operazione immobiliare da analizzare o una nuova costruzione in bioedilizia da realizzare?"
-          className="font-heading font-light italic text-background mx-auto"
-          style={{
-            fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
-            lineHeight: '1.1',
-            letterSpacing: '-0.02em',
-          }}
-          delay={shouldReduce ? 0 : 0.06}
-          stagger={0.04}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: shouldReduce ? 0 : 32, scale: shouldReduce ? 1 : 0.94 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: '-10%' }}
+          transition={{ duration: 0.95, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <SplitText
+            el="h2"
+            text="Hai un'operazione immobiliare da analizzare o una nuova costruzione in bioedilizia da realizzare?"
+            className="font-heading font-light italic text-background mx-auto"
+            style={{
+              fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
+              lineHeight: '1.1',
+              letterSpacing: '-0.02em',
+            }}
+            delay={shouldReduce ? 0 : 0.3}
+            stagger={0.04}
+          />
+        </motion.div>
 
         <motion.p
           className="font-body font-light text-background/80 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-xl mx-auto"
