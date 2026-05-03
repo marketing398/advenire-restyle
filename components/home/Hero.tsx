@@ -106,8 +106,8 @@ export default function Hero() {
                   href={link.href}
                   className={
                     link.href === '/contatti'
-                      ? 'font-label text-[11px] uppercase tracking-widest text-background/70 hover:text-background border border-background/50 hover:border-background rounded-full px-4 py-1.5 transition-colors duration-300 whitespace-nowrap'
-                      : 'font-label text-[11px] uppercase tracking-widest text-background/70 hover:text-background transition-colors duration-300 whitespace-nowrap'
+                      ? 'font-label text-[11px] uppercase tracking-widest text-background/80 hover:text-background border border-background/35 hover:border-background rounded-full px-4 py-1.5 transition-colors duration-300 whitespace-nowrap'
+                      : 'font-label text-[11px] uppercase tracking-widest text-background/75 hover:text-background transition-colors duration-300 whitespace-nowrap'
                   }
                 >
                   {link.label}
@@ -201,10 +201,7 @@ export default function Hero() {
             }}
           >
             <span className="block sm:whitespace-nowrap">Diamo forma al tuo</span>
-            <span
-              className="block sm:whitespace-nowrap relative"
-              style={{ color: '#FDA77E' }}
-            >
+            <span className="block sm:whitespace-nowrap relative text-accent">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={current.word}
@@ -220,11 +217,11 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          <div className="mt-2 min-h-[1.75rem]">
+          <div className="mt-3 min-h-[1.75rem]">
             <AnimatePresence mode="wait">
               <motion.p
                 key={current.paragraph}
-                className="font-body font-light text-background/55 text-[11px] md:text-[12px] leading-relaxed max-w-2xl"
+                className="font-body font-light text-background/75 text-[13px] md:text-[14px] leading-relaxed max-w-2xl"
                 initial={{ opacity: 0, y: shouldReduce ? 0 : 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: shouldReduce ? 0 : -12 }}
