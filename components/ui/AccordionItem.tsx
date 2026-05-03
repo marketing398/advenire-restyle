@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 
 interface AccordionItemProps {
   title: string
@@ -17,6 +17,7 @@ export default function AccordionItem({
   light = false,
 }: AccordionItemProps) {
   const [open, setOpen] = useState(defaultOpen)
+  const shouldReduce = useReducedMotion()
 
   return (
     <div className={`border-b ${light ? 'border-background/12' : 'border-border'}`}>
@@ -50,7 +51,7 @@ export default function AccordionItem({
           <motion.span
             className="absolute inset-0 flex items-center justify-center"
             animate={{ rotate: open ? 90 : 0, opacity: open ? 0 : 1 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: shouldReduce ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className={`block w-px h-3 ${light ? 'bg-background/40' : 'bg-primary'}`} />
           </motion.span>
@@ -65,15 +66,15 @@ export default function AccordionItem({
             initial={{ height: 0 }}
             animate={{ height: 'auto' }}
             exit={{ height: 0 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: shouldReduce ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
             style={{ overflow: 'hidden' }}
           >
             {/* Content fades in after height starts expanding */}
             <motion.div
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: shouldReduce ? 0 : 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: shouldReduce ? 0 : 0.3, delay: shouldReduce ? 0 : 0.12, ease: [0.16, 1, 0.3, 1] }}
               className={`font-body font-light text-[13px] leading-relaxed pb-6 ${
                 light ? 'text-background/65' : 'text-foreground/65'
               }`}
