@@ -5,13 +5,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 const team = [
   {
-    nome: 'Armand Guzhda',
-    ruolo: 'Co-founder & Architetto',
-    citazione:
-      'Innovare non significa complicare. Significa chiarire. L’innovazione porta alla libertà di fare scelte consapevoli.',
-    immagine: '/images/team/armand.png',
-  },
-  {
     nome: 'Alessandro Panaia',
     ruolo: 'Co-founder & Project Manager',
     citazione:
@@ -23,6 +16,13 @@ const team = [
     ruolo: 'Co-founder & Interior Designer',
     citazione: 'La casa è un progetto di vita, non un prodotto.',
     immagine: '/images/team/giacomo.png',
+  },
+  {
+    nome: 'Armand Guzhda',
+    ruolo: 'Co-founder & Architetto',
+    citazione:
+      'Innovare non significa complicare. Significa chiarire. L’innovazione porta alla libertà di fare scelte consapevoli.',
+    immagine: '/images/team/armand.png',
   },
 ]
 
