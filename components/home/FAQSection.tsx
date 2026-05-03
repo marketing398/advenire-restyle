@@ -65,7 +65,7 @@ export default function FAQSection() {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
 
         <motion.span
-          className="font-label text-[10px] uppercase tracking-[0.18em] text-background/55 block mb-10"
+          className="font-label text-[12px] uppercase tracking-[0.2em] text-background/70 block mb-8"
           initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}

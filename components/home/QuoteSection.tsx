@@ -10,12 +10,12 @@ export default function QuoteSection() {
   return (
     <section id="quote-section" className="bg-accent relative overflow-hidden" data-section-tone="accent">
       <ArchitecturalLines position="top-right" />
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 py-24 lg:py-32 relative flex flex-col items-center text-center">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 py-24 lg:py-32 relative">
 
         <motion.span
-          className="font-label text-[10px] uppercase tracking-[0.18em] text-primary/75 block mb-8"
-          initial={{ opacity: 0, y: -6 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="font-label text-[12px] uppercase tracking-[0.2em] text-primary/70 block mb-8"
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -23,7 +23,7 @@ export default function QuoteSection() {
         </motion.span>
 
         <motion.div
-          className="bg-primary mb-12"
+          className="bg-primary mb-16"
           style={{ height: '2px' }}
           initial={{ width: 0 }}
           whileInView={{ width: '4rem' }}
@@ -34,7 +34,7 @@ export default function QuoteSection() {
         <SplitText
           el="p"
           text="Siamo professionisti che mettono competenza e concretezza al centro di ogni scelta, uniti da un unico obiettivo: trasformare ogni progetto in un risultato solido e duraturo. Dalla progettazione alla gestione operativa della commessa, fino alla valutazione strategica degli investimenti immobiliari. È proprio questa profondità di esperienza che ci ha permesso di costruire una società capace di seguire ogni progetto nella sua interezza, senza delegare le fasi critiche. Oggi siamo il punto di riferimento per chi vuole investire nel mattone con metodo e consapevolezza, e per chi sceglie di costruire una casa che rispecchi davvero il proprio stile di vita."
-          className="font-heading font-light italic text-primary max-w-4xl mx-auto"
+          className="font-heading font-light italic text-primary max-w-4xl mx-auto text-center"
           style={{
             fontSize: 'clamp(1.5rem, 2.8vw, 2.6rem)',
             lineHeight: '1.35',

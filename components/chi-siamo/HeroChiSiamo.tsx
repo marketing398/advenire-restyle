@@ -11,7 +11,7 @@ export default function HeroChiSiamo() {
 
         {/* Label */}
         <motion.span
-          className="font-label text-[10px] uppercase tracking-[0.25em] text-background/65 block mb-10"
+          className="font-label text-[12px] uppercase tracking-[0.2em] text-background/70 block mb-8"
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.65, delay: shouldReduce ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}

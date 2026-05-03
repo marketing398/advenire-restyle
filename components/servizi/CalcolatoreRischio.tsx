@@ -40,56 +40,61 @@ export default function CalcolatoreRischio() {
     <section className="bg-background py-20 lg:py-28 border-t border-primary/10" data-section-tone="light">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
 
-        <motion.span
-          className="font-label text-[10px] uppercase tracking-[0.18em] text-primary/70 block mb-10"
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Il calcolatore
-        </motion.span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
-        <motion.div
-          className="bg-primary mb-10"
-          style={{ height: '2px' }}
-          initial={{ width: 0 }}
-          whileInView={{ width: '3rem' }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        />
+          {/* LEFT — heading column */}
+          <div className="lg:sticky lg:top-32">
+            <motion.span
+              className="font-label text-[12px] uppercase tracking-[0.2em] text-primary/70 block mb-8"
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Il calcolatore
+            </motion.span>
 
-        <SplitText
-          el="h2"
-          text="Quanto può costare sbagliare un'operazione immobiliare?"
-          className="font-heading font-light italic text-primary max-w-3xl"
-          style={{
-            fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
-            lineHeight: '1.1',
-            letterSpacing: '-0.02em',
-          }}
-          delay={shouldReduce ? 0 : 0.06}
-          stagger={0.04}
-        />
+            <motion.div
+              className="bg-primary mb-10"
+              style={{ height: '2px' }}
+              initial={{ width: 0 }}
+              whileInView={{ width: '3rem' }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            />
 
-        <motion.p
-          className="font-body font-light text-primary/70 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-2xl"
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Sposta il cursore per stimare la perdita media potenziale lungo le tre fasi più
-          critiche di un&apos;operazione, in assenza di una consulenza professionale.
-        </motion.p>
+            <SplitText
+              el="h2"
+              text="Quanto può costare sbagliare un'operazione immobiliare?"
+              className="font-heading font-light italic text-primary"
+              style={{
+                fontSize: 'clamp(2rem, 3.6vw, 3.4rem)',
+                lineHeight: '1.1',
+                letterSpacing: '-0.02em',
+              }}
+              delay={shouldReduce ? 0 : 0.06}
+              stagger={0.04}
+            />
 
-        <motion.div
-          className="mt-14 lg:mt-16 max-w-2xl"
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        >
+            <motion.p
+              className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-md"
+              initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Sposta il cursore per stimare la perdita media potenziale lungo le tre fasi più
+              critiche di un&apos;operazione, in assenza di una consulenza professionale.
+            </motion.p>
+          </div>
+
+          {/* RIGHT — interactive widget */}
+          <motion.div
+            initial={{ opacity: 0, y: shouldReduce ? 0 : 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          >
           <div className="mb-12">
             <p className="font-label text-[10px] uppercase tracking-[0.2em] text-primary/60 mb-8">
               Valore stimato dell&apos;operazione
@@ -174,7 +179,9 @@ export default function CalcolatoreRischio() {
           <p className="font-body text-[11px] text-primary/55 text-center mt-6">
             Stime basate su medie di settore. Ogni operazione è diversa.
           </p>
-        </motion.div>
+          </motion.div>
+
+        </div>
       </div>
 
       <style jsx>{`

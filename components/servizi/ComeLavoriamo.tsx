@@ -20,7 +20,7 @@ export default function ComeLavoriamo({ titolo, steps, variant = 'accent' }: Pro
 
   const bg = isAccent ? 'bg-accent' : 'bg-primary'
   const headingColor = isAccent ? 'text-primary' : 'text-background'
-  const labelColor = isAccent ? 'text-primary/70' : 'text-background/55'
+  const labelColor = isAccent ? 'text-primary/70' : 'text-background/70'
   const lineColor = isAccent ? 'bg-primary' : 'bg-background'
   const stepBorder = isAccent ? 'border-primary/20' : 'border-background/15'
   const numColor = isAccent ? 'text-primary/50' : 'text-background/45'
@@ -32,7 +32,7 @@ export default function ComeLavoriamo({ titolo, steps, variant = 'accent' }: Pro
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
 
         <motion.span
-          className={`font-label text-[10px] uppercase tracking-[0.18em] ${labelColor} block mb-10`}
+          className={`font-label text-[12px] uppercase tracking-[0.2em] ${labelColor} block mb-8`}
           initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
