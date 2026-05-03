@@ -80,7 +80,7 @@ export default function TeamSection() {
                 delay: shouldReduce ? 0 : i * 0.12,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className={`border-t border-border pt-8 pb-10 md:px-6 group ${
+              className={`border-t border-primary/15 pt-8 pb-10 md:px-6 group ${
                 i < team.length - 1 ? 'md:border-r md:border-primary/15' : ''
               }`}
             >
@@ -111,7 +111,7 @@ export default function TeamSection() {
               <p className="font-label text-[11px] uppercase tracking-[0.15em] text-accent mt-2">
                 {membro.ruolo}
               </p>
-              <p className="font-body font-light italic text-[14px] text-foreground/75 leading-relaxed mt-6 max-w-[280px]">
+              <p className="font-body font-light italic text-[14px] text-foreground/80 leading-relaxed mt-6 max-w-[300px]">
                 &ldquo;{membro.citazione}&rdquo;
               </p>
             </motion.div>

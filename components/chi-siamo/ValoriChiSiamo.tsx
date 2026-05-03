@@ -12,7 +12,7 @@ export default function ValoriChiSiamo() {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
 
         <motion.span
-          className="font-label text-[10px] uppercase tracking-[0.18em] text-primary/70 block mb-10"
+          className="font-label text-[10px] uppercase tracking-[0.18em] text-primary/75 block mb-10"
           initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -44,7 +44,7 @@ export default function ValoriChiSiamo() {
         />
 
         <motion.p
-          className="font-body font-light text-primary/85 text-[14.5px] md:text-[16px] leading-relaxed mt-12 max-w-3xl"
+          className="font-body font-light text-primary/90 text-[14.5px] md:text-[16px] leading-relaxed mt-12 max-w-3xl"
           initial={{ opacity: 0, y: shouldReduce ? 0 : 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}

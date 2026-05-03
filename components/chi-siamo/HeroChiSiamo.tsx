@@ -11,7 +11,7 @@ export default function HeroChiSiamo() {
 
         {/* Label */}
         <motion.span
-          className="font-label text-[10px] uppercase tracking-[0.25em] text-background/50 block mb-10"
+          className="font-label text-[10px] uppercase tracking-[0.25em] text-background/65 block mb-10"
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.65, delay: shouldReduce ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -48,7 +48,7 @@ export default function HeroChiSiamo() {
               animate={{ width: '6rem' }}
               transition={{ duration: 0.8, delay: shouldReduce ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
             />
-            <p className="font-body font-light text-background/75 text-[14px] leading-relaxed max-w-sm">
+            <p className="font-body font-light text-background/80 text-[14px] leading-relaxed max-w-sm">
               Esperienze diverse, una direzione comune: lavoriamo con rigore, trasparenza e
               attenzione all&apos;impatto di ciò che realizziamo.
             </p>
