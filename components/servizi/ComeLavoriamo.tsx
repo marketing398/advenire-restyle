@@ -25,7 +25,7 @@ export default function ComeLavoriamo({ titolo, steps, variant = 'accent' }: Pro
   const stepBorder = isAccent ? 'border-primary/20' : 'border-background/15'
   const numColor = isAccent ? 'text-primary/50' : 'text-background/45'
   const stepTitleColor = isAccent ? 'text-primary' : 'text-background'
-  const stepTextColor = isAccent ? 'text-primary/70' : 'text-background/70'
+  const stepTextColor = isAccent ? 'text-primary/80' : 'text-background/75'
 
   return (
     <section className={`${bg} py-20 lg:py-28 relative overflow-hidden`} data-section-tone={isAccent ? 'accent' : 'dark'}>

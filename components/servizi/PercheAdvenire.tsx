@@ -75,15 +75,15 @@ export default function PercheAdvenire() {
                 delay: shouldReduce ? 0 : i * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className={`pt-8 pb-10 md:px-8 border-t border-primary/15 ${
+              className={`pt-10 pb-10 md:px-8 border-t border-primary/15 ${
                 i < 2 ? 'md:border-r md:border-primary/15' : ''
               }`}
             >
-              <span className="font-label text-[10px] tracking-[0.18em] text-accent block mb-6">
+              <span className="font-label text-[10px] uppercase tracking-[0.18em] text-accent block mb-6">
                 {p.num}
               </span>
               <h3
-                className="font-heading font-light text-primary mb-4"
+                className="font-heading font-light italic text-primary mb-4"
                 style={{
                   fontSize: 'clamp(1.1rem, 1.6vw, 1.5rem)',
                   lineHeight: '1.25',
@@ -92,7 +92,7 @@ export default function PercheAdvenire() {
               >
                 {p.titolo}
               </h3>
-              <p className="font-body text-[13.5px] md:text-[14px] font-light text-primary/70 leading-relaxed">
+              <p className="font-body text-[13.5px] md:text-[14px] font-light text-primary/75 leading-relaxed">
                 {p.testo}
               </p>
             </motion.div>

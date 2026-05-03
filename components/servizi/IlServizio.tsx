@@ -50,7 +50,7 @@ export default function IlServizio({ titolo, sottotitolo, paragrafi }: Props) {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 mt-14 lg:mt-20 items-start">
           <motion.p
-            className="font-body font-light text-primary/75 text-[14.5px] md:text-[16px] leading-relaxed"
+            className="font-body font-light text-primary/80 text-[14.5px] md:text-[16px] leading-relaxed max-w-[52ch]"
             initial={{ opacity: 0, y: shouldReduce ? 0 : 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
@@ -63,7 +63,7 @@ export default function IlServizio({ titolo, sottotitolo, paragrafi }: Props) {
             {paragrafi.map((p, i) => (
               <motion.p
                 key={i}
-                className="font-body font-light text-primary/65 text-[13.5px] md:text-[14.5px] leading-relaxed"
+                className="font-body font-light text-primary/70 text-[13.5px] md:text-[14.5px] leading-relaxed"
                 initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}

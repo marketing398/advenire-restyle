@@ -31,7 +31,7 @@ export default function CTAServizio({ titolo, testo, pulsante, href = '/contatti
         />
 
         <motion.p
-          className="font-body font-light text-primary/70 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-xl mx-auto"
+          className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
