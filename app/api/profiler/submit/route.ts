@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
 
     // Validate required fields
-    const { contact, project } = body
+    const { contact } = body
     if (!contact?.name || !contact?.email || !contact?.privacyAccepted) {
       return NextResponse.json({ error: 'Campi obbligatori mancanti' }, { status: 400 })
     }
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
           from: 'Advenire <noreply@advenire.it>',
           to: contact.email,
           subject: 'La tua stima preliminare — Advenire',
-          html: buildClientEmail(contact.name, estimateText, project),
+          html: buildClientEmail(contact.name, estimateText),
         }),
       })
 
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-function buildClientEmail(name: string, estimate: string, project: Record<string, unknown>): string {
+function buildClientEmail(name: string, estimate: string): string {
   return `
     <!DOCTYPE html>
     <html>

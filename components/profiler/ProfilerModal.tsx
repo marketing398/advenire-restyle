@@ -28,7 +28,7 @@ const variants = {
 export default function ProfilerModal({ isOpen, onClose }: Props) {
   const {
     currentStep, direction, data,
-    isSubmitting, isSubmitted,
+    isSubmitting,
     nextStep, prevStep, reset,
     updateData, updateContact, toggleExtra,
     setIsSubmitting, setIsSubmitted,

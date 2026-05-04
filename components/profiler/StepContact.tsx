@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import type { ProfilerData, EstimateResult } from './types'
-import { formatCurrency } from './types'
 import EstimateWidget from './EstimateWidget'
 
 const SOURCES = [
