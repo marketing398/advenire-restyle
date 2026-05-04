@@ -5,6 +5,16 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 type TagName = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'div'
 
+const motionTags = {
+  h1: motion.h1,
+  h2: motion.h2,
+  h3: motion.h3,
+  h4: motion.h4,
+  p: motion.p,
+  span: motion.span,
+  div: motion.div,
+} as const
+
 interface Props {
   text: string
   el?: TagName
@@ -27,7 +37,7 @@ export default function SplitText({
     return createElement(Tag, { className, style }, text)
   }
 
-  const MotionTag = motion.create(Tag)
+  const MotionTag = motionTags[Tag]
 
   return (
     <MotionTag
