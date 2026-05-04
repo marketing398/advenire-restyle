@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 
@@ -49,9 +50,13 @@ function LogoWordmark() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
     >
-      <img
+      <Image
         src="/images/logo-hero.svg"
         alt="ADVENIRE"
+        width={1500}
+        height={263}
+        priority
+        sizes="(max-width: 1440px) 100vw, 1440px"
         style={{
           display: 'block',
           width: '100%',
@@ -81,7 +86,7 @@ export default function Hero() {
     <section
       className="bg-primary"
       data-section-tone="dark"
-      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+      style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
     >
       <LogoWordmark />
 
