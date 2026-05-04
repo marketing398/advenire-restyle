@@ -35,10 +35,13 @@ export function useProfiler() {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   useEffect(() => {
+    // Hydration da localStorage (solo client). setState e' inevitabile qui:
+    // l'SSR non puo' leggere localStorage, quindi sincronizziamo dopo mount.
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (saved) {
         const parsed = JSON.parse(saved)
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         if (parsed.data) setData({ ...initialData, ...parsed.data })
         if (typeof parsed.step === 'number' && parsed.step > 0 && parsed.step < TOTAL_STEPS) {
           setCurrentStep(parsed.step)
