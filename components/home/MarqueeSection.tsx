@@ -145,7 +145,7 @@ export default function MarqueeSection() {
               width: '6px',
               height: '6px',
               borderRadius: '50%',
-              background: '#FDA77E',
+              background: 'var(--color-accent)',
               animation: 'marquee-right 6s linear infinite',
               animationPlayState: paused || !isVisible ? 'paused' : 'running',
             }}
