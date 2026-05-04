@@ -73,6 +73,10 @@ export default function Navbar() {
   }, [isHomepage])
 
   useEffect(() => {
+    // Chiudi il menu mobile alla navigazione tra rotte (pattern legittimo:
+    // sync UI state con cambio URL via App Router, non c'e' alternativa
+    // event-driven dato che usePathname() e' la fonte di verita').
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMenuOpen(false)
   }, [pathname])
 
