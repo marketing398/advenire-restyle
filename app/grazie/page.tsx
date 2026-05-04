@@ -10,7 +10,7 @@ export default function GraziePage() {
   return (
     <main
       style={{
-        minHeight: '100vh',
+        minHeight: '100dvh',
         backgroundColor: 'var(--color-primary)',
         display: 'flex',
         flexDirection: 'column',
