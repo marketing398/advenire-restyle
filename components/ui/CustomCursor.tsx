@@ -1,7 +1,23 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
+
+const TOUCH_QUERY = '(pointer: coarse)'
+
+function subscribeTouch(callback: () => void) {
+  const mq = window.matchMedia(TOUCH_QUERY)
+  mq.addEventListener('change', callback)
+  return () => mq.removeEventListener('change', callback)
+}
+
+function getTouchSnapshot() {
+  return window.matchMedia(TOUCH_QUERY).matches
+}
+
+function getTouchServerSnapshot() {
+  return true
+}
 
 type CursorMode = 'interactive' | 'dark' | 'light'
 
@@ -54,7 +70,7 @@ const RING_SIZE: Record<CursorMode, number> = {
 export default function CustomCursor() {
   const [mode, setMode] = useState<CursorMode>('light')
   const [visible, setVisible] = useState(false)
-  const [isTouch, setIsTouch] = useState(true)
+  const isTouch = useSyncExternalStore(subscribeTouch, getTouchSnapshot, getTouchServerSnapshot)
 
   const mouseX = useMotionValue(-100)
   const mouseY = useMotionValue(-100)
@@ -63,9 +79,7 @@ export default function CustomCursor() {
   const y = useSpring(mouseY, { damping: 32, stiffness: 380, mass: 0.35 })
 
   useEffect(() => {
-    const mq = window.matchMedia('(pointer: coarse)')
-    setIsTouch(mq.matches)
-    if (mq.matches) return
+    if (isTouch) return
 
     const onMove = (e: MouseEvent) => {
       mouseX.set(e.clientX)
@@ -91,7 +105,7 @@ export default function CustomCursor() {
       document.documentElement.removeEventListener('mouseleave', onLeave)
       document.documentElement.removeEventListener('mouseenter', onEnter)
     }
-  }, [mouseX, mouseY, visible])
+  }, [mouseX, mouseY, visible, isTouch])
 
   if (isTouch) return null
 
