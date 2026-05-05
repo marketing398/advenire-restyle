@@ -77,7 +77,7 @@ export default function CalcolatoreRischio() {
             />
 
             <motion.p
-              className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-md"
+              className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-md text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
               initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}

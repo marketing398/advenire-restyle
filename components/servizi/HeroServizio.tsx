@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
+import Typewriter from '@/components/ui/Typewriter'
 
 type Props = {
   label: string
@@ -46,14 +47,13 @@ export default function HeroServizio({ label, titolo, sottotitolo }: Props) {
           transition={{ duration: 0.8, delay: shouldReduce ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        <motion.p
-          className="font-body font-light text-background/80 text-[14px] md:text-[15px] leading-relaxed max-w-2xl"
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: shouldReduce ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {sottotitolo}
-        </motion.p>
+        <Typewriter
+          el="p"
+          text={sottotitolo}
+          delay={shouldReduce ? 0 : 0.7}
+          speed={14}
+          className="font-body font-light text-background/80 text-[14px] md:text-[15px] leading-relaxed max-w-2xl text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+        />
       </div>
     </section>
   )

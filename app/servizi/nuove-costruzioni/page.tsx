@@ -23,8 +23,7 @@ export default function NuoveCostruzioniPage() {
         titolo="Costruire bene significa eliminare le variabili."
         sottotitolo="Un unico interlocutore, un'unica responsabilità: consegnare un risultato finale solido, efficiente e coerente con il progetto."
         paragrafi={[
-          "Lavoriamo con strutture prefabbricate in legno o acciaio: una scelta tecnica che garantisce tempi certi, costi sotto controllo e qualità costante, lontano dalle incertezze del cantiere tradizionale.",
-          "Seguiamo ogni progetto per intero — dalla nuova costruzione alla ristrutturazione completa — perché il valore nasce dal controllo totale del processo, non dagli interventi parziali.",
+          "Lavoriamo con strutture prefabbricate in legno o acciaio: una scelta tecnica che garantisce tempi certi, costi sotto controllo e qualità costante, lontano dalle incertezze del cantiere tradizionale. Seguiamo ogni progetto per intero — dalla nuova costruzione alla ristrutturazione completa — perché il valore nasce dal controllo totale del processo, non dagli interventi parziali.",
         ]}
       />
 

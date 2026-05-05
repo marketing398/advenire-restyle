@@ -8,10 +8,10 @@ export default function CTAChiSiamo() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-primary py-24 lg:py-32 relative overflow-hidden" data-section-tone="dark">
+    <section className="bg-background py-24 lg:py-32 relative overflow-hidden" data-section-tone="light">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 text-center">
         <motion.div
-          className="bg-accent mx-auto mb-10"
+          className="bg-primary mx-auto mb-10"
           style={{ height: '2px' }}
           initial={{ width: 0 }}
           whileInView={{ width: '3rem' }}
@@ -22,7 +22,7 @@ export default function CTAChiSiamo() {
         <SplitText
           el="h2"
           text="Hai un'operazione immobiliare da analizzare o una nuova costruzione in bioedilizia da realizzare?"
-          className="font-heading font-light italic text-background mx-auto"
+          className="font-heading font-light italic text-primary mx-auto"
           style={{
             fontSize: 'clamp(2.1rem, 4.2vw, 4rem)',
             lineHeight: '1.1',
@@ -33,7 +33,7 @@ export default function CTAChiSiamo() {
         />
 
         <motion.p
-          className="font-body font-light text-background/80 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-xl mx-auto"
+          className="font-body font-light text-primary/80 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-xl mx-auto"
           initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -51,7 +51,7 @@ export default function CTAChiSiamo() {
         >
           <Link
             href="/contatti"
-            className="group inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-accent text-primary rounded-full px-8 py-3.5 hover:bg-accent/85 hover:scale-[1.02] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
+            className="group inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-[0.15em] bg-accent text-primary rounded-full px-8 py-3.5 hover:bg-accent/85 hover:scale-[1.02] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             Prenota una call <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
           </Link>

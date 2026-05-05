@@ -26,7 +26,7 @@ export default function InvestimentiImmobiliariPage() {
       <DueLinee />
 
       <ComeLavoriamo
-        variant="accent"
+        variant="light"
         titolo="Ogni fase ha le sue insidie. Noi le conosciamo tutte."
         steps={[
           {

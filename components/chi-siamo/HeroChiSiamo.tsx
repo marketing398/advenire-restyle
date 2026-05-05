@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
+import Typewriter from '@/components/ui/Typewriter'
 
 export default function HeroChiSiamo() {
   const shouldReduce = useReducedMotion()
@@ -48,10 +49,13 @@ export default function HeroChiSiamo() {
               animate={{ width: '6rem' }}
               transition={{ duration: 0.8, delay: shouldReduce ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
             />
-            <p className="font-body font-light text-background/80 text-[14px] leading-relaxed max-w-sm">
-              Esperienze diverse, una direzione comune: lavoriamo con rigore, trasparenza e
-              attenzione all&apos;impatto di ciò che realizziamo.
-            </p>
+            <Typewriter
+              el="p"
+              text="Esperienze diverse, una direzione comune: lavoriamo con rigore, trasparenza e attenzione all'impatto di ciò che realizziamo."
+              delay={shouldReduce ? 0 : 0.8}
+              speed={16}
+              className="font-body font-light text-background/80 text-[14px] leading-relaxed max-w-sm text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+            />
           </motion.div>
         </div>
       </div>

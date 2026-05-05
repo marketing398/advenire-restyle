@@ -28,7 +28,7 @@ export default function PercheAdvenire() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-background py-20 lg:py-28 border-t border-primary/10" data-section-tone="light">
+    <section className="bg-accent py-20 lg:py-28" data-section-tone="accent">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
 
         <motion.span
@@ -75,26 +75,33 @@ export default function PercheAdvenire() {
                 delay: shouldReduce ? 0 : i * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className={`pt-10 pb-10 md:px-8 border-t border-primary/15 ${
+              className={`pt-10 pb-10 md:px-8 ${
                 i < 2 ? 'md:border-r md:border-primary/15' : ''
               }`}
             >
-              <span className="font-label text-[10px] uppercase tracking-[0.18em] text-accent block mb-6">
+              <span className="font-label text-[10px] uppercase tracking-[0.18em] text-primary/60 block mb-6">
                 {p.num}
               </span>
-              <h3
+              <SplitText
+                el="h3"
+                text={p.titolo}
                 className="font-heading font-light italic text-primary mb-4"
                 style={{
                   fontSize: 'clamp(1.1rem, 1.6vw, 1.5rem)',
                   lineHeight: '1.25',
                   letterSpacing: '-0.01em',
                 }}
-              >
-                {p.titolo}
-              </h3>
-              <p className="font-body text-[13.5px] md:text-[14px] font-light text-primary/75 leading-relaxed">
-                {p.testo}
-              </p>
+                stagger={0.04}
+                delay={shouldReduce ? 0 : i * 0.1}
+              />
+              <SplitText
+                el="p"
+                text={p.testo}
+                className="font-body text-[13.5px] md:text-[14px] font-light text-primary/75 leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+                stagger={0.01}
+                delay={shouldReduce ? 0 : 0.18 + i * 0.1}
+                duration={0.5}
+              />
             </motion.div>
           ))}
         </div>

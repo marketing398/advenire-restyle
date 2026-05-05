@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
+import Typewriter from '@/components/ui/Typewriter'
 
 export default function ContattiHero() {
   const shouldReduce = useReducedMotion()
@@ -32,15 +33,13 @@ export default function ContattiHero() {
           Il tuo progetto inizia qui.
         </motion.h1>
 
-        <motion.p
+        <Typewriter
+          el="p"
+          text="Scrivici per fissare un primo confronto sul tuo progetto. Ti rispondiamo entro 24 ore lavorative."
+          delay={shouldReduce ? 0 : 0.6}
+          speed={14}
           className="font-body font-light text-background/80 text-[15px] leading-relaxed mt-8 max-w-xl"
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: shouldReduce ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Scrivici per fissare un primo confronto sul tuo progetto.
-          Ti rispondiamo entro 24 ore lavorative.
-        </motion.p>
+        />
 
       </div>
     </section>

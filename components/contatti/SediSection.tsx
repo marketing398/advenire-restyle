@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
+import Typewriter from '@/components/ui/Typewriter'
 
 export default function SediSection() {
   const shouldReduce = useReducedMotion()
@@ -61,9 +62,13 @@ export default function SediSection() {
             <p className="font-label text-[9px] uppercase tracking-widest text-background/35 mb-4">
               Su appuntamento
             </p>
-            <p className="font-body font-light text-background/60 text-[14px] leading-loose">
-              Riceviamo i nostri clienti su appuntamento. Scrivici per fissare un primo confronto: ti rispondiamo entro 24 ore lavorative.
-            </p>
+            <Typewriter
+              el="p"
+              text="Riceviamo i nostri clienti su appuntamento. Scrivici per fissare un primo confronto: ti rispondiamo entro 24 ore lavorative."
+              delay={shouldReduce ? 0 : 0.4}
+              speed={14}
+              className="font-body font-light text-background/60 text-[14px] leading-loose text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+            />
           </div>
         </motion.div>
       </div>

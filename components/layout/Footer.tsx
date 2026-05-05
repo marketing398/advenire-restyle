@@ -35,7 +35,7 @@ export default function Footer() {
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           >
             <Image
-              src="/images/icon-advenire.png"
+              src="/images/icon-advenire-inverted.png"
               alt="Advenire"
               width={400}
               height={400}
@@ -91,7 +91,7 @@ export default function Footer() {
           viewport={{ once: true, margin: '-5%' }}
           transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.2 }}
         >
-          <p className="font-body font-light text-[11px] text-background/65 leading-relaxed">
+          <p className="font-body font-light text-[11px] text-background/65 leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]">
             Le informazioni contenute in questo sito web sono a scopo informativo e non costituiscono
             consulenza finanziaria, legale o fiscale. Le performance passate non garantiscono risultati futuri.
             Tutti gli investimenti comportano rischi, inclusa la possibile perdita del capitale investito.

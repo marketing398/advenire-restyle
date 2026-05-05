@@ -28,7 +28,7 @@ export default function DueLinee() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-background py-20 lg:py-32 border-t border-primary/10" data-section-tone="light">
+    <section className="bg-accent py-20 lg:py-32" data-section-tone="accent">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
 
         <motion.span
@@ -67,7 +67,7 @@ export default function DueLinee() {
           {linee.map((l, i) => (
             <motion.div
               key={l.label}
-              className={`pt-10 pb-10 border-t border-primary/15 ${
+              className={`pt-10 pb-10 flex flex-col h-full ${
                 i === 0 ? 'lg:pr-12 lg:border-r lg:border-primary/15' : 'lg:pl-12'
               }`}
               initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
@@ -79,30 +79,37 @@ export default function DueLinee() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <span className="font-label text-[10px] uppercase tracking-[0.2em] text-accent block mb-5">
+              <span className="font-label text-[10px] uppercase tracking-[0.2em] text-primary/70 block mb-5">
                 {l.label}
               </span>
-              <h3
+              <SplitText
+                el="h3"
+                text={l.titolo}
                 className="font-heading font-light italic text-primary mb-6"
                 style={{
                   fontSize: 'clamp(1.4rem, 2.2vw, 2rem)',
                   lineHeight: '1.2',
                   letterSpacing: '-0.015em',
                 }}
-              >
-                {l.titolo}
-              </h3>
-              <p className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mb-5 max-w-[58ch]">
-                {l.descrizione}
-              </p>
+                stagger={0.04}
+                delay={shouldReduce ? 0 : i * 0.12}
+              />
+              <SplitText
+                el="p"
+                text={l.descrizione}
+                className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mb-5 max-w-[58ch] text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+                stagger={0.01}
+                delay={shouldReduce ? 0 : 0.2 + i * 0.12}
+                duration={0.5}
+              />
               <p className="font-body text-primary text-[14px] md:text-[15px] leading-relaxed mb-8 max-w-[58ch]">
                 {l.nostroRuolo}
               </p>
-              <div className="border-t border-primary/15 pt-6">
+              <div className="border-t border-primary/15 pt-6 mt-auto">
                 <p className="font-label text-[10px] uppercase tracking-[0.2em] text-primary/60 mb-2">
                   Compenso
                 </p>
-                <p className="font-body text-primary/80 text-[13.5px] leading-relaxed">
+                <p className="font-body text-primary/80 text-[13.5px] leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]">
                   {l.compenso}
                 </p>
               </div>

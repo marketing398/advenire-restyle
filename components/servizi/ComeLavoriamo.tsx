@@ -11,24 +11,52 @@ type Step = {
 type Props = {
   titolo: string
   steps: Step[]
-  variant?: 'accent' | 'primary'
+  variant?: 'accent' | 'primary' | 'light'
 }
+
+const variants = {
+  accent: {
+    bg: 'bg-accent',
+    headingColor: 'text-primary',
+    labelColor: 'text-primary/70',
+    lineColor: 'bg-primary',
+    stepBorder: 'border-primary/20',
+    numColor: 'text-primary/50',
+    stepTitleColor: 'text-primary',
+    stepTextColor: 'text-primary/80',
+    tone: 'accent',
+  },
+  primary: {
+    bg: 'bg-primary',
+    headingColor: 'text-background',
+    labelColor: 'text-background/70',
+    lineColor: 'bg-background',
+    stepBorder: 'border-background/15',
+    numColor: 'text-background/45',
+    stepTitleColor: 'text-background',
+    stepTextColor: 'text-background/75',
+    tone: 'dark',
+  },
+  light: {
+    bg: 'bg-background',
+    headingColor: 'text-primary',
+    labelColor: 'text-primary/70',
+    lineColor: 'bg-primary',
+    stepBorder: 'border-primary/15',
+    numColor: 'text-primary/55',
+    stepTitleColor: 'text-primary',
+    stepTextColor: 'text-primary/80',
+    tone: 'light',
+  },
+} as const
 
 export default function ComeLavoriamo({ titolo, steps, variant = 'accent' }: Props) {
   const shouldReduce = useReducedMotion()
-  const isAccent = variant === 'accent'
-
-  const bg = isAccent ? 'bg-accent' : 'bg-primary'
-  const headingColor = isAccent ? 'text-primary' : 'text-background'
-  const labelColor = isAccent ? 'text-primary/70' : 'text-background/70'
-  const lineColor = isAccent ? 'bg-primary' : 'bg-background'
-  const stepBorder = isAccent ? 'border-primary/20' : 'border-background/15'
-  const numColor = isAccent ? 'text-primary/50' : 'text-background/45'
-  const stepTitleColor = isAccent ? 'text-primary' : 'text-background'
-  const stepTextColor = isAccent ? 'text-primary/80' : 'text-background/75'
+  const v = variants[variant]
+  const { bg, headingColor, labelColor, lineColor, stepBorder, numColor, stepTitleColor, stepTextColor, tone } = v
 
   return (
-    <section className={`${bg} py-20 lg:py-28 relative overflow-hidden`} data-section-tone={isAccent ? 'accent' : 'dark'}>
+    <section className={`${bg} py-20 lg:py-28 relative overflow-hidden`} data-section-tone={tone}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
 
         <motion.span
@@ -63,7 +91,6 @@ export default function ComeLavoriamo({ titolo, steps, variant = 'accent' }: Pro
           {steps.map((s, i) => {
             const classes = [
               'p-6 md:px-8 md:py-10 group',
-              `border-t ${stepBorder}`,
               i % 2 === 0 ? `md:border-r ${stepBorder}` : '',
             ]
               .filter(Boolean)
@@ -84,19 +111,26 @@ export default function ComeLavoriamo({ titolo, steps, variant = 'accent' }: Pro
                 <span className={`font-label text-[10px] uppercase tracking-[0.18em] ${numColor} block mb-4`}>
                   Step {String(i + 1).padStart(2, '0')}
                 </span>
-                <h3
+                <SplitText
+                  el="h3"
+                  text={s.titolo}
                   className={`font-heading font-normal ${stepTitleColor} mb-3`}
                   style={{
                     fontSize: 'clamp(1.05rem, 1.4vw, 1.35rem)',
                     lineHeight: '1.25',
                     letterSpacing: '-0.01em',
                   }}
-                >
-                  {s.titolo}
-                </h3>
-                <p className={`font-body font-light ${stepTextColor} text-[13.5px] md:text-[14px] leading-relaxed`}>
-                  {s.testo}
-                </p>
+                  stagger={0.04}
+                  delay={shouldReduce ? 0 : (i % 2) * 0.1}
+                />
+                <SplitText
+                  el="p"
+                  text={s.testo}
+                  className={`font-body font-light ${stepTextColor} text-[13.5px] md:text-[14px] leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]`}
+                  stagger={0.01}
+                  delay={shouldReduce ? 0 : 0.18 + (i % 2) * 0.1}
+                  duration={0.5}
+                />
               </motion.div>
             )
           })}

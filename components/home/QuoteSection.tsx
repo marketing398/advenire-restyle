@@ -34,14 +34,17 @@ export default function QuoteSection() {
         <SplitText
           el="p"
           text="Siamo professionisti che mettono competenza e concretezza al centro di ogni scelta, uniti da un unico obiettivo: trasformare ogni progetto in un risultato solido e duraturo. Dalla progettazione alla gestione operativa della commessa, fino alla valutazione strategica degli investimenti immobiliari. È proprio questa profondità di esperienza che ci ha permesso di costruire una società capace di seguire ogni progetto nella sua interezza, senza delegare le fasi critiche. Oggi siamo il punto di riferimento per chi vuole investire nel mattone con metodo e consapevolezza, e per chi sceglie di costruire una casa che rispecchi davvero il proprio stile di vita."
-          className="font-heading font-light italic text-primary max-w-4xl mx-auto text-center"
+          className="font-heading font-light italic text-primary max-w-4xl mx-auto text-justify"
           style={{
             fontSize: 'clamp(1.5rem, 2.8vw, 2.6rem)',
             lineHeight: '1.35',
             letterSpacing: '-0.02em',
+            textAlignLast: 'center',
+            hyphens: 'auto',
           }}
           delay={shouldReduce ? 0 : 0.1}
-          stagger={0.035}
+          stagger={0.018}
+          duration={0.6}
         />
 
         <motion.div

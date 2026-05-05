@@ -33,27 +33,25 @@ export default function ValoriChiSiamo() {
         <SplitText
           el="p"
           text="Siamo professionisti che mettono competenza e concretezza al centro di ogni scelta, uniti da un unico obiettivo: trasformare ogni progetto in un risultato solido e duraturo. Dalla progettazione alla gestione operativa della commessa, fino alla valutazione strategica degli investimenti immobiliari. È proprio questa profondità di esperienza che ci ha permesso di costruire una società capace di seguire ogni progetto nella sua interezza, senza delegare le fasi critiche. Oggi siamo il punto di riferimento per chi vuole investire nel mattone con metodo e consapevolezza, e per chi sceglie di costruire una casa che rispecchi davvero il proprio stile di vita."
-          className="font-heading font-light text-primary max-w-4xl"
+          className="font-heading font-light text-primary max-w-4xl text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
           style={{
             fontSize: 'clamp(1.2rem, 2.2vw, 2rem)',
             lineHeight: '1.45',
             letterSpacing: '-0.015em',
           }}
           delay={shouldReduce ? 0 : 0.1}
-          stagger={0.03}
+          stagger={0.018}
+          duration={0.6}
         />
 
-        <motion.p
-          className="font-body font-light text-primary/90 text-[14.5px] md:text-[16px] leading-relaxed mt-12 max-w-3xl"
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Dalla verifica dell&apos;investimento alla costruzione in bioedilizia, offriamo un
-          percorso completo e strutturato. L&apos;integrazione delle nostre tre professionalità
-          garantisce qualità, controllo e una visione orientata al lungo termine.
-        </motion.p>
+        <SplitText
+          el="p"
+          text="Dalla verifica dell'investimento alla costruzione in bioedilizia, offriamo un percorso completo e strutturato. L'integrazione delle nostre tre professionalità garantisce qualità, controllo e una visione orientata al lungo termine."
+          className="font-body font-light text-primary/90 text-[14.5px] md:text-[16px] leading-relaxed mt-12 max-w-3xl text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+          stagger={0.012}
+          delay={shouldReduce ? 0 : 0.4}
+          duration={0.55}
+        />
 
         <motion.div
           className="flex flex-wrap gap-4 mt-12"

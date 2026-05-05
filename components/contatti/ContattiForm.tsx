@@ -66,7 +66,7 @@ export default function ContattiForm() {
             Il primo passo verso una gestione patrimoniale consapevole.
           </motion.h2>
           <motion.p
-            className="font-body font-light text-[14px] text-foreground/75 leading-relaxed max-w-[60ch]"
+            className="font-body font-light text-[14px] text-foreground/75 leading-relaxed max-w-[60ch] text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

@@ -49,28 +49,26 @@ export default function IlServizio({ titolo, sottotitolo, paragrafi }: Props) {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 mt-14 lg:mt-20 items-start">
-          <motion.p
-            className="font-body font-light text-primary/80 text-[14.5px] md:text-[16px] leading-relaxed max-w-[52ch]"
-            initial={{ opacity: 0, y: shouldReduce ? 0 : 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {sottotitolo}
-          </motion.p>
+          <SplitText
+            el="p"
+            text={sottotitolo}
+            className="font-body font-light text-primary/80 text-[14.5px] md:text-[16px] leading-relaxed max-w-[52ch] text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+            stagger={0.012}
+            delay={shouldReduce ? 0 : 0.2}
+            duration={0.55}
+          />
 
           <div className="flex flex-col gap-5 text-right ml-auto max-w-xl">
             {paragrafi.map((p, i) => (
-              <motion.p
+              <SplitText
                 key={i}
-                className="font-body font-light text-primary/70 text-[13.5px] md:text-[14.5px] leading-relaxed"
-                initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.8, delay: shouldReduce ? 0 : 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {p}
-              </motion.p>
+                el="p"
+                text={p}
+                className="font-body font-light text-primary/70 text-[13.5px] md:text-[14.5px] leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+                stagger={0.01}
+                delay={shouldReduce ? 0 : 0.3 + i * 0.08}
+                duration={0.5}
+              />
             ))}
           </div>
         </div>

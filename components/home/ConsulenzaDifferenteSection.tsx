@@ -105,18 +105,25 @@ export default function ConsulenzaDifferenteSection() {
               <span className="font-label text-[10px] uppercase tracking-[0.18em] text-accent block mb-5 transition-all duration-300 group-hover:tracking-[0.22em]">
                 {card.num}
               </span>
-              <h3
-                className="font-heading font-normal text-primary mb-4 transition-colors duration-500 group-hover:text-primary-light"
+              <SplitText
+                el="h3"
+                text={card.title}
+                className="font-heading font-normal text-primary mb-4"
                 style={{
                   fontSize: 'clamp(1rem, 1.25vw, 1.2rem)',
                   lineHeight: '1.3',
                 }}
-              >
-                {card.title}
-              </h3>
-              <p className="font-body font-light text-primary/75 text-[13px] leading-relaxed">
-                {card.text}
-              </p>
+                stagger={0.04}
+                delay={(i % 3) * 0.1}
+              />
+              <SplitText
+                el="p"
+                text={card.text}
+                className="font-body font-light text-primary/75 text-[13px] leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+                stagger={0.01}
+                delay={0.15 + (i % 3) * 0.1}
+                duration={0.5}
+              />
             </motion.div>
             )
           })}
