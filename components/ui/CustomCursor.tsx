@@ -21,32 +21,19 @@ function getTouchServerSnapshot() {
 
 type CursorMode = 'interactive' | 'dark' | 'light'
 
+// Lookup veloce: legge data-section-tone settato sulle <section> invece di
+// fare DOM walk + getComputedStyle a ogni mouseover (operazione costosa che
+// causa stutter su scroll). data-section-tone="dark|accent" → light cursor;
+// "light" → dark cursor.
 function getCursorMode(el: Element | null): CursorMode {
   if (!el) return 'light'
-
-  // Interactive elements → coral
   if (el.closest('a, button, [data-hover], input, textarea, select, label, [role="button"]')) {
     return 'interactive'
   }
-
-  // Walk up DOM to find the first non-transparent background
-  let current: Element | null = el
-  while (current && current !== document.documentElement) {
-    try {
-      const bg = window.getComputedStyle(current).backgroundColor
-      if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
-        const match = bg.match(/\d+/g)
-        if (match && match.length >= 3) {
-          const [r, g, b] = match.map(Number)
-          // Perceived luminance
-          const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-          return luminance < 0.28 ? 'dark' : 'light'
-        }
-      }
-    } catch { /* ignore */ }
-    current = current.parentElement
-  }
-  return 'light'
+  const toned = el.closest('[data-section-tone]') as HTMLElement | null
+  if (!toned) return 'light'
+  const tone = toned.dataset.sectionTone
+  return tone === 'dark' || tone === 'accent' ? 'dark' : 'light'
 }
 
 const RING_COLOR: Record<CursorMode, string> = {
@@ -75,8 +62,8 @@ export default function CustomCursor() {
   const mouseX = useMotionValue(-100)
   const mouseY = useMotionValue(-100)
 
-  const x = useSpring(mouseX, { damping: 32, stiffness: 380, mass: 0.35 })
-  const y = useSpring(mouseY, { damping: 32, stiffness: 380, mass: 0.35 })
+  const x = useSpring(mouseX, { damping: 32, stiffness: 380, mass: 0.35, restDelta: 0.5, restSpeed: 1 })
+  const y = useSpring(mouseY, { damping: 32, stiffness: 380, mass: 0.35, restDelta: 0.5, restSpeed: 1 })
 
   useEffect(() => {
     if (isTouch) return
@@ -87,19 +74,28 @@ export default function CustomCursor() {
       if (!visible) setVisible(true)
     }
 
+    // Throttle mouseover via rAF: aggiorna il mode al massimo una volta per frame
+    let pendingTarget: Element | null = null
+    let rafId: number | null = null
     const onOver = (e: MouseEvent) => {
-      setMode(getCursorMode(e.target as Element))
+      pendingTarget = e.target as Element
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        if (pendingTarget) setMode(getCursorMode(pendingTarget))
+      })
     }
 
     const onLeave = () => setVisible(false)
     const onEnter = () => setVisible(true)
 
-    document.addEventListener('mousemove', onMove)
-    document.addEventListener('mouseover', onOver)
+    document.addEventListener('mousemove', onMove, { passive: true })
+    document.addEventListener('mouseover', onOver, { passive: true })
     document.documentElement.addEventListener('mouseleave', onLeave)
     document.documentElement.addEventListener('mouseenter', onEnter)
 
     return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId)
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseover', onOver)
       document.documentElement.removeEventListener('mouseleave', onLeave)

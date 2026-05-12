@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
+import LineFade from '@/components/ui/LineFade'
 
 type Props = {
   titolo: string
@@ -52,7 +53,7 @@ export default function IlServizio({ titolo, sottotitolo, paragrafi }: Props) {
           <SplitText
             el="p"
             text={sottotitolo}
-            className="font-body font-light text-primary/80 text-[14.5px] md:text-[16px] leading-relaxed max-w-[52ch] text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+            className="font-body font-light text-primary/80 text-[14.5px] md:text-[16px] leading-relaxed max-w-[52ch] text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
             stagger={0.012}
             delay={shouldReduce ? 0 : 0.2}
             duration={0.55}
@@ -60,14 +61,14 @@ export default function IlServizio({ titolo, sottotitolo, paragrafi }: Props) {
 
           <div className="flex flex-col gap-5 text-right ml-auto max-w-xl">
             {paragrafi.map((p, i) => (
-              <SplitText
+              <LineFade
                 key={i}
                 el="p"
                 text={p}
-                className="font-body font-light text-primary/70 text-[13.5px] md:text-[14.5px] leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
-                stagger={0.01}
+                className="font-body font-light text-primary/70 text-[13.5px] md:text-[14.5px] leading-relaxed text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
+                lineStagger={0.16}
                 delay={shouldReduce ? 0 : 0.3 + i * 0.08}
-                duration={0.5}
+                duration={0.55}
               />
             ))}
           </div>

@@ -58,10 +58,10 @@ export default function FAQSection() {
     <section className="bg-accent py-24 lg:py-32 relative overflow-hidden" data-section-tone="accent">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16 relative">
 
-        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
-          {/* LEFT — sticky heading */}
-          <div className="lg:sticky lg:top-32">
+          {/* LEFT — heading column */}
+          <div>
             <motion.span
               className="font-label text-[12px] uppercase tracking-[0.2em] text-primary/70 block mb-8"
               initial={{ opacity: 0, x: -10 }}
@@ -93,6 +93,16 @@ export default function FAQSection() {
               delay={shouldReduce ? 0 : 0.06}
               stagger={0.04}
             />
+
+            <motion.p
+              className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-md text-left"
+              initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Le esitazioni più comuni di chi si avvicina a un&apos;operazione immobiliare. Le risposte concrete che diamo ai nostri clienti.
+            </motion.p>
           </div>
 
           {/* RIGHT — accordion */}
@@ -159,11 +169,11 @@ export default function FAQSection() {
                             <p className="font-heading font-light italic text-primary text-[18px] md:text-[20px] leading-snug mb-5">
                               {faq.risposta}
                             </p>
-                            <p className="font-body font-light text-primary/85 text-[14px] md:text-[15px] leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]">
+                            <p className="font-body font-light text-primary/85 text-[14px] md:text-[15px] leading-relaxed text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]">
                               {faq.rispostaExt}
                             </p>
                             {faq.conclusione && (
-                              <p className="font-body font-light italic text-primary/75 text-[13.5px] md:text-[14.5px] leading-relaxed mt-4 pl-4 border-l-2 border-primary/40 text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]">
+                              <p className="font-body font-light italic text-primary/75 text-[13.5px] md:text-[14.5px] leading-relaxed mt-4 pl-4 border-l-2 border-primary/40 text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]">
                                 {faq.conclusione}
                               </p>
                             )}

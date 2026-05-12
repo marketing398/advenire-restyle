@@ -49,27 +49,42 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY
+    // Cache valori che non cambiano scrolling (offset section + doc height).
+    // Re-letti solo su resize, non a ogni scroll → niente reflow per frame.
+    let cachedThreshold = isHomepage ? window.innerHeight : 60
+    let cachedDocH = document.documentElement.scrollHeight - window.innerHeight
 
-      // Su homepage: la navbar appare quando si raggiunge la QuoteSection (sfondo crema)
-      let threshold: number
+    const recompute = () => {
       if (isHomepage) {
-        const quoteEl = document.getElementById('quote-section')
-        threshold = quoteEl ? quoteEl.offsetTop - 64 : window.innerHeight
+        const el = document.getElementById('servizi-section')
+        cachedThreshold = el ? el.offsetTop - 64 : window.innerHeight
       } else {
-        threshold = 60
+        cachedThreshold = 60
       }
+      cachedDocH = document.documentElement.scrollHeight - window.innerHeight
+    }
+    recompute()
 
-      const isScrolled = y > threshold
-      setScrolled(isScrolled)
-      setHidden(isScrolled ? false : (y > lastY.current && y > 80))
-      const docH = document.documentElement.scrollHeight - window.innerHeight
-      if (docH > 0) setScrollProgress((y / docH) * 100)
-      lastY.current = y
+    let rafId: number | null = null
+    const onScroll = () => {
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        const y = window.scrollY
+        const isScrolled = y > cachedThreshold
+        setScrolled(isScrolled)
+        setHidden(isScrolled ? false : (y > lastY.current && y > 80))
+        if (cachedDocH > 0) setScrollProgress((y / cachedDocH) * 100)
+        lastY.current = y
+      })
     }
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    window.addEventListener('resize', recompute, { passive: true })
+    return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', recompute)
+    }
   }, [isHomepage])
 
   useEffect(() => {

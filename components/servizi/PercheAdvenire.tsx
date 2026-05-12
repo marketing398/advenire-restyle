@@ -97,7 +97,7 @@ export default function PercheAdvenire() {
               <SplitText
                 el="p"
                 text={p.testo}
-                className="font-body text-[13.5px] md:text-[14px] font-light text-primary/75 leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+                className="font-body text-[13.5px] md:text-[14px] font-light text-primary/75 leading-relaxed text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
                 stagger={0.01}
                 delay={shouldReduce ? 0 : 0.18 + i * 0.1}
                 duration={0.5}

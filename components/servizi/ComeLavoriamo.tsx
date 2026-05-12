@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
+import LineFade from '@/components/ui/LineFade'
 
 type Step = {
   titolo: string
@@ -92,6 +93,7 @@ export default function ComeLavoriamo({ titolo, steps, variant = 'accent' }: Pro
             const classes = [
               'p-6 md:px-8 md:py-10 group',
               i % 2 === 0 ? `md:border-r ${stepBorder}` : '',
+              i < steps.length - 2 ? `md:border-b ${stepBorder}` : '',
             ]
               .filter(Boolean)
               .join(' ')
@@ -123,11 +125,11 @@ export default function ComeLavoriamo({ titolo, steps, variant = 'accent' }: Pro
                   stagger={0.04}
                   delay={shouldReduce ? 0 : (i % 2) * 0.1}
                 />
-                <SplitText
+                <LineFade
                   el="p"
                   text={s.testo}
-                  className={`font-body font-light ${stepTextColor} text-[13.5px] md:text-[14px] leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]`}
-                  stagger={0.01}
+                  className={`font-body font-light ${stepTextColor} text-[13.5px] md:text-[14px] leading-relaxed text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]`}
+                  lineStagger={0.16}
                   delay={shouldReduce ? 0 : 0.18 + (i % 2) * 0.1}
                   duration={0.5}
                 />

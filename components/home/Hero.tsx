@@ -35,11 +35,13 @@ function LogoWordmark() {
 
   return (
     <motion.div
+      className="w-full"
       style={{
-        width: '100%',
         lineHeight: 0,
         overflow: 'hidden',
-        padding: 'clamp(2rem, 5vh, 4rem) clamp(1.5rem, 4vw, 4rem) 0',
+        paddingTop: 'clamp(2rem, 5vh, 4rem)',
+        paddingLeft: 'clamp(1rem, 2.5vw, 2.5rem)',
+        paddingRight: 'clamp(1rem, 2.5vw, 2.5rem)',
         scale: shouldReduce ? 1 : scale,
         opacity: shouldReduce ? 1 : opacity,
         y: shouldReduce ? 0 : y,
@@ -56,7 +58,7 @@ function LogoWordmark() {
         width={1500}
         height={263}
         priority
-        sizes="(max-width: 1440px) 100vw, 1440px"
+        sizes="100vw"
         style={{
           display: 'block',
           width: '100%',
@@ -69,7 +71,6 @@ function LogoWordmark() {
 
 export default function Hero() {
   const shouldReduce = useReducedMotion()
-  const [menuOpen, setMenuOpen] = useState(false)
   const [pairIndex, setPairIndex] = useState(0)
 
   useEffect(() => {
@@ -90,104 +91,55 @@ export default function Hero() {
     >
       <LogoWordmark />
 
-      {/* NAV ROW — allineato ai bordi del LogoWordmark */}
-      <div className="w-full" style={{ padding: '0 clamp(1.5rem, 4vw, 4rem)' }}>
-        <motion.div
-          className="flex items-center justify-end gap-6 lg:gap-10 py-4"
+      {/* NAV ROW — stesso padding fluido del LogoWordmark per allineamento perfetto */}
+      <div
+        className="w-full"
+        style={{
+          paddingLeft: 'clamp(1rem, 2.5vw, 2.5rem)',
+          paddingRight: 'clamp(1rem, 2.5vw, 2.5rem)',
+        }}
+      >
+        <motion.nav
+          className="flex flex-col items-end gap-5 pt-6 pb-2 md:flex-row md:flex-wrap md:items-center md:justify-end md:gap-x-8 md:gap-y-2 md:py-4 lg:gap-x-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: shouldReduce ? 0 : 0.4 }}
         >
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-10">
-            {heroNavLinks.map((link, i) => (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: shouldReduce ? 0 : 0.45 + i * 0.07 }}
-              >
-                <Link
-                  href={link.href}
-                  className={
-                    link.href === '/contatti'
-                      ? 'font-label text-[11px] uppercase tracking-widest text-background/80 hover:text-background border border-background/35 hover:border-background rounded-full px-4 py-1.5 transition-colors duration-300 whitespace-nowrap'
-                      : 'font-label text-[11px] uppercase tracking-widest text-background/75 hover:text-background transition-colors duration-300 whitespace-nowrap'
-                  }
-                >
-                  {link.label}
-                  {link.href === '/contatti' && <span className="ml-1.5" aria-hidden="true">&rarr;</span>}
-                </Link>
-              </motion.div>
-            ))}
-          </nav>
-
-          {/* Mobile hamburger */}
-          <button
-            type="button"
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? 'Chiudi menu' : 'Apri menu'}
-            aria-expanded={menuOpen}
-            className="md:hidden flex flex-col justify-center items-end gap-[5px] w-8 h-8 p-1"
-          >
-            <span
-              className="block h-[1.5px] bg-background transition-all duration-300"
-              style={{
-                width: '22px',
-                transform: menuOpen ? 'translateY(6.5px) rotate(45deg)' : 'none',
-              }}
-            />
-            <span
-              className="block h-[1.5px] bg-background transition-all duration-300"
-              style={{
-                width: '16px',
-                opacity: menuOpen ? 0 : 1,
-              }}
-            />
-            <span
-              className="block h-[1.5px] bg-background transition-all duration-300"
-              style={{
-                width: '22px',
-                transform: menuOpen ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
-              }}
-            />
-          </button>
-        </motion.div>
-
-        {/* Mobile menu panel */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.nav
-              key="mobile-nav"
-              className="md:hidden flex flex-col gap-4 pb-4 pt-2"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          {heroNavLinks.map((link, i) => (
+            <motion.div
+              key={link.href}
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: shouldReduce ? 0 : 0.45 + i * 0.07 }}
             >
-              {heroNavLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="font-label text-[12px] uppercase tracking-widest text-background/80 hover:text-background transition-colors duration-300"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </motion.nav>
-          )}
-        </AnimatePresence>
+              <Link
+                href={link.href}
+                className={
+                  link.href === '/contatti'
+                    ? 'font-label text-[13px] md:text-[11px] uppercase tracking-widest text-background/80 hover:text-background border border-background/35 hover:border-background rounded-full px-5 py-2 md:px-4 md:py-1.5 transition-colors duration-300 whitespace-nowrap inline-block'
+                    : 'font-label text-[13px] md:text-[11px] uppercase tracking-widest text-background/75 hover:text-background transition-colors duration-300 whitespace-nowrap'
+                }
+              >
+                {link.label}
+                {link.href === '/contatti' && <span className="ml-1.5" aria-hidden="true">&rarr;</span>}
+              </Link>
+            </motion.div>
+          ))}
+        </motion.nav>
       </div>
 
-      {/* HERO CONTENT — bottom of viewport */}
+      {/* HERO CONTENT — 3 blocchi distribuiti con space-between */}
       <div
-        className="max-w-[1440px] mx-auto px-6 lg:px-16 w-full"
+        className="w-full"
         style={{
           flex: '1 1 auto',
           display: 'flex',
-          alignItems: 'flex-end',
-          paddingBottom: 'clamp(3rem, 6vh, 7rem)',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          paddingLeft: 'clamp(1rem, 2.5vw, 2.5rem)',
+          paddingRight: 'clamp(1rem, 2.5vw, 2.5rem)',
+          paddingTop: 'clamp(2rem, 5vh, 4rem)',
+          paddingBottom: 'clamp(1.5rem, 3vh, 2.5rem)',
         }}
       >
         <div className="flex flex-col gap-5 w-full">
@@ -237,6 +189,63 @@ export default function Hero() {
             </AnimatePresence>
           </div>
         </div>
+
+        {/* Carousel indicator — "01 ─── 02" sincronizzato con la rotazione */}
+        <motion.div
+          className="flex items-center gap-4 py-8 md:py-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.9 }}
+          aria-hidden="true"
+        >
+          <span className="font-label text-[10px] uppercase tracking-[0.3em] text-background/70 tabular-nums">
+            {String(pairIndex + 1).padStart(2, '0')}
+          </span>
+          <div className="flex gap-2 w-32 md:w-40">
+            {rotatingPairs.map((_, i) => (
+              <motion.div
+                key={i}
+                className="h-px flex-1"
+                animate={{
+                  backgroundColor:
+                    i === pairIndex
+                      ? 'rgba(246, 239, 229, 0.85)'
+                      : 'rgba(246, 239, 229, 0.25)',
+                }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              />
+            ))}
+          </div>
+          <span className="font-label text-[10px] uppercase tracking-[0.3em] text-background/40 tabular-nums">
+            {String(rotatingPairs.length).padStart(2, '0')}
+          </span>
+        </motion.div>
+
+        {/* Scroll indicator — label SCORRI + linea verticale con dash animato */}
+        <motion.div
+          className="flex flex-col items-start gap-3"
+          initial={{ opacity: 0, y: shouldReduce ? 0 : 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: shouldReduce ? 0 : 1.1, ease: [0.16, 1, 0.3, 1] }}
+          aria-hidden="true"
+        >
+          <span className="font-label text-[10px] uppercase tracking-[0.32em] text-background/55">
+            Scorri
+          </span>
+          <div className="relative h-12 w-px bg-background/20 overflow-hidden">
+            <motion.div
+              className="absolute left-0 w-full bg-background/85"
+              style={{ height: '14px', top: 0 }}
+              animate={shouldReduce ? { y: 0 } : { y: ['-100%', '340%'] }}
+              transition={{
+                duration: 1.9,
+                repeat: Infinity,
+                ease: [0.4, 0, 0.2, 1],
+                repeatDelay: 0.3,
+              }}
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
+import LineFade from '@/components/ui/LineFade'
 
 const cards = [
   {
@@ -116,13 +117,13 @@ export default function ConsulenzaDifferenteSection() {
                 stagger={0.04}
                 delay={(i % 3) * 0.1}
               />
-              <SplitText
+              <LineFade
                 el="p"
                 text={card.text}
-                className="font-body font-light text-primary/75 text-[13px] leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
-                stagger={0.01}
+                className="font-body font-light text-primary/75 text-[13px] leading-relaxed text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
+                lineStagger={0.16}
                 delay={0.15 + (i % 3) * 0.1}
-                duration={0.5}
+                duration={0.55}
               />
             </motion.div>
             )

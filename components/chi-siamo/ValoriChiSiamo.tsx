@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
-import SplitText from '@/components/ui/SplitText'
+import LineFade from '@/components/ui/LineFade'
 
 export default function ValoriChiSiamo() {
   const shouldReduce = useReducedMotion()
@@ -30,25 +30,25 @@ export default function ValoriChiSiamo() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        <SplitText
+        <LineFade
           el="p"
           text="Siamo professionisti che mettono competenza e concretezza al centro di ogni scelta, uniti da un unico obiettivo: trasformare ogni progetto in un risultato solido e duraturo. Dalla progettazione alla gestione operativa della commessa, fino alla valutazione strategica degli investimenti immobiliari. È proprio questa profondità di esperienza che ci ha permesso di costruire una società capace di seguire ogni progetto nella sua interezza, senza delegare le fasi critiche. Oggi siamo il punto di riferimento per chi vuole investire nel mattone con metodo e consapevolezza, e per chi sceglie di costruire una casa che rispecchi davvero il proprio stile di vita."
-          className="font-heading font-light text-primary max-w-4xl text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+          className="font-heading font-light italic text-primary text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
           style={{
-            fontSize: 'clamp(1.2rem, 2.2vw, 2rem)',
-            lineHeight: '1.45',
-            letterSpacing: '-0.015em',
+            fontSize: 'clamp(1.5rem, 2.8vw, 2.6rem)',
+            lineHeight: '1.35',
+            letterSpacing: '-0.02em',
           }}
           delay={shouldReduce ? 0 : 0.1}
-          stagger={0.018}
+          lineStagger={0.16}
           duration={0.6}
         />
 
-        <SplitText
+        <LineFade
           el="p"
           text="Dalla verifica dell'investimento alla costruzione in bioedilizia, offriamo un percorso completo e strutturato. L'integrazione delle nostre tre professionalità garantisce qualità, controllo e una visione orientata al lungo termine."
-          className="font-body font-light text-primary/90 text-[14.5px] md:text-[16px] leading-relaxed mt-12 max-w-3xl text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
-          stagger={0.012}
+          className="font-body font-light text-primary/90 text-[14.5px] md:text-[16px] leading-relaxed mt-12 max-w-3xl text-left"
+          lineStagger={0.16}
           delay={shouldReduce ? 0 : 0.4}
           duration={0.55}
         />

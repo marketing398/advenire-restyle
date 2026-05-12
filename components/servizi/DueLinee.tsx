@@ -2,10 +2,11 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
+import LineFade from '@/components/ui/LineFade'
 
 const linee = [
   {
-    label: 'Linea A',
+    label: 'Modalità A',
     titolo: 'Hai già trovato un’operazione',
     descrizione:
       'Hai individuato qualcosa che ti sembra interessante. Il problema è che per sapere se lo è davvero devi saper leggere i numeri, valutare i rischi urbanistici, stimare i costi di intervento — anche quelli nascosti che nessuno valuta mai — e costruire uno scenario di uscita realistico. E poi, se decidi di procedere, devi saper gestire ogni fase senza perdere margine lungo la strada.',
@@ -14,7 +15,7 @@ const linee = [
     compenso: 'Fee fissa all’avvio + percentuale sul valore di vendita al rogito.',
   },
   {
-    label: 'Linea B',
+    label: 'Modalità B',
     titolo: 'Non vuoi cercare, vuoi solo investire',
     descrizione:
       'Non hai tempo o voglia di fare scouting. Non vuoi passare mesi a valutare immobili per trovarne uno che vale davvero. Vuoi mettere il capitale su un’operazione già analizzata e strutturata.',
@@ -94,13 +95,13 @@ export default function DueLinee() {
                 stagger={0.04}
                 delay={shouldReduce ? 0 : i * 0.12}
               />
-              <SplitText
+              <LineFade
                 el="p"
                 text={l.descrizione}
-                className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mb-5 max-w-[58ch] text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
-                stagger={0.01}
+                className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mb-5 max-w-[58ch] text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
+                lineStagger={0.16}
                 delay={shouldReduce ? 0 : 0.2 + i * 0.12}
-                duration={0.5}
+                duration={0.55}
               />
               <p className="font-body text-primary text-[14px] md:text-[15px] leading-relaxed mb-8 max-w-[58ch]">
                 {l.nostroRuolo}
@@ -109,7 +110,7 @@ export default function DueLinee() {
                 <p className="font-label text-[10px] uppercase tracking-[0.2em] text-primary/60 mb-2">
                   Compenso
                 </p>
-                <p className="font-body text-primary/80 text-[13.5px] leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]">
+                <p className="font-body text-primary/80 text-[13.5px] leading-relaxed text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]">
                   {l.compenso}
                 </p>
               </div>

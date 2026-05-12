@@ -49,11 +49,18 @@ export default function SediSection() {
             <address className="font-body font-light text-background/60 text-[14px] leading-loose not-italic">
               <p>Advenire S.r.l.</p>
               <p>Italia</p>
+              <p>P.IVA 02748220353</p>
               <a
                 href="mailto:info@advenire.it"
                 className="block mt-3 hover:text-background transition-colors duration-300"
               >
                 info@advenire.it
+              </a>
+              <a
+                href="tel:+393516267856"
+                className="block hover:text-background transition-colors duration-300"
+              >
+                +39 351 626 7856
               </a>
             </address>
           </div>
@@ -67,7 +74,7 @@ export default function SediSection() {
               text="Riceviamo i nostri clienti su appuntamento. Scrivici per fissare un primo confronto: ti rispondiamo entro 24 ore lavorative."
               delay={shouldReduce ? 0 : 0.4}
               speed={14}
-              className="font-body font-light text-background/60 text-[14px] leading-loose text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+              className="font-body font-light text-background/60 text-[14px] leading-loose text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
             />
           </div>
         </motion.div>

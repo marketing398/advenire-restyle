@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import SplitText from '@/components/ui/SplitText'
+import LineFade from '@/components/ui/LineFade'
 
 const cards = [
   {
@@ -29,14 +30,15 @@ function ServiceCard({ card, i, isLast, shouldReduce }: { card: typeof cards[0];
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-4%' }}
       transition={{ duration: anim.duration, delay: shouldReduce ? 0 : i * 0.12, ease: anim.ease }}
-      className={`group ${!isLast ? 'border-b border-foreground/10 pb-20 lg:pb-32' : ''}`}
+      className={`group ${!isLast ? 'border-b border-foreground/10 pb-16 lg:pb-24' : ''}`}
     >
-      <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-        <div className="flex-1 flex flex-col items-center w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-stretch">
+        {/* LEFT — title + CTAs (CTA pinned to bottom, allineati ultima riga del paragrafo) */}
+        <div className="flex flex-col items-start lg:justify-between gap-10 lg:gap-12">
           <SplitText
             el="h3"
             text={card.titolo}
-            className="font-heading font-light italic text-primary max-w-2xl mx-auto"
+            className="font-heading font-light italic text-primary"
             style={{
               fontSize: 'clamp(1.85rem, 3.2vw, 2.75rem)',
               lineHeight: 1.15,
@@ -46,22 +48,7 @@ function ServiceCard({ card, i, isLast, shouldReduce }: { card: typeof cards[0];
             delay={shouldReduce ? 0 : i * 0.12}
           />
 
-          <SplitText
-            el="p"
-            text={card.testo}
-            className="font-body font-light text-foreground/85 mt-10 max-w-[52ch] mx-auto text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
-            style={{
-              fontSize: 'clamp(1.0625rem, 1.5vw, 1.25rem)',
-              lineHeight: 1.7,
-              letterSpacing: '0',
-              textAlignLast: 'center',
-            }}
-            stagger={0.012}
-            delay={shouldReduce ? 0 : 0.25 + i * 0.12}
-            duration={0.55}
-          />
-
-          <div className="mt-14 flex flex-col sm:flex-row sm:flex-wrap sm:items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center justify-start gap-4">
             <Link
               href={card.href}
               className="group/btn inline-flex items-center justify-center gap-1.5 font-label text-[12px] uppercase tracking-[0.14em] border border-primary/60 text-primary rounded-full px-6 py-3 hover:bg-primary hover:text-background hover:border-primary transition-colors duration-300"
@@ -76,6 +63,21 @@ function ServiceCard({ card, i, isLast, shouldReduce }: { card: typeof cards[0];
             </Link>
           </div>
         </div>
+
+        {/* RIGHT — description */}
+        <LineFade
+          el="p"
+          text={card.testo}
+          className="font-body font-light text-foreground/85 text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
+          style={{
+            fontSize: 'clamp(1.0625rem, 1.5vw, 1.25rem)',
+            lineHeight: 1.7,
+            letterSpacing: '0',
+          }}
+          lineStagger={0.16}
+          delay={shouldReduce ? 0 : 0.25 + i * 0.12}
+          duration={0.6}
+        />
       </div>
     </motion.div>
   )
@@ -85,7 +87,7 @@ export default function ServiziSection() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="bg-background pt-20 lg:pt-32 pb-32 lg:pb-44" data-section-tone="light">
+    <section id="servizi-section" className="bg-background py-24 lg:py-32" data-section-tone="light">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
 
         <motion.span
@@ -108,7 +110,7 @@ export default function ServiziSection() {
         />
 
         <motion.h2
-          className="font-heading font-light italic text-primary max-w-4xl mb-20 lg:mb-28"
+          className="font-heading font-light italic text-primary max-w-4xl mb-16 lg:mb-20"
           style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
           initial={{ opacity: 0, y: shouldReduce ? 0 : 18 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -119,7 +121,7 @@ export default function ServiziSection() {
         </motion.h2>
 
         {/* Cards */}
-        <div className="flex flex-col gap-20 lg:gap-32">
+        <div className="flex flex-col gap-16 lg:gap-24">
           {cards.map((card, i) => (
             <ServiceCard
               key={card.titolo}
@@ -130,16 +132,6 @@ export default function ServiziSection() {
             />
           ))}
         </div>
-
-        {/* Transition layer — breathing space verso la sezione corallo */}
-        <motion.div
-          aria-hidden="true"
-          initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-30%' }}
-          transition={{ duration: 1.2, ease: anim.ease }}
-          className="h-24 mt-16 lg:mt-24"
-        />
       </div>
     </section>
   )

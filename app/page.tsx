@@ -1,15 +1,8 @@
-'use client'
-
-import dynamic from 'next/dynamic'
 import Hero from '@/components/home/Hero'
-
-const ServiziSection = dynamic(() => import('@/components/home/ServiziSection'), { ssr: true })
-const QuoteSection = dynamic(() => import('@/components/home/QuoteSection'), { ssr: true })
-const ConsulenzaDifferenteSection = dynamic(
-  () => import('@/components/home/ConsulenzaDifferenteSection'),
-  { ssr: true },
-)
-const FAQSection = dynamic(() => import('@/components/home/FAQSection'), { ssr: true })
+import ServiziSection from '@/components/home/ServiziSection'
+import QuoteSection from '@/components/home/QuoteSection'
+import ConsulenzaDifferenteSection from '@/components/home/ConsulenzaDifferenteSection'
+import FAQSection from '@/components/home/FAQSection'
 
 export default function HomePage() {
   return (

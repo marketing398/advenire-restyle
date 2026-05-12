@@ -18,8 +18,12 @@ const PHASE_RATES = {
 const TOTAL_LOW = 0.1
 const TOTAL_HIGH = 0.15
 
+function fmtNum(n: number) {
+  return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+}
+
 function fmt(n: number) {
-  return '€ ' + Math.round(n).toLocaleString('it-IT')
+  return '€ ' + fmtNum(n)
 }
 
 const phases = [
@@ -77,7 +81,7 @@ export default function CalcolatoreRischio() {
             />
 
             <motion.p
-              className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-md text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+              className="font-body font-light text-primary/75 text-[14px] md:text-[15px] leading-relaxed mt-6 max-w-md text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
               initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
@@ -106,7 +110,7 @@ export default function CalcolatoreRischio() {
                 aria-hidden="true"
               >
                 <span className="font-heading font-light italic text-primary text-2xl md:text-3xl tabular-nums whitespace-nowrap">
-                  € {Math.round(valore).toLocaleString('it-IT')}
+                  € {fmtNum(Math.round(valore))}
                 </span>
               </div>
               <input
@@ -117,12 +121,12 @@ export default function CalcolatoreRischio() {
                 value={valore}
                 onChange={(e) => setValore(parseInt(e.target.value, 10))}
                 aria-label="Valore stimato dell'operazione"
-                aria-valuetext={`€ ${Math.round(valore).toLocaleString('it-IT')}`}
+                aria-valuetext={`€ ${fmtNum(Math.round(valore))}`}
                 className="block w-full calc-slider"
               />
               <div className="flex justify-between mt-3 font-body text-[11px] text-primary/50 tabular-nums">
-                <span>€ {MIN.toLocaleString('it-IT')}</span>
-                <span>€ {MAX.toLocaleString('it-IT')}</span>
+                <span>€ {fmtNum(MIN)}</span>
+                <span>€ {fmtNum(MAX)}</span>
               </div>
             </div>
           </div>

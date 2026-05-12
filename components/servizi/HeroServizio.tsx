@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import Typewriter from '@/components/ui/Typewriter'
+import LineFade from '@/components/ui/LineFade'
 
 type Props = {
   label: string
@@ -14,7 +14,7 @@ export default function HeroServizio({ label, titolo, sottotitolo }: Props) {
 
   return (
     <section className="bg-primary relative overflow-hidden" data-section-tone="dark" style={{ paddingTop: '72px' }}>
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-32 relative">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 pt-16 pb-20 lg:pt-24 lg:pb-28 relative">
 
         <motion.span
           className="font-label text-[12px] uppercase tracking-[0.2em] text-background/70 block mb-8"
@@ -47,12 +47,12 @@ export default function HeroServizio({ label, titolo, sottotitolo }: Props) {
           transition={{ duration: 0.8, delay: shouldReduce ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        <Typewriter
+        <LineFade
           el="p"
           text={sottotitolo}
-          delay={shouldReduce ? 0 : 0.7}
-          speed={14}
-          className="font-body font-light text-background/80 text-[14px] md:text-[15px] leading-relaxed max-w-2xl text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]"
+          delay={shouldReduce ? 0 : 0.55}
+          lineStagger={0.18}
+          className="font-body font-light text-background/80 text-[14px] md:text-[15px] leading-relaxed max-w-4xl text-left"
         />
       </div>
     </section>

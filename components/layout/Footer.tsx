@@ -74,11 +74,18 @@ export default function Footer() {
           >
             <p className="font-body font-light text-[12px] text-background/75 leading-loose">Advenire S.r.l.</p>
             <p className="font-body font-light text-[12px] text-background/75 leading-loose">Italia</p>
+            <p className="font-body font-light text-[12px] text-background/75 leading-loose">P.IVA 02748220353</p>
             <a
               href="mailto:info@advenire.it"
               className="font-body font-light text-[12px] text-background/75 hover:text-background transition-colors duration-300 mt-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded-sm"
             >
               info@advenire.it
+            </a>
+            <a
+              href="tel:+393516267856"
+              className="font-body font-light text-[12px] text-background/75 hover:text-background transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded-sm"
+            >
+              +39 351 626 7856
             </a>
           </motion.div>
         </div>
@@ -91,7 +98,7 @@ export default function Footer() {
           viewport={{ once: true, margin: '-5%' }}
           transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.2 }}
         >
-          <p className="font-body font-light text-[11px] text-background/65 leading-relaxed text-left md:text-justify md:hyphens-auto md:[text-justify:inter-word]">
+          <p className="font-body font-light text-[11px] text-background/65 leading-relaxed text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]">
             Le informazioni contenute in questo sito web sono a scopo informativo e non costituiscono
             consulenza finanziaria, legale o fiscale. Le performance passate non garantiscono risultati futuri.
             Tutti gli investimenti comportano rischi, inclusa la possibile perdita del capitale investito.

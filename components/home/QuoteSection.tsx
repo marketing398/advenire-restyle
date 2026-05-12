@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import SplitText from '@/components/ui/SplitText'
+import LineFade from '@/components/ui/LineFade'
 import ArchitecturalLines from '@/components/ui/ArchitecturalLines'
 
 export default function QuoteSection() {
@@ -31,24 +31,22 @@ export default function QuoteSection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        <SplitText
+        <LineFade
           el="p"
           text="Siamo professionisti che mettono competenza e concretezza al centro di ogni scelta, uniti da un unico obiettivo: trasformare ogni progetto in un risultato solido e duraturo. Dalla progettazione alla gestione operativa della commessa, fino alla valutazione strategica degli investimenti immobiliari. È proprio questa profondità di esperienza che ci ha permesso di costruire una società capace di seguire ogni progetto nella sua interezza, senza delegare le fasi critiche. Oggi siamo il punto di riferimento per chi vuole investire nel mattone con metodo e consapevolezza, e per chi sceglie di costruire una casa che rispecchi davvero il proprio stile di vita."
-          className="font-heading font-light italic text-primary max-w-4xl mx-auto text-justify"
+          className="font-heading font-light italic text-primary text-left md:text-justify md:hyphens-none md:[text-justify:inter-word]"
           style={{
             fontSize: 'clamp(1.5rem, 2.8vw, 2.6rem)',
             lineHeight: '1.35',
             letterSpacing: '-0.02em',
-            textAlignLast: 'center',
-            hyphens: 'auto',
           }}
           delay={shouldReduce ? 0 : 0.1}
-          stagger={0.018}
-          duration={0.6}
+          lineStagger={0.16}
+          duration={0.7}
         />
 
         <motion.div
-          className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-4 mt-12 lg:mt-14"
+          className="flex flex-col sm:flex-row sm:flex-wrap justify-start gap-3 sm:gap-4 mt-12 lg:mt-14"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-10%' }}

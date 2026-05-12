@@ -17,8 +17,8 @@ export default function InvestimentiImmobiliariPage() {
     <main>
       <HeroServizio
         label="Investimenti immobiliari"
-        titolo="Fare un'operazione immobiliare da soli è possibile. Farla in modo professionale è meglio."
-        sottotitolo="Un'operazione immobiliare attraversa fasi molto diverse tra loro: valutazione finanziaria, due diligence urbanistica, progettazione, contrattualistica, gestione cantiere, strategia di vendita. Ognuna richiede competenze specifiche. Sbagliare una sola di queste fasi può erodere l'intero margine dell'operazione. O peggio."
+        titolo="Fare un'operazione immobiliare da soli è possibile. Farla in modo professionale è più redditizio."
+        sottotitolo="Un'operazione immobiliare attraversa fasi molto diverse tra loro: valutazione finanziaria, due diligence urbanistica, progettazione, contrattualistica, gestione cantiere, strategia di vendita. Ognuna richiede competenze specifiche. Sbagliare una sola di queste fasi può erodere l'intero margine dell'operazione."
       />
 
       <CalcolatoreRischio />
