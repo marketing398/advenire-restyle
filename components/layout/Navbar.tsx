@@ -98,6 +98,7 @@ export default function Navbar() {
   const isVisible = !isHomepage || scrolled
 
   return (
+    <>
     <header
       className="fixed top-0 left-0 w-full z-50 bg-background/96 backdrop-blur-sm border-b border-border"
       style={{
@@ -166,8 +167,9 @@ export default function Navbar() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Mobile overlay */}
+      {/* Mobile overlay — fuori dall'header per evitare il bug di position:fixed con ancestor transformato */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -175,7 +177,7 @@ export default function Navbar() {
             animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
             exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden fixed inset-x-0 top-[calc(19px+2rem)] bottom-0 bg-background flex flex-col items-start justify-center gap-8 px-8 z-40"
+            className="md:hidden fixed inset-x-0 top-[72px] bottom-0 bg-background flex flex-col items-start justify-center gap-8 px-8 z-40"
           >
             {navLinks.map((link, i) => (
               <motion.div
@@ -195,6 +197,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   )
 }

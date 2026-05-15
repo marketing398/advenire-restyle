@@ -192,7 +192,7 @@ export default function Hero() {
 
         {/* Carousel indicator — "01 ─── 02" sincronizzato con la rotazione */}
         <motion.div
-          className="flex items-center gap-4 py-8 md:py-10"
+          className="flex md:hidden items-center gap-4 py-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: shouldReduce ? 0 : 0.9 }}
@@ -223,7 +223,7 @@ export default function Hero() {
 
         {/* Scroll indicator — label SCORRI + linea verticale con dash animato */}
         <motion.div
-          className="flex flex-col items-start gap-3"
+          className="flex md:hidden flex-col items-start gap-3"
           initial={{ opacity: 0, y: shouldReduce ? 0 : 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: shouldReduce ? 0 : 1.1, ease: [0.16, 1, 0.3, 1] }}
